@@ -1,0 +1,9 @@
+  p ⋀ q
+=    〈 golden rule 〉
+  p ≡ q ≡ p ⋁ q
+=    〈 symmetry of ⋁, symmetry of ≡ 〉
+  q ≡ p ≡ q ⋁ p
+=    〈 golden rule with p,q ≔ q,p 〉
+  p ⋀ q
+
+╱╱

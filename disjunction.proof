@@ -1,0 +1,9 @@
+p ⋁ q  ≡  q ⋁ p
+(p ⋁ q) ⋁ r  ≡  p ⋁ (q ⋁ r)
+p ⋁ p ≡ p
+p ⋁ (q ≡ r)  ≡  p ⋁ q ≡ p ⋁ r
+p ⋁ ¬p
+p ⋁ true ≡ true
+p ⋁ false ≡ p
+p ⋁ (q ⋁ r)  ≡  (p ⋁ q) ⋁ (p ⋁ r)
+p ⋁ q ≡ p ⋁ ¬q ≡ p

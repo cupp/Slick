@@ -1,0 +1,12 @@
+(8.13) Axiom, Empty range: (★x | false : P) = u
+(8.14) Axiom, One-point rule: (★x | x = E : P) = P[x ≔ E]
+(8.15) Axiom, Distributivity: (★x | R : P) ★ (★x | R : Q) = (★x | R : P ★ Q)
+(8.16) Axiom, Range split: (★x | R ⋁ S : P) = (★x | R : P) ★ (★x | S : P)
+(8.17) Axiom, Range split: (★x | R ⋁ S : P) ★ (★x | R ⋀ S : P) = (★x | R : P) ★ (★x | S | P)
+(8.18) Axiom, Range split for idempotent ★: (★x | R ⋁ S : P) = (★x | R : P) ★ (★x | S : P)
+(8.19) Axiom, Interchange of dummies: (★x | R : (★y | Q : P)) = (★y | Q : (★x | R : P))
+(8.20) Axiom, Nesting: (★x,y | R ⋀ Q : P) = (★x | R : (★y | Q : P))
+(8.21) Axiom, Dummy renaming: (★x | R : P) = (★y | R[x ≔ y] : P[x ≔ y])
+(8.22) Change of dummy: (★x | R : P) = (★y | R[x ≔ f.y] : P[x ≔ f.y])
+(8.23a) Split off term: (★i | 0 ≤ i < n + 1 : P) = (★i | 0 ≤ i < n : P) ★ P[i ≔ n]
+(8.23b) Split off term: (★i | 0 ≤ i < n + 1 : P) = P[i ≔ 0] ★ (★i | 0 < i < n + 1 : P)

@@ -1,0 +1,11 @@
+e = f  ⇒  E[z,e] = E[z,f]
+(e = f) ⋀ E[z,e]  ≡  (e = f) ⋀ E[z,f]
+(e = f) ⇒ E[z,e]  ≡  (e = f) ⇒ E[z,f]
+q ⋀ (e = f) ⇒ E[z,e]  ≡  q ⋀ (e = f) ⇒ E[z,f]
+p ⇒ E[z,p]  ≡  p ⇒ E[z,true]
+q ⋀ p ⇒ E[z,p]  ≡  q ⋀ p ⇒ E[z,true]
+E[z,p] ⇒ p  ≡  E[z,false] ⇒ p
+E[z,p] ⇒ p ⋁ q  ≡  E[z,false] ⇒ p ⋁ q
+p ⋀ E[z,p]  ≡  p ⋀ E[z,true]
+p ⋁ E[z,p]  ≡  p ⋁ E[z,false]
+E[z,p]  ≡  (p ⋀ E[z,true]) ⋁ (¬p ⋀ E[z,false])
