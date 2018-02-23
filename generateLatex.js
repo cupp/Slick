@@ -13,26 +13,34 @@ const SlickParser = require('./SlickParser.js').SlickParser;
 //
 // }
 //
+
+const fs = require('fs');
+const preamble = fs.readFileSync("preamble.tex");
+
 SlickListener.prototype.enterProof = (ctx) =>  {
-  process.stdout.write("\n\nBEGIN\n\t");
+  process.stdout.write(preamble);
 }
 
 SlickListener.prototype.exitProof = (ctx) => {
-  process.stdout.write("\nEND\n\n");
+  process.stdout.write("\\end{tabbing}\\end{document}");
 }
 
-SlickListener.prototype.enterExpr = (ctx) => {
-  process.stdout.write("EXPRESSION(");
+SlickListener.prototype.enterStep = (ctx) => {
+  process.stdout.write("\tstep: ");
 }
 
-SlickListener.prototype.exitExpr = (ctx) => {
-  process.stdout.write(ctx.getText() + "): " + ctx.getTokens());
+SlickListener.prototype.exitStep = (ctx) => {
+  process.stdout.write(ctx.getText() + "\n");
 }
 
 SlickListener.prototype.enterJOP
 
 SlickListener.prototype.enterHint = (ctx) => {
-  process.stdout.write("\n\t\tHINT\n\t");
+  process.stdout.write("$=$/>/>\\hint{");
+}
+
+SlickListener.prototype.exitHint = (ctx) => {
+  process.stdout.write("}\\\\\n");
 }
 
 // MAIN

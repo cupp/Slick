@@ -1,6 +1,8 @@
 grammar Slick;
 
-proof : expr (hint expr)+ END ;
+proof : step (hint step)+ END ;
+
+step: expr;
 
 expr : expr '[' varlist '≔' exprlist ']'
    | expr '[' VAR ',' expr ']'

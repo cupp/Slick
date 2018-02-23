@@ -20,6 +20,15 @@ SlickListener.prototype.exitProof = function(ctx) {
 };
 
 
+// Enter a parse tree produced by SlickParser#step.
+SlickListener.prototype.enterStep = function(ctx) {
+};
+
+// Exit a parse tree produced by SlickParser#step.
+SlickListener.prototype.exitStep = function(ctx) {
+};
+
+
 // Enter a parse tree produced by SlickParser#expr.
 SlickListener.prototype.enterExpr = function(ctx) {
 };
