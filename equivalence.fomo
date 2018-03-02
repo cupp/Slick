@@ -1,5 +1,0 @@
-((p ≡ q) ≡ r)  ≡  (p ≡ (q ≡ r))
-p ≡ q ≡ q ≡ p
-true ≡ q ≡ q
-true
-p ≡ p
