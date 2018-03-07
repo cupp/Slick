@@ -13,6 +13,7 @@
 \newcommand{\nimpl}{\ensuremath{\not\Rightarrow}}   % Does not imply
 \newcommand{\foll}{\ensuremath{\Leftarrow}}         % Follows from
 \newcommand{\nfoll}{\ensuremath{\not\Leftarrow}}    % Does not follow from
+\newcommand{\proofbreak}{\\ \\ \\ \\}
 
 % These macros are used for quantifications. Thanks to David Gries for sharing
 \newcommand{\thedr}{\rule[-.25ex]{.32mm}{1.75ex}}   % Symbol that separates dummy from range in quantification
@@ -25,17 +26,16 @@
 \newcommand{\Ggg} {\rangle}                         % Close hint
 
 % Proof
-\newcommand{\Step}[1]{\>{$#1$} \\}
-\newcommand{\Hint}[1] {=\>\>\ \ \ $\Gll \mbox{#1} \Ggg$ \\}   % Single line hint
-\newcommand{\done}{{\color{blue} \ \ \smiley}}
+\newcommand{\Step}[1]{\>{$#1$}}
+%\newcommand{\Hint}[1] {\\=\>\>\ \ \ $\Gll\ \mbox{#1}\ \Ggg$ \\}   % Single line hint
+\newcommand{\Hint}[1] {\\=\>\>\ \ \ $\Gll$\ \text{#1}\ $\Ggg$ \\}   % Single line hint
+\newcommand{\done}{{\color{blue} \ \ $//$}}
 
 % Math symbols
 \newcommand{\nat}{\mathbb{N}}
 \newcommand{\real}{\mathbb{R}}
 \newcommand{\integer}{\mathbb{Z}}
 \newcommand{\bool}{\mathbb{B}}
-\newcommand{\AND}{\wedge}
-\newcommand{\OR}{\vee}
 
 % Single and double quotes
 \newcommand{\Lq}{\mbox{`}}
