@@ -5,23 +5,31 @@ const SlickListener = require('./SlickListener.js').SlickListener;
 const SlickLexer = require('./SlickLexer.js').SlickLexer;
 const SlickParser = require('./SlickParser.js').SlickParser;
 const fs = require('fs');
-const preamble = fs.readFileSync("preamble.tex");
+const preamble = fs.readFileSync("preamble.tex").toString();
+const theoremsStr= fs.readFileSync("theorems.json").toString();
 
 
 class SlickCompiler {
   constructor() {
-    this.bible = {
-      '3.3'  : "(3.3) \\textbf{Identity of $\\,\\equiv$}:\\ \\ \\ $\\textit{true} \\equiv q \\equiv q$",
-      '3.5'  : "(3.5) $p \\equiv p$",
-      '3.24' : "(3.24) \\textbf{Symmetry of $\\vee$}:\\ \\ \\ $p \\vee q \\equivs q \\vee p$",
-      '3.29' : "(3.29) \\textbf{Zero of $\\vee$}:\\ \\ \\ $p \\vee \\textit{true}\\ \\equiv\\ \\textit{true}$",
-      '3.35' : "(3.35) \\textbf{Golden rule}:\\ \\ \\ $p \\wedge q\\ \\equiv\\ p\\ \\equiv\\ q\\ \\equiv\\ p \\vee q$",
-      '3.39' : "(3.39) \\textbf{Identity of $\\wedge$}:\\ \\ \\ $p \\wedge \\textit{true}\\ \\equiv\\ p$",
-      '3.49' : "(3.49) $p \\wedge (q \\equiv r)\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p \\wedge r\\ \\equiv\\ p$",
-      '3.60' : "(3.60) \\textbf{Implication}:\\ \\ \\ $p \\Rightarrow q\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p$",
-      '3.62' : "(3.62) $p \\Rightarrow (q \\equiv r)\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p \\wedge r$",
-      '' : ""
-    };
+    // this.bible = {
+    //   '3.3'  : "(3.3) \\textbf{Identity of $\\,\\equiv$}:\\ \\ \\ $\\textit{true} \\equiv q \\equiv q$",
+    //   '3.5'  : "(3.5) $p \\equiv p$",
+    //   '3.24' : "(3.24) \\textbf{Symmetry of $\\vee$}:\\ \\ \\ $p \\vee q \\equivs q \\vee p$",
+    //   '3.29' : "(3.29) \\textbf{Zero of $\\vee$}:\\ \\ \\ $p \\vee \\textit{true}\\ \\equiv\\ \\textit{true}$",
+    //   '3.35' : "(3.35) \\textbf{Golden rule}:\\ \\ \\ $p \\wedge q\\ \\equiv\\ p\\ \\equiv\\ q\\ \\equiv\\ p \\vee q$",
+    //   '3.39' : "(3.39) \\textbf{Identity of $\\wedge$}:\\ \\ \\ $p \\wedge \\textit{true}\\ \\equiv\\ p$",
+    //   '3.49' : "(3.49) $p \\wedge (q \\equiv r)\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p \\wedge r\\ \\equiv\\ p$",
+    //   '3.60' : "(3.60) \\textbf{Implication}:\\ \\ \\ $p \\Rightarrow q\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p$",
+    //   '3.62' : "(3.62) $p \\Rightarrow (q \\equiv r)\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p \\wedge r$",
+    //   '' : ""
+    // };
+
+    this.bible = {};
+    let theorems = JSON.parse(theoremsStr).theorems;
+    for (let i = 0; i < theorems.length; i++) {
+      let theorem = theorems[i];
+      this.bible[theorem.rule] = "(" + theorem.rule + ") " + (theorem.name? "\\textbf{" + theorem.name + "}: ": " ") + theorem.eq;
+    }
 
     this.latex = {
       '⋀' : '\\wedge',
