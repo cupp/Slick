@@ -1,7 +1,7 @@
 \documentclass[11pt]{amsart}
 \usepackage{times}
 \usepackage{amssymb,latexsym}
-\usepackage{color}
+\usepackage[usenames, dvipsnames]{color}
 \usepackage{ wasysym }
 
 \newcommand{\lgap}{12pt}                            % Line gap
@@ -28,8 +28,8 @@
 % Proof
 \newcommand{\Step}[1]{\>{$#1$}}
 %\newcommand{\Hint}[1] {\\=\>\>\ \ \ $\Gll\ \mbox{#1}\ \Ggg$ \\}   % Single line hint
-\newcommand{\Hint}[1] {\\=\>\>\ \ \ $\Gll$\ \text{#1}\ $\Ggg$ \\}   % Single line hint
-\newcommand{\done}{{\color{blue} \ \ $//$}}
+\newcommand{\Hint}[1] {\\=\>\>\ \ \ \color{CadetBlue}$\Gll$\ \text{#1}\ $\Ggg$ \\}   % Single line hint
+\newcommand{\done}{{\color{BurntOrange} \ \ $//$}}
 
 % Math symbols
 \newcommand{\nat}{\mathbb{N}}
@@ -56,148 +56,151 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-Prove\ (3.39) \textbf{identity of $\wedge$}: $p \wedge \textit{true}\ \equiv\ p$\\ \\
+Prove\ (3.61) \textbf{Contrapositive}:\ \ $p \Rightarrow q\ \equiv\ \neg q \Rightarrow \neg p$\\ \\
 
-\Step{true \wedge p}
-\Hint{ golden rule}
+\Step{\neg q \Rightarrow \neg p}
+\Hint{ (3.59) with p, q $:=$ $\neg$q, $\neg$p }
 
-\Step{true \vee p \equiv true \equiv p}
-\Hint{ zero of $\vee$}
+\Step{\neg \neg q \vee \neg p}
+\Hint{ Double negation }
 
-\Step{true \equiv true \equiv p}
-\Hint{ identity of $\equiv$}
+\Step{q \vee \neg p}
+\Hint{ Symmetry of $\vee$ }
 
-\Step{true \equiv p}
-\Hint{ identity of $\equiv$}
+\Step{\neg p \vee q}
+\Hint{ (3.59) }
 
-\Step{p}
+\Step{p \Rightarrow q}
 \done
 
-\\\\\\\\\pagebreak
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
 
-Prove\ (3.62)  $p \Rightarrow (q \equiv r)\ \equiv\ p \wedge q\ \equiv\ p \wedge r$\\ \\
+Prove\ (3.63) \textbf{Distributivity of $\Rightarrow$ over $\equiv$}:\ \ $p \Rightarrow (q \equiv r)\ \equiv\ (p \Rightarrow q)\ \equiv\ (p \Rightarrow r)$\\ \\
 
-\Step{r \equiv q \Rightarrow p}
-\Hint{ (3.60) Implication}
+\Step{p \Rightarrow q \equiv p \Rightarrow r}
+\Hint{ Implication (3.59), twice }
 
-\Step{p \equiv r \equiv q \wedge p}
-\Hint{ (3.49)}
+\Step{\neg p \vee q \equiv \neg p \vee r}
+\Hint{ Distributivity of $\vee$ over $\equiv$ }
 
-\Step{p \equiv p \equiv r \wedge p \equiv q \wedge p}
-\Hint{ reflexivity of $\equiv$}
+\Step{\neg p \vee (q \equiv r)}
+\Hint{ Implication (3.59) }
 
-\Step{true \equiv r \wedge p \equiv q \wedge p}
-\Hint{ identity of $\equiv$}
-
-\Step{r \wedge p \equiv q \wedge p}
+\Step{p \Rightarrow (q \equiv r)}
 \done
 
-\\\\\\\\\pagebreak
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
 
-Prove\ (3.73) \textbf{left identity of $\Rightarrow$}: $\textit{true} \Rightarrow p\ \equiv\ p$\\ \\
+Prove\ (3.65) \textbf{Shunting}:\ \ $p \wedge q \Rightarrow r\ \equiv\ p \Rightarrow (q \Rightarrow r)$\\ \\
 
-\Step{p \Rightarrow true}
-\Hint{ (3.59)}
+\Step{p \wedge q \Rightarrow r}
+\Hint{ Implication (3.59) }
 
-\Step{p \vee true}
-\Hint{ ¬true $\equiv$ false}
+\Step{\neg (p \wedge q) \vee r}
+\Hint{ De Morgan }
 
-\Step{p \vee false}
-\Hint{ identity of $\vee$}
+\Step{\neg p \vee \neg q \vee r}
+\Hint{ Associativity of $\vee$ }
 
-\Step{p}
+\Step{\neg p \vee (\neg q \vee r)}
+\Hint{ Implication (3.59) }
+
+\Step{\neg p \vee (q \Rightarrow r)}
+\Hint{ Implication (3.59) }
+
+\Step{p \Rightarrow (q \Rightarrow r)}
 \done
 
-\\\\\\\\\pagebreak
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
 
-Prove\ (3.76.1) \textbf{weakening/strengthening}: $p \wedge q \Rightarrow p \vee r$\\ \\
+Prove\ (3.70) \ \ $p \vee q \Rightarrow p \wedge q\ \equiv\ p\ \equiv\ q$\\ \\
 
-\Step{r \vee p \Rightarrow q \wedge p}
-\Hint{ (3.59)}
+\Step{p \vee q \Rightarrow p \wedge q}
+\Hint{ Implication (3.59) }
 
-\Step{r \vee p \vee q \wedge p}
-\Hint{ De Morgan}
+\Step{\neg (p \vee q) \vee (p \wedge q)}
+\Hint{ De Morgan }
 
-\Step{r \vee p \vee q \vee p}
-\Hint{ symmetry of $\equiv$, excluded middle}
+\Step{(\neg p \wedge \neg q) \vee (p \wedge q)}
+\Hint{ Alternate definition of $\equiv$ }
 
-\Step{r \vee q \vee true}
-\Hint{ zero of $\vee$}
+\Step{p \equiv q}
+\done
+
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
+
+Prove\ (3.71) \textbf{Reflexivity of $\Rightarrow$}:\ \ $p \Rightarrow p$\\ \\
+
+\Step{p \Rightarrow p}
+\Hint{ Implication (3.59) }
+
+\Step{\neg p \vee p}
+\Hint{ Excluded middle }
 
 \Step{true}
 \done
 
-\\\\\\\\\pagebreak
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
 
-Prove\ (3.32)  $p \vee q\ \equiv\ p \vee \neg q\ \equiv\ p$\\ \\
+Prove\ (3.72) \textbf{Right zero of $\Rightarrow$}:\ \ $p \Rightarrow \textit{true}\ \equiv\ \textit{true}$\\ \\
 
-\Step{q \vee p \equiv q \vee p}
-\Hint{ distributivity of $\vee$ over $\equiv$}
+\Step{p \Rightarrow true}
+\Hint{ Implication (3.59) }
 
-\Step{q \equiv q \vee p}
-\Hint{ (3.15)}
+\Step{\neg p \vee true}
+\Hint{ Zero of $\vee$ }
 
-\Step{false \vee p}
-\Hint{ identity of $\vee$}
-
-\Step{p}
+\Step{true}
 \done
 
-\\\\\\\\\pagebreak
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
 
-Prove\ (3.49)  $p \wedge (q \equiv r)\ \equiv\ p \wedge q\ \equiv\ p \wedge r\ \equiv\ p$\\ \\
+Prove\ (3.76a) \textbf{Weakening/strengthening}:\ \ $p \Rightarrow p \vee q$\\ \\
 
-\Step{p \equiv q \wedge p \equiv r \wedge p}
-\Hint{ golden rule, twice}
+\Step{p \Rightarrow p \vee q}
+\Hint{ Implication (3.59) }
 
-\Step{p \equiv q \vee p \equiv q \equiv p \equiv r \vee p \equiv r \equiv p}
-\Hint{ symmetry of $\equiv$, reflexivity of $\equiv$}
+\Step{\neg p \vee p \vee q}
+\Hint{ Excluded middle }
 
-\Step{r \equiv q \equiv p \equiv r \vee p \equiv q \vee p}
-\Hint{ distributivity of $\vee$ over $\equiv$}
+\Step{true \vee q}
+\Hint{ Zero of $\vee$ }
 
-\Step{r \equiv q \equiv p \equiv r \equiv q \vee p}
-\Hint{ golden rule}
-
-\Step{r \equiv q \wedge p}
+\Step{true}
 \done
 
-\\\\\\\\\pagebreak
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
 
-Prove\ (3.44b) \textbf{absorption}: $p \vee (\neg p \wedge q)\ \equiv\ p \vee q$\\ \\
+Prove\ (3.77) \textbf{Modus ponens}:\ \ $p \wedge (p \Rightarrow q) \Rightarrow q$\\ \\
 
-\Step{q \wedge p \vee p}
-\Hint{ golden rule}
+\Step{p \wedge (p \Rightarrow q) \Rightarrow q}
+\Hint{ (3.66) p $\wedge$ (p $\Rightarrow$ q) $\equiv$ p $\wedge$ q }
 
-\Step{q \vee p \equiv q \equiv p \vee p}
-\Hint{ distributivity of $\vee$ over $\equiv$}
+\Step{p \wedge q \Rightarrow q}
+\Hint{ Strengthening (3.76b) }
 
-\Step{q \vee p \vee p \equiv q \vee p \equiv p \vee p}
-\Hint{ excluded middle, twice}
-
-\Step{q \vee true \equiv q \vee p \equiv true}
-\Hint{ zero of $\vee$}
-
-\Step{true \equiv q \vee p \equiv true}
-\Hint{ identity of $\equiv$, twice}
-
-\Step{q \vee p}
-\done
-
-\\\\\\\\\pagebreak
-
-Prove\ (3.44b) \textbf{absorption}: $p \vee (\neg p \wedge q)\ \equiv\ p \vee q$\\ \\
-
-\Step{q \wedge p \vee p}
-\Hint{ distributivity of $\vee$ over $\wedge$}
-
-\Step{q \vee p \wedge p \vee p}
-\Hint{ excluded middle}
-
-\Step{q \vee p \wedge true}
-\Hint{ identity of $\wedge$}
-
-\Step{q \vee p}
+\Step{true}
 \done
 
 \end{tabbing}\end{document}

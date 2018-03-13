@@ -11,31 +11,21 @@ const theoremsStr= fs.readFileSync("theorems.json").toString();
 
 class SlickCompiler {
   constructor() {
-    // this.bible = {
-    //   '3.3'  : "(3.3) \\textbf{Identity of $\\,\\equiv$}:\\ \\ \\ $\\textit{true} \\equiv q \\equiv q$",
-    //   '3.5'  : "(3.5) $p \\equiv p$",
-    //   '3.24' : "(3.24) \\textbf{Symmetry of $\\vee$}:\\ \\ \\ $p \\vee q \\equivs q \\vee p$",
-    //   '3.29' : "(3.29) \\textbf{Zero of $\\vee$}:\\ \\ \\ $p \\vee \\textit{true}\\ \\equiv\\ \\textit{true}$",
-    //   '3.35' : "(3.35) \\textbf{Golden rule}:\\ \\ \\ $p \\wedge q\\ \\equiv\\ p\\ \\equiv\\ q\\ \\equiv\\ p \\vee q$",
-    //   '3.39' : "(3.39) \\textbf{Identity of $\\wedge$}:\\ \\ \\ $p \\wedge \\textit{true}\\ \\equiv\\ p$",
-    //   '3.49' : "(3.49) $p \\wedge (q \\equiv r)\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p \\wedge r\\ \\equiv\\ p$",
-    //   '3.60' : "(3.60) \\textbf{Implication}:\\ \\ \\ $p \\Rightarrow q\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p$",
-    //   '3.62' : "(3.62) $p \\Rightarrow (q \\equiv r)\\ \\equiv\\ p \\wedge q\\ \\equiv\\ p \\wedge r$",
-    //   '' : ""
-    // };
-
     this.bible = {};
     let theorems = JSON.parse(theoremsStr).theorems;
     for (let i = 0; i < theorems.length; i++) {
       let theorem = theorems[i];
-      this.bible[theorem.rule] = "(" + theorem.rule + ") " + (theorem.name? "\\textbf{" + theorem.name + "}: ": " ") + theorem.eq;
+      this.bible[theorem.rule] = "(" + theorem.rule + ") " + (theorem.name? "\\textbf{" + theorem.name.slice(0,1).toUpperCase() + theorem.name.slice(1) + "}:\\ \\ ": "\\ \\ ") + theorem.eq;
     }
 
     this.latex = {
       '⋀' : '\\wedge',
       '⋁' : '\\vee',
       '≡' : '\\equiv',
-      '⇒' : '\\Rightarrow'
+      '⇒' : '\\Rightarrow',
+      '¬' : '\\neg',
+      '≢' : '\\not \\equiv',
+      '≔'  : ':='
     };
     this.input;
     this.output = "";
@@ -55,11 +45,13 @@ class SlickCompiler {
     }
 
     this.listener.exitProof = (ctx) => {
-      this.stack.push("\\done\n");
+      if (ctx.END()) {
+        this.stack.push("\\done\n");
+      }
     }
 
     this.listener.exitSep = (ctx) => {
-      this.stack.push("\\\\\\\\\\\\\\\\\\pagebreak\n");
+      this.stack.push("\\end{tabbing}\n\\newpage\n\\begin{tabbing}\n99.\\;\\=(m)\\;\\=\\kill\n");
     }
 
 
@@ -68,23 +60,35 @@ class SlickCompiler {
     }
 
     this.listener.exitJunctionExpr = (ctx) => {
-      let lhs = this.stack.pop();
       let rhs = this.stack.pop();
+      let lhs = this.stack.pop();
       let x = lhs + " " + this.latex[ctx.JOP()] + " " + rhs;
       this.stack.push(x);
     }
 
     this.listener.exitImplicationExpr = (ctx) => {
-      let lhs = this.stack.pop();
       let rhs = this.stack.pop();
+      let lhs = this.stack.pop();
       let x = lhs + " " + this.latex[ctx.IMPOP()] + " " + rhs;
       this.stack.push(x);
     }
 
     this.listener.exitEquivalenceExpr = (ctx) => {
-      let lhs = this.stack.pop();
       let rhs = this.stack.pop();
+      let lhs = this.stack.pop();
       let x = lhs + " " + this.latex[ctx.EQOP()] + " " + rhs;
+      this.stack.push(x);
+    }
+
+    this.listener.exitUnaryPrefixExpr = (ctx) => {
+      let rhs = this.stack.pop();
+      let x = "\\neg " + rhs;
+      this.stack.push(x);
+    }
+
+    this.listener.exitParenExpr = (ctx) => {
+      let e = this.stack.pop();
+      let x = "(" + e + ")";
       this.stack.push(x);
     }
 
@@ -94,7 +98,7 @@ class SlickCompiler {
 
     this.listener.exitHint = (ctx) => {
       let token = ctx.COMMENT().getText();
-      token = token.substr(1, token.length - 3);
+      token = token.substr(1, token.length - 2);
       token = this.removeFm(token);
       this.stack.push("\\Hint\{" + token + "\}\n");
     }
@@ -106,10 +110,10 @@ class SlickCompiler {
   }
 
   removeFm(s) {
-    s = s.replace(/⋀/g, '$\\wedge$');
-    s = s.replace(/⋁/g, '$\\vee$');
-    s = s.replace(/≡/g, '$\\equiv$');
-    s = s.replace(/⇒/g, '$\\Rightarrow$');
+    let ops = Object.keys(this.latex);
+    for (let i = 0; i < ops.length; i++) {
+      s = s.replace(new RegExp(ops[i], 'g'), '$' + this.latex[ops[i]] + '$');
+    }
     return s;
   }
 

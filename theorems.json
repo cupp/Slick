@@ -195,8 +195,13 @@
       "name": "contradiction"
     },
     {
-      "rule": "3.43",
-      "eq": "<ol class=\"norm\"><li>$p \\wedge (p \\vee q)\\ \\equiv\\ p$</li><li>$p \\vee (p \\wedge q)\\ \\equiv\\ p$</li></ol>",
+      "rule": "3.43a",
+      "eq": "$p \\wedge (p \\vee q)\\ \\equiv\\ p$",
+      "name": "absorption"
+    },
+    {
+      "rule": "3.43b",
+      "eq": "$p \\vee (p \\wedge q)\\ \\equiv\\ p$",
       "name": "absorption"
     },
     {
@@ -225,8 +230,13 @@
       "name": "consensus"
     },
     {
-      "rule": "3.47",
-      "eq": "<ol class=\"norm\"><li>$\\neg (p \\wedge q)\\ \\equiv\\ \\neg p \\vee \\neg q$</li><li>$\\neg (p \\vee q)\\ \\equiv\\ \\neg p \\wedge \\neg q$</li></ol>",
+      "rule": "3.47a",
+      "eq": "$\\neg (p \\wedge q)\\ \\equiv\\ \\neg p \\vee \\neg q$",
+      "name": "De Morgan"
+    },
+    {
+      "rule": "3.47b",
+      "eq": "$\\neg (p \\vee q)\\ \\equiv\\ \\neg p \\wedge \\neg q$",
       "name": "De Morgan"
     },
     {
@@ -367,8 +377,28 @@
       "eq": "$\\textit{false} \\Rightarrow p\\ \\equiv\\ \\textit{true}$"
     },
     {
-      "rule": "3.76",
-      "eq": "<ol class=\"norm\"><li>$p \\Rightarrow p \\vee q$</li><li>$p \\wedge q \\Rightarrow p$</li><li>$p \\wedge q \\Rightarrow p \\vee q$</li><li>$p \\vee (q \\wedge r) \\Rightarrow p \\vee q$</li><li>$p \\wedge q \\Rightarrow p \\wedge (q \\vee r)$</li></ol>",
+      "rule": "3.76a",
+      "eq": "$p \\Rightarrow p \\vee q$",
+      "name": "weakening/strengthening"
+    },
+    {
+      "rule": "3.76b",
+      "eq": "$p \\wedge q \\Rightarrow p$",
+      "name": "weakening/strengthening"
+    },
+    {
+      "rule": "3.76c",
+      "eq": "$p \\wedge q \\Rightarrow p \\vee q$",
+      "name": "weakening/strengthening"
+    },
+    {
+      "rule": "3.76d",
+      "eq": "$p \\vee (q \\wedge r) \\Rightarrow p \\vee q$",
+      "name": "weakening/strengthening"
+    },
+    {
+      "rule": "3.76e",
+      "eq": "$p \\wedge q \\Rightarrow p \\wedge (q \\vee r)$",
       "name": "weakening/strengthening"
     },
     {
@@ -409,8 +439,18 @@
       "name": "antisymmetry"
     },
     {
-      "rule": "3.82",
-      "eq": "<ol class=\"norm\"><li>$(p \\Rightarrow q) \\wedge (q \\Rightarrow r) \\Rightarrow (p \\Rightarrow r)$</li><li>$(p \\equiv q) \\wedge (q \\Rightarrow r) \\Rightarrow (p \\Rightarrow r)$</li><li>$(p \\Rightarrow q) \\wedge (q \\equiv r) \\Rightarrow (p \\Rightarrow r)$</li></ol>",
+      "rule": "3.82a",
+      "eq": "$(p \\Rightarrow q) \\wedge (q \\Rightarrow r) \\Rightarrow (p \\Rightarrow r)$",
+      "name": "transitivity"
+    },
+    {
+      "rule": "3.82b",
+      "eq": "$(p \\equiv q) \\wedge (q \\Rightarrow r) \\Rightarrow (p \\Rightarrow r)$",
+      "name": "transitivity"
+    },
+    {
+      "rule": "3.82c",
+      "eq": "$(p \\Rightarrow q) \\wedge (q \\equiv r) \\Rightarrow (p \\Rightarrow r)$",
       "name": "transitivity"
     },
     {
@@ -433,18 +473,38 @@
       "name": "Leibniz"
     },
     {
-      "rule": "3.84",
-      "eq": "<ol class=\"norm\"><li>$(e = f) \\wedge E^z_e\\ \\equiv\\ (e = f) \\wedge E^z_f$</li><li>$(e = f) \\Rightarrow E^z_e\\ \\equiv\\ (e = f) \\Rightarrow E^z_f$</li><li>$q \\wedge (e = f) \\Rightarrow E^z_e\\ \\equiv\\ q \\wedge (e = f) \\Rightarrow E^z_f$</li></ol>",
+      "rule": "3.84a",
+      "eq": "$(e = f) \\wedge E^z_e\\ \\equiv\\ (e = f) \\wedge E^z_f$",
       "name": "substitution"
     },
     {
-      "rule": "3.85",
-      "eq": "<ol class=\"norm\"><li>$p \\Rightarrow E^z_p\\ \\equiv\\ p \\Rightarrow E^z_\\textit{true}$</li><li>$q \\wedge p \\Rightarrow E^z_p\\ \\equiv\\ q \\wedge p \\Rightarrow E^z_\\textit{true}$</li></ol>",
+      "rule": "3.84b",
+      "eq": "$(e = f) \\Rightarrow E^z_e\\ \\equiv\\ (e = f) \\Rightarrow E^z_f$",
+      "name": "substitution"
+    },
+    {
+      "rule": "3.84c",
+      "eq": "$q \\wedge (e = f) \\Rightarrow E^z_e\\ \\equiv\\ q \\wedge (e = f) \\Rightarrow E^z_f$",
+      "name": "substitution"
+    },
+    {
+      "rule": "3.85a",
+      "eq": "$p \\Rightarrow E^z_p\\ \\equiv\\ p \\Rightarrow E^z_\\textit{true}$</li>",
       "name": "replace by $\\textit{true}$"
     },
     {
-      "rule": "3.86",
-      "eq": "<ol class=\"norm\"><li>$E^z_p \\Rightarrow p\\ \\equiv\\ E^z_\\textit{false} \\Rightarrow p$</li><li>$E^z_p \\Rightarrow p \\vee q\\ \\equiv\\ E^z_\\textit{false} \\Rightarrow p \\vee q$</li></ol>",
+      "rule": "3.85b",
+      "eq": "$q \\wedge p \\Rightarrow E^z_p\\ \\equiv\\ q \\wedge p \\Rightarrow E^z_\\textit{true}$",
+      "name": "replace by $\\textit{true}$"
+    },
+    {
+      "rule": "3.86a",
+      "eq": "$E^z_p \\Rightarrow p\\ \\equiv\\ E^z_\\textit{false} \\Rightarrow p$</li>",
+      "name": "replace by $\\textit{false}$"
+    },
+    {
+      "rule": "3.86b",
+      "eq": "$E^z_p \\Rightarrow p \\vee q\\ \\equiv\\ E^z_\\textit{false} \\Rightarrow p \\vee q$",
       "name": "replace by $\\textit{false}$"
     },
     {
@@ -587,8 +647,13 @@
       "name": "change of dummy"
     },
     {
-      "rule": "8.23",
-      "eq": "<ol class=\"norm\"><li>$(\\star i \\mid 0 \\le i < n + 1 : P) = (\\star i \\mid 0 \\le i < n : P) \\star P[i := n]$</li><li>$(\\star i \\mid 0 \\le i < n + 1 : P) = P[i := 0] \\star (\\star i \\mid 0 < i < n + 1: P)$</li></ol>",
+      "rule": "8.23a",
+      "eq": "$(\\star i \\mid 0 \\le i < n + 1 : P) = (\\star i \\mid 0 \\le i < n : P) \\star P[i := n]$",
+      "name": "split off term"
+    },
+    {
+      "rule": "8.23b",
+      "eq": "$(\\star i \\mid 0 \\le i < n + 1 : P) = P[i := 0] \\star (\\star i \\mid 0 < i < n + 1: P)$",
       "name": "split off term"
     },
     {
@@ -600,13 +665,38 @@
       "name": "trading"
     },
     {
-      "rule": "9.3",
-      "eq": "<ol class=\"norm\"><li>$(\\forall x \\mid R : P) \\equiv (\\forall x \\mid : \\neg R \\vee P)$</li><li>$(\\forall x \\mid R : P) \\equiv (\\forall x \\mid : R \\wedge P \\equiv R)$</li><li>$(\\forall x \\mid R : P) \\equiv (\\forall x \\mid : R \\vee P \\equiv P)$</li></ol>",
+      "rule": "9.3a",
+      "eq": "$(\\forall x \\mid R : P) \\equiv (\\forall x \\mid : \\neg R \\vee P)$",
       "name": "trading"
     },
     {
-      "rule": "9.4",
-      "eq": "<ol class=\"norm\"><li>$(\\forall x \\mid Q \\wedge R : P) \\equiv (\\forall x \\mid Q : R \\Rightarrow P)$</li><li>$(\\forall x \\mid Q \\wedge R : P) \\equiv (\\forall x \\mid Q : \\neg R \\vee P)$</li><li>$(\\forall x \\mid Q \\wedge R : P) \\equiv (\\forall x \\mid Q : R \\wedge P \\equiv R)$</li><li>$(\\forall x \\mid Q \\wedge R : P) \\equiv (\\forall x \\mid Q : R \\vee P \\equiv P)$</li></ol>",
+      "rule": "9.3b",
+      "eq": "$(\\forall x \\mid R : P) \\equiv (\\forall x \\mid : R \\wedge P \\equiv R)$",
+      "name": "trading"
+    },
+    {
+      "rule": "9.3c",
+      "eq": "$(\\forall x \\mid R : P) \\equiv (\\forall x \\mid : R \\vee P \\equiv P)$",
+      "name": "trading"
+    },
+    {
+      "rule": "9.4a",
+      "eq": "$(\\forall x \\mid Q \\wedge R : P) \\equiv (\\forall x \\mid Q : R \\Rightarrow P)$",
+      "name": "trading"
+    },
+    {
+      "rule": "9.4b",
+      "eq": "$(\\forall x \\mid Q \\wedge R : P) \\equiv (\\forall x \\mid Q : \\neg R \\vee P)$",
+      "name": "trading"
+    },
+    {
+      "rule": "9.4c",
+      "eq": "$(\\forall x \\mid Q \\wedge R : P) \\equiv (\\forall x \\mid Q : R \\wedge P \\equiv R)$",
+      "name": "trading"
+    },
+    {
+      "rule": "9.4d",
+      "eq": "$(\\forall x \\mid Q \\wedge R : P) \\equiv (\\forall x \\mid Q : R \\vee P \\equiv P)$",
       "name": "trading"
     },
     {
@@ -673,8 +763,18 @@
       "name": "generalized De Morgan"
     },
     {
-      "rule": "9.18",
-      "eq": "<ol class=\"norm\"><li>$\\neg (\\exists x \\mid R : \\neg P) \\equiv (\\forall x \\mid R : P)$</li><li>$\\neg (\\exists x \\mid R : P) \\equiv (\\forall x \\mid R: \\neg P)$</li><li>$(\\exists x \\mid R : \\neg P) \\equiv \\neg (\\forall x \\mid R : P)$</li></ol>",
+      "rule": "9.18a",
+      "eq": "$\\neg (\\exists x \\mid R : \\neg P) \\equiv (\\forall x \\mid R : P)$",
+      "name": "generalized De Morgan"
+    },
+    {
+      "rule": "9.18b",
+      "eq": "$\\neg (\\exists x \\mid R : P) \\equiv (\\forall x \\mid R: \\neg P)$",
+      "name": "generalized De Morgan"
+    },
+    {
+      "rule": "9.18c",
+      "eq": "$(\\exists x \\mid R : \\neg P) \\equiv \\neg (\\forall x \\mid R : P)$",
       "name": "generalized De Morgan"
     },
     {
@@ -993,8 +1093,13 @@
       "name": "distributivity of $\\cap$ over $\\cup$"
     },
     {
-      "rule": "11.42",
-      "eq": "<ol class=\"norm\"><li>$\\sim (S \\cup T)\\ =\\ \\sim S\\;\\cap \\sim T$</li><li>$\\sim (S \\cap T)\\ =\\ \\sim S\\;\\cup \\sim T$</li></ol>",
+      "rule": "11.42a",
+      "eq": "$\\sim (S \\cup T)\\ =\\ \\sim S\\;\\cap \\sim T$",
+      "name": "De Morgan"
+    },
+    {
+      "rule": "11.42b",
+      "eq": "$\\sim (S \\cap T)\\ =\\ \\sim S\\;\\cup \\sim T$",
       "name": "De Morgan"
     },
 
@@ -1125,8 +1230,18 @@
       "eq": "$(\\exists x \\mid x \\in S: x \\not \\in T)\\ \\Rightarrow\\ S \\neq T$"
     },
     {
-      "rule": "11.70",
-      "eq": "<ol class=\"norm\"><li>$S \\subseteq T \\wedge T \\subset U\\ \\Rightarrow\\ S \\subset U$</li><li>$S \\subset T \\wedge T \\subseteq U\\ \\Rightarrow\\ S \\subset U$</li><li>$S \\subset T \\wedge T \\subset U\\ \\Rightarrow\\ S \\subset U$</li></ol>",
+      "rule": "11.70a",
+      "eq": "$S \\subseteq T \\wedge T \\subset U\\ \\Rightarrow\\ S \\subset U$",
+      "name": "transitivity"
+    },
+    {
+      "rule": "11.70b",
+      "eq": "$S \\subset T \\wedge T \\subseteq U\\ \\Rightarrow\\ S \\subset U$",
+      "name": "transitivity"
+    },
+    {
+      "rule": "11.70c",
+      "eq": "$S \\subset T \\wedge T \\subset U\\ \\Rightarrow\\ S \\subset U$",
       "name": "transitivity"
     },
 

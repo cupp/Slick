@@ -2,7 +2,7 @@ grammar Slick;
 
 doc : proof (sep proof)* ;
 
-proof : header? step (hint step)+ END ;
+proof : header? step (hint step)* END? ;
 
 sep : '-' '-' '-' '-'+ ;
 
