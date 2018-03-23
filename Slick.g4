@@ -10,7 +10,7 @@ header : theorem method? ;
 
 theorem : 'Prove' RULENUM ;
 
-method : 'Method:' methodName ;
+method : 'Method' methodName ;
 
 methodName : 'A' | 'B' | 'C' | 'D' ;
 
