@@ -28,6 +28,7 @@ import { MethodNameContext } from './SlickParser';
 import { StepContext } from './SlickParser';
 import { ExprContext } from './SlickParser';
 import { HintContext } from './SlickParser';
+import { HintOpContext } from './SlickParser';
 import { VarlistContext } from './SlickParser';
 import { ExprlistContext } from './SlickParser';
 import { QuantifiedExprContext } from './SlickParser';
@@ -234,6 +235,13 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitHint?: (ctx: HintContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.hintOp`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitHintOp?: (ctx: HintOpContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SlickParser.varlist`.

@@ -75,8 +75,10 @@ export class SlickCompiler implements SlickListener {
     this.latex = {
       '⋀' : '\\wedge',
       '⋁' : '\\vee',
+      '=' : '=',
       '≡' : '\\equiv',
       '⇒' : '\\Rightarrow',
+      '⇐' : '\\Leftarrow',
       '¬' : '\\neg',
       '≢' : '\\not \\equiv',
       '≔'  : ':='
@@ -85,6 +87,7 @@ export class SlickCompiler implements SlickListener {
     this.output = "";
     this.stack = [];
   }
+
   public exitDoc = (ctx : DocContext) => {
     this.output += this.preamble;
     while (this.stack.length > 0) {
@@ -93,7 +96,7 @@ export class SlickCompiler implements SlickListener {
     this.output += "\\end{tabbing}\\end{document}\n\n";
   }
 
-  public exitProof = (ctx : ProofContext) => {
+  public exitProof(ctx : ProofContext) {
     if (ctx.END()) {
       this.stack.push("\\done\n");
     }
@@ -141,6 +144,14 @@ export class SlickCompiler implements SlickListener {
     this.stack.push(x);
   }
 
+  public exitLeibnizExpr = (ctx : LeibnizExprContext) => {
+    let z = this.stack.pop();
+    let v = ctx.VAR().text;
+    let e = this.stack.pop()
+    let x = e + "^\{" + v + "\}_\{" + z + "\}";
+    this.stack.push(x);
+  }
+
   public exitStep = (ctx : StepContext) => {
     this.stack.push("\\Step\{" + this.stack.pop() + "\}");
   }
@@ -149,7 +160,12 @@ export class SlickCompiler implements SlickListener {
     let token = ctx.COMMENT().text;
     token = token.substr(1, token.length - 2);
     token = this.removeFm(token);
-    this.stack.push("\\Hint\{" + token + "\}\n");
+    let op = this.stack.pop();
+    this.stack.push("\\\\$" + this.latex[op] + "$\\>\\>\\ \\ \\ $\\Gll$\\ \\text{" + token + "}\\ $\\Ggg$ \\\\");
+  }
+
+  public exitHintOp = (ctx : HintOpContext) => {
+    this.stack.push(ctx.text);
   }
 
   public exitTheorem = (ctx : TheoremContext) => {
@@ -157,7 +173,7 @@ export class SlickCompiler implements SlickListener {
     this.stack.push("Prove\\ " + theorem + "\\\\ \\\\\n");
   }
 
-  removeFm(s : string) {
+  public removeFm(s : string) {
     let ops = Object.keys(this.latex);
     for (let i = 0; i < ops.length; i++) {
       s = s.replace(new RegExp(ops[i], 'g'), '$' + this.latex[ops[i]] + '$');
@@ -165,7 +181,7 @@ export class SlickCompiler implements SlickListener {
     return s;
   }
 
-  compile(data : string) {
+  public compile(data : string) {
     this.input = data;
     this.chars = new ANTLRInputStream(this.input);
     this.lexer = new SlickLexer(this.chars);

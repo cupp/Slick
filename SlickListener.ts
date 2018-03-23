@@ -28,6 +28,7 @@ import { MethodNameContext } from './SlickParser';
 import { StepContext } from './SlickParser';
 import { ExprContext } from './SlickParser';
 import { HintContext } from './SlickParser';
+import { HintOpContext } from './SlickParser';
 import { VarlistContext } from './SlickParser';
 import { ExprlistContext } from './SlickParser';
 import { QuantifiedExprContext } from './SlickParser';
@@ -346,6 +347,17 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitHint?: (ctx: HintContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.hintOp`.
+	 * @param ctx the parse tree
+	 */
+	enterHintOp?: (ctx: HintOpContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.hintOp`.
+	 * @param ctx the parse tree
+	 */
+	exitHintOp?: (ctx: HintOpContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SlickParser.varlist`.

@@ -37,7 +37,8 @@ expr : expr '[' varlist '≔' exprlist ']'    # TSExpr
    | '(' expr ')'                           # ParenExpr
 ;
 
-hint : '=' COMMENT ;
+hint : hintOp COMMENT ;
+hintOp : RELOP | IMPOP | EQOP ;
 varlist : typedVar (',' typedVar)* ;
 exprlist : expr (',' expr)* ;
 quantifiedExpr : '(' QUANTIFIER varlist '|' expr ':' expr ')' ;
@@ -53,7 +54,7 @@ VAR : [a-z] ;
 TYPE : 'ℤ' | 'ℕ' | 'ℤ+' | 'ℤ-' | 'ℚ' | 'ℝ' | 'ℝ+' | '𝔹' ;
 NUM : ([0-9]('.' [0-9]+)?) | ([1-9][0-9]*('.' [0-9]+)?) ;
 ADDOP : '+' | '-' | '∪' | '∩';
-RELOP : '=' | '<' | '>' | '≤' | '≥' | '∈' | '⊂' | '⊆' | '⊃' | '⊇';
+RELOP : '=' | '≠' | '<' | '>' | '≤' | '≥' | '∈' | '⊂' | '⊆' | '⊃' | '⊇';
 JOP : '⋀' | '⋁' ;
 IMPOP : '⇒'| '⇐' | '⇏' | '⇍';
 EQOP : '≡' | '≢' ;

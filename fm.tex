@@ -56,21 +56,15 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-Prove\ (3.61) \textbf{Contrapositive}:\ \ $p \Rightarrow q\ \equiv\ \neg q \Rightarrow \neg p$\\ \\
+Prove\ (3.85a) \textbf{Replace by $\textit{true}$}:\ \ $p \Rightarrow E^z_p\ \equiv\ p \Rightarrow E^z_\textit{true}$</li>\\ \\
 
-\Step{\neg q \Rightarrow \neg p}
-\Hint{ (3.59) with p, q $:=$ $\neg$q, $\neg$p }
-
-\Step{\neg \neg q \vee \neg p}
-\Hint{ Double negation }
-
-\Step{q \vee \neg p}
-\Hint{ Symmetry of $\vee$ }
-
-\Step{\neg p \vee q}
-\Hint{ (3.59) }
-
-\Step{p \Rightarrow q}
+\Step{p \Rightarrow E^{z}_{p}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{(p \equiv true) \Rightarrow E^{z}_{p}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.84b) with e, f $:=$ p, true }\ $\Ggg$ \\
+\Step{(p \equiv true) \Rightarrow E^{z}_{true}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{p \Rightarrow E^{z}_{true}}
 \done
 
 \end{tabbing}
@@ -78,18 +72,15 @@ Prove\ (3.61) \textbf{Contrapositive}:\ \ $p \Rightarrow q\ \equiv\ \neg q \Righ
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-Prove\ (3.63) \textbf{Distributivity of $\Rightarrow$ over $\equiv$}:\ \ $p \Rightarrow (q \equiv r)\ \equiv\ (p \Rightarrow q)\ \equiv\ (p \Rightarrow r)$\\ \\
+Prove\ (3.85b) \textbf{Replace by $\textit{true}$}:\ \ $q \wedge p \Rightarrow E^z_p\ \equiv\ q \wedge p \Rightarrow E^z_\textit{true}$\\ \\
 
-\Step{p \Rightarrow q \equiv p \Rightarrow r}
-\Hint{ Implication (3.59), twice }
-
-\Step{\neg p \vee q \equiv \neg p \vee r}
-\Hint{ Distributivity of $\vee$ over $\equiv$ }
-
-\Step{\neg p \vee (q \equiv r)}
-\Hint{ Implication (3.59) }
-
-\Step{p \Rightarrow (q \equiv r)}
+\Step{q \wedge p \Rightarrow E^{z}_{p}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{q \wedge (p \equiv true) \Rightarrow E^{z}_{p}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.84c) with e, f $:=$ p, true }\ $\Ggg$ \\
+\Step{q \wedge (p \equiv true) \Rightarrow E^{z}_{true}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{q \wedge p \Rightarrow E^{z}_{true}}
 \done
 
 \end{tabbing}
@@ -97,110 +88,13 @@ Prove\ (3.63) \textbf{Distributivity of $\Rightarrow$ over $\equiv$}:\ \ $p \Rig
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-Prove\ (3.65) \textbf{Shunting}:\ \ $p \wedge q \Rightarrow r\ \equiv\ p \Rightarrow (q \Rightarrow r)$\\ \\
+Prove\ (4.1) \ \ $p \Rightarrow (q \Rightarrow p)$\\ \\
 
-\Step{p \wedge q \Rightarrow r}
-\Hint{ Implication (3.59) }
-
-\Step{\neg (p \wedge q) \vee r}
-\Hint{ De Morgan }
-
-\Step{\neg p \vee \neg q \vee r}
-\Hint{ Associativity of $\vee$ }
-
-\Step{\neg p \vee (\neg q \vee r)}
-\Hint{ Implication (3.59) }
-
-\Step{\neg p \vee (q \Rightarrow r)}
-\Hint{ Implication (3.59) }
-
-\Step{p \Rightarrow (q \Rightarrow r)}
-\done
-
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
-
-Prove\ (3.70) \ \ $p \vee q \Rightarrow p \wedge q\ \equiv\ p\ \equiv\ q$\\ \\
-
-\Step{p \vee q \Rightarrow p \wedge q}
-\Hint{ Implication (3.59) }
-
-\Step{\neg (p \vee q) \vee (p \wedge q)}
-\Hint{ De Morgan }
-
-\Step{(\neg p \wedge \neg q) \vee (p \wedge q)}
-\Hint{ Alternate definition of $\equiv$ }
-
-\Step{p \equiv q}
-\done
-
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
-
-Prove\ (3.71) \textbf{Reflexivity of $\Rightarrow$}:\ \ $p \Rightarrow p$\\ \\
-
-\Step{p \Rightarrow p}
-\Hint{ Implication (3.59) }
-
-\Step{\neg p \vee p}
-\Hint{ Excluded middle }
-
-\Step{true}
-\done
-
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
-
-Prove\ (3.72) \textbf{Right zero of $\Rightarrow$}:\ \ $p \Rightarrow \textit{true}\ \equiv\ \textit{true}$\\ \\
-
-\Step{p \Rightarrow true}
-\Hint{ Implication (3.59) }
-
-\Step{\neg p \vee true}
-\Hint{ Zero of $\vee$ }
-
-\Step{true}
-\done
-
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
-
-Prove\ (3.76a) \textbf{Weakening/strengthening}:\ \ $p \Rightarrow p \vee q$\\ \\
-
-\Step{p \Rightarrow p \vee q}
-\Hint{ Implication (3.59) }
-
-\Step{\neg p \vee p \vee q}
-\Hint{ Excluded middle }
-
-\Step{true \vee q}
-\Hint{ Zero of $\vee$ }
-
-\Step{true}
-\done
-
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
-
-Prove\ (3.77) \textbf{Modus ponens}:\ \ $p \wedge (p \Rightarrow q) \Rightarrow q$\\ \\
-
-\Step{p \wedge (p \Rightarrow q) \Rightarrow q}
-\Hint{ (3.66) p $\wedge$ (p $\Rightarrow$ q) $\equiv$ p $\wedge$ q }
-
-\Step{p \wedge q \Rightarrow q}
-\Hint{ Strengthening (3.76b) }
-
-\Step{true}
+\Step{q \Rightarrow p}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) }\ $\Ggg$ \\
+\Step{\neg q \vee p}
+\\$\Leftarrow$\>\>\ \ \ $\Gll$\ \text{ (3.76a) Strengthening }\ $\Ggg$ \\
+\Step{p}
 \done
 
 \end{tabbing}\end{document}
