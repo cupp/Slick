@@ -47,7 +47,6 @@ import { SlickLexer } from './SlickLexer';
 
 import * as fs from 'fs';
 
-
 export class SlickCompiler implements SlickListener {
   private parser : SlickParser;
   private bible : Object;
@@ -168,9 +167,20 @@ export class SlickCompiler implements SlickListener {
     this.stack.push(ctx.text);
   }
 
-  public exitTheorem = (ctx : TheoremContext) => {
+  public exitBibleTheorem = (ctx : BibleTheoremContext) => {
+    let proveOrReprove = ctx.PROVE();
     let theorem = this.bible[ctx.RULENUM()];
-    this.stack.push("Prove\\ " + theorem + "\\\\ \\\\\n");
+    this.stack.push(proveOrReprove + "\\ " + theorem + "\\\\ \\\\\n");
+  }
+
+  public exitAdHocTheorem = (ctx : AdHocTheoremContext) => {
+    let proveOrReprove = ctx.PROVE();
+    let theorem = this.stack.pop();
+    this.stack.push(proveOrReprove + "\\ " + theorem + "\\\\ \\\\\n")
+  }
+
+  public exitExpositionLine = (ctx : ExpositionLineContext) => {
+    this.stack.push("\\text{" + ctx.text + "}");
   }
 
   public removeFm(s : string) {

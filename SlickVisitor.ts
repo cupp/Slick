@@ -3,6 +3,8 @@
 
 import { ParseTreeVisitor } from 'antlr4ts/tree/ParseTreeVisitor';
 
+import { AdHocTheoremContext } from './SlickParser';
+import { BibleTheoremContext } from './SlickParser';
 import { ImplicationExprContext } from './SlickParser';
 import { EquivalenceExprContext } from './SlickParser';
 import { AtomContext } from './SlickParser';
@@ -22,6 +24,9 @@ import { DocContext } from './SlickParser';
 import { ProofContext } from './SlickParser';
 import { SepContext } from './SlickParser';
 import { HeaderContext } from './SlickParser';
+import { ExpositionContext } from './SlickParser';
+import { ExpoDelimContext } from './SlickParser';
+import { ExpoLineContext } from './SlickParser';
 import { TheoremContext } from './SlickParser';
 import { MethodContext } from './SlickParser';
 import { MethodNameContext } from './SlickParser';
@@ -46,6 +51,22 @@ import { TypedVarContext } from './SlickParser';
  * operations with no return type.
  */
 export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
+	/**
+	 * Visit a parse tree produced by the `AdHocTheorem`
+	 * labeled alternative in `SlickParser.theorem`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitAdHocTheorem?: (ctx: AdHocTheoremContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `BibleTheorem`
+	 * labeled alternative in `SlickParser.theorem`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitBibleTheorem?: (ctx: BibleTheoremContext) => Result;
+
 	/**
 	 * Visit a parse tree produced by the `ImplicationExpr`
 	 * labeled alternative in `SlickParser.expr`.
@@ -193,6 +214,27 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitHeader?: (ctx: HeaderContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.exposition`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitExposition?: (ctx: ExpositionContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.expoDelim`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitExpoDelim?: (ctx: ExpoDelimContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.expoLine`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitExpoLine?: (ctx: ExpoLineContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SlickParser.theorem`.

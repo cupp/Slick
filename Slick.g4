@@ -2,17 +2,31 @@ grammar Slick;
 
 doc : proof (sep proof)* ;
 
-proof : header? step (hint step)* END? ;
+proof : header? exposition? step (hint step)* END? exposition? ;
 
 sep : '-' '-' '-' '-'+ ;
 
 header : theorem method? ;
 
-theorem : 'Prove' RULENUM ;
+exposition : expoDelim expoLine+ expoDelim ;
 
-method : 'Method' methodName ;
+expoDelim : '*' '*' '*' '*'+ ;
 
-methodName : 'A' | 'B' | 'C' | 'D' ;
+expoLine : ';' EXPO ;
+
+theorem : PROVE RULENUM     # BibleTheorem
+  | PROVE expr              # AdHocTheorem
+;
+
+method : 'by' methodName ;
+
+methodName : 'showing equivalence to previous theorem'
+  | 'showing the LHS is equivalent to the RHS'
+  | 'showing the RHS is equivalent to the LHS'
+  | 'showing the LHS implies the RHS'
+  | 'showing the RHS follows from the LHS'
+  | 'assuming the conjuncts of the antecedent'
+;
 
 step: expr;
 
@@ -48,6 +62,8 @@ functionCall : VAR '.' expr | VAR '(' expr ')' ;
 typedVar : VAR (':' TYPE)? ;
 
 COMMENT : '〈' .+? '〉' ;
+EXPO : [^*]+? ;
+PROVE : 'Prove' | 'Reprove' ;
 RULENUM: [1-9][0-9]?'.'[1-9][0-9]?[0-9]?[a-e]?('.'[0-9])? ;
 EVAR : [A-Z] ;
 VAR : [a-z] ;

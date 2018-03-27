@@ -3,6 +3,8 @@
 
 import { ParseTreeListener } from 'antlr4ts/tree/ParseTreeListener';
 
+import { AdHocTheoremContext } from './SlickParser';
+import { BibleTheoremContext } from './SlickParser';
 import { ImplicationExprContext } from './SlickParser';
 import { EquivalenceExprContext } from './SlickParser';
 import { AtomContext } from './SlickParser';
@@ -22,6 +24,9 @@ import { DocContext } from './SlickParser';
 import { ProofContext } from './SlickParser';
 import { SepContext } from './SlickParser';
 import { HeaderContext } from './SlickParser';
+import { ExpositionContext } from './SlickParser';
+import { ExpoDelimContext } from './SlickParser';
+import { ExpoLineContext } from './SlickParser';
 import { TheoremContext } from './SlickParser';
 import { MethodContext } from './SlickParser';
 import { MethodNameContext } from './SlickParser';
@@ -43,6 +48,32 @@ import { TypedVarContext } from './SlickParser';
  * `SlickParser`.
  */
 export interface SlickListener extends ParseTreeListener {
+	/**
+	 * Enter a parse tree produced by the `AdHocTheorem`
+	 * labeled alternative in `SlickParser.theorem`.
+	 * @param ctx the parse tree
+	 */
+	enterAdHocTheorem?: (ctx: AdHocTheoremContext) => void;
+	/**
+	 * Exit a parse tree produced by the `AdHocTheorem`
+	 * labeled alternative in `SlickParser.theorem`.
+	 * @param ctx the parse tree
+	 */
+	exitAdHocTheorem?: (ctx: AdHocTheoremContext) => void;
+
+	/**
+	 * Enter a parse tree produced by the `BibleTheorem`
+	 * labeled alternative in `SlickParser.theorem`.
+	 * @param ctx the parse tree
+	 */
+	enterBibleTheorem?: (ctx: BibleTheoremContext) => void;
+	/**
+	 * Exit a parse tree produced by the `BibleTheorem`
+	 * labeled alternative in `SlickParser.theorem`.
+	 * @param ctx the parse tree
+	 */
+	exitBibleTheorem?: (ctx: BibleTheoremContext) => void;
+
 	/**
 	 * Enter a parse tree produced by the `ImplicationExpr`
 	 * labeled alternative in `SlickParser.expr`.
@@ -281,6 +312,39 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitHeader?: (ctx: HeaderContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.exposition`.
+	 * @param ctx the parse tree
+	 */
+	enterExposition?: (ctx: ExpositionContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.exposition`.
+	 * @param ctx the parse tree
+	 */
+	exitExposition?: (ctx: ExpositionContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.expoDelim`.
+	 * @param ctx the parse tree
+	 */
+	enterExpoDelim?: (ctx: ExpoDelimContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.expoDelim`.
+	 * @param ctx the parse tree
+	 */
+	exitExpoDelim?: (ctx: ExpoDelimContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.expoLine`.
+	 * @param ctx the parse tree
+	 */
+	enterExpoLine?: (ctx: ExpoLineContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.expoLine`.
+	 * @param ctx the parse tree
+	 */
+	exitExpoLine?: (ctx: ExpoLineContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SlickParser.theorem`.
