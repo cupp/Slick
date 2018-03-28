@@ -56,6 +56,21 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-\Step{undefined}
+Prove\ $(C \wedge T \Rightarrow S) \wedge S \Rightarrow (C \Rightarrow T)$\\ \\
+
+\Step{(C \wedge T \Rightarrow S) \wedge S}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) p $\Rightarrow$ q $\equiv$ $\neg$p $\vee$ q }\ $\Ggg$ \\
+\Step{((C \wedge T) \vee S) \wedge S}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.43a) Absorption }\ $\Ggg$ \\
+\Step{S}
+\text{
+ We associate identifiers with the primitive propositions:
+     C : The initialization is correct,
+     T : The loop terminates,
+     S : P is true in the final state.
+ The boolean expression is then
+     (C ⋀ T ⇒ S) ⋀ S ⇒ (C ⇒ T)
+ We calculate:
+}
 \end{tabbing}\end{document}
 

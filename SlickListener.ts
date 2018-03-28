@@ -24,9 +24,6 @@ import { DocContext } from './SlickParser';
 import { ProofContext } from './SlickParser';
 import { SepContext } from './SlickParser';
 import { HeaderContext } from './SlickParser';
-import { ExpositionContext } from './SlickParser';
-import { ExpoDelimContext } from './SlickParser';
-import { ExpoLineContext } from './SlickParser';
 import { TheoremContext } from './SlickParser';
 import { MethodContext } from './SlickParser';
 import { MethodNameContext } from './SlickParser';
@@ -312,39 +309,6 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitHeader?: (ctx: HeaderContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `SlickParser.exposition`.
-	 * @param ctx the parse tree
-	 */
-	enterExposition?: (ctx: ExpositionContext) => void;
-	/**
-	 * Exit a parse tree produced by `SlickParser.exposition`.
-	 * @param ctx the parse tree
-	 */
-	exitExposition?: (ctx: ExpositionContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `SlickParser.expoDelim`.
-	 * @param ctx the parse tree
-	 */
-	enterExpoDelim?: (ctx: ExpoDelimContext) => void;
-	/**
-	 * Exit a parse tree produced by `SlickParser.expoDelim`.
-	 * @param ctx the parse tree
-	 */
-	exitExpoDelim?: (ctx: ExpoDelimContext) => void;
-
-	/**
-	 * Enter a parse tree produced by `SlickParser.expoLine`.
-	 * @param ctx the parse tree
-	 */
-	enterExpoLine?: (ctx: ExpoLineContext) => void;
-	/**
-	 * Exit a parse tree produced by `SlickParser.expoLine`.
-	 * @param ctx the parse tree
-	 */
-	exitExpoLine?: (ctx: ExpoLineContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SlickParser.theorem`.

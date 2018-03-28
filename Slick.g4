@@ -2,17 +2,11 @@ grammar Slick;
 
 doc : proof (sep proof)* ;
 
-proof : header? exposition? step (hint step)* END? exposition? ;
+proof : header? START_EXPO? step (hint step)* END? END_EXPO? ;
 
 sep : '-' '-' '-' '-'+ ;
 
 header : theorem method? ;
-
-exposition : expoDelim expoLine+ expoDelim ;
-
-expoDelim : '*' '*' '*' '*'+ ;
-
-expoLine : ';' EXPO ;
 
 theorem : PROVE RULENUM     # BibleTheorem
   | PROVE expr              # AdHocTheorem
@@ -62,7 +56,8 @@ functionCall : VAR '.' expr | VAR '(' expr ')' ;
 typedVar : VAR (':' TYPE)? ;
 
 COMMENT : '〈' .+? '〉' ;
-EXPO : [^*]+? ;
+START_EXPO : '/*' .+? '*/' ;
+END_EXPO : '/*' .+? '*/' ;
 PROVE : 'Prove' | 'Reprove' ;
 RULENUM: [1-9][0-9]?'.'[1-9][0-9]?[0-9]?[a-e]?('.'[0-9])? ;
 EVAR : [A-Z] ;

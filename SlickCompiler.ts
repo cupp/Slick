@@ -1,42 +1,41 @@
 // SlickCompiler.ts
 
-// import { antlr4 } from 'antlr4/index';
-// import { SlickListener } from './SlickListener.ts';
-// import { SlickLexer } from './SlickLexer.ts';
-// import { SlickParser } from './SlickParser.ts';
-
-import { ImplicationExprContext } from './SlickParser';
-import { EquivalenceExprContext } from './SlickParser';
-import { AtomContext } from './SlickParser';
-import { RelativeExprContext } from './SlickParser';
-import { SetEnumExprContext } from './SlickParser';
-import { FunctionCallExprContext } from './SlickParser';
-import { AdditionExprContext } from './SlickParser';
-import { LeibnizExprContext } from './SlickParser';
-import { SetCompExprContext } from './SlickParser';
-import { GeneralExprContext } from './SlickParser';
-import { ParenExprContext } from './SlickParser';
-import { TSExprContext } from './SlickParser';
-import { JunctionExprContext } from './SlickParser';
-import { QuantExprContext } from './SlickParser';
-import { UnaryPrefixExprContext } from './SlickParser';
-import { DocContext } from './SlickParser';
-import { ProofContext } from './SlickParser';
-import { SepContext } from './SlickParser';
-import { HeaderContext } from './SlickParser';
-import { TheoremContext } from './SlickParser';
-import { MethodContext } from './SlickParser';
-import { MethodNameContext } from './SlickParser';
-import { StepContext } from './SlickParser';
-import { ExprContext } from './SlickParser';
-import { HintContext } from './SlickParser';
-import { VarlistContext } from './SlickParser';
-import { ExprlistContext } from './SlickParser';
-import { QuantifiedExprContext } from './SlickParser';
-import { SetEnumerationContext } from './SlickParser';
-import { SetComprehensionContext } from './SlickParser';
-import { FunctionCallContext } from './SlickParser';
-import { TypedVarContext } from './SlickParser';
+import { ImplicationExprContext,
+         EquivalenceExprContext,
+         AtomContext,
+         RelativeExprContext,
+         SetEnumExprContext,
+         FunctionCallExprContext,
+         AdditionExprContext,
+         LeibnizExprContext,
+         SetCompExprContext,
+         GeneralExprContext,
+         ParenExprContext,
+         TSExprContext,
+         JunctionExprContext,
+         QuantExprContext,
+         UnaryPrefixExprContext,
+         DocContext,
+         ProofContext,
+         SepContext,
+         HeaderContext,
+         TheoremContext,
+         MethodContext,
+         MethodNameContext,
+         StepContext,
+         ExprContext,
+         HintContext,
+         VarlistContext,
+         ExprlistContext,
+         QuantifiedExprContext,
+         SetEnumerationContext,
+         SetComprehensionContext,
+         FunctionCallContext,
+         TypedVarContext,
+         HintOpContext,
+         BibleTheoremContext,
+         AdHocTheoremContext
+} from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
 import { TerminalNode, ParseTreeWalker } from 'antlr4ts/tree';
@@ -95,9 +94,19 @@ export class SlickCompiler implements SlickListener {
     this.output += "\\end{tabbing}\\end{document}\n\n";
   }
 
-  public exitProof(ctx : ProofContext) {
+  public exitProof = (ctx : ProofContext) => {
+    if (ctx.START_EXPO()) {
+      let expo = ctx.START_EXPO().toString();
+      expo = expo.replace(/\/\*/, "");
+      expo = expo.replace(/\*\//, "");
+//      expo = expo.replace(/\n/g, "\\\\");
+      this.stack.push("\\text{" + expo + "}");
+    }
     if (ctx.END()) {
       this.stack.push("\\done\n");
+    }
+    if (ctx.END_EXPO()) {
+      this.stack.push("\\text{" + ctx.END_EXPO() + "}");
     }
   }
 
@@ -176,10 +185,10 @@ export class SlickCompiler implements SlickListener {
   public exitAdHocTheorem = (ctx : AdHocTheoremContext) => {
     let proveOrReprove = ctx.PROVE();
     let theorem = this.stack.pop();
-    this.stack.push(proveOrReprove + "\\ " + theorem + "\\\\ \\\\\n")
+    this.stack.push(proveOrReprove + "\\ $" + theorem + "$\\\\ \\\\\n")
   }
 
-  public exitExpositionLine = (ctx : ExpositionLineContext) => {
+  public exitExpo = (ctx : ExpoContext) => {
     this.stack.push("\\text{" + ctx.text + "}");
   }
 
@@ -203,8 +212,3 @@ export class SlickCompiler implements SlickListener {
     return this.output;
   }
 }
-
-
-
-
-//exports.SlickCompiler = SlickCompiler;
