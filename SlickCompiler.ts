@@ -68,13 +68,13 @@ export class SlickCompiler implements SlickListener {
     let theorems = JSON.parse(theoremsStr).theorems;
     for (let i = 0; i < theorems.length; i++) {
       let theorem = theorems[i];
-      if (theorem.eq.beginsWith("$")) {
-        theorem.eq.replace(/^\$/, "$\\mathbf{");
-      }
-      if (theorem.eq.endsWith("$")) {
-        theorem.eq.replace(/\$$, "$}");
-      }
-      this.bible[theorem.rule] = "\\textbf{(" + theorem.rule + ")} " + (theorem.name? "\\textbf{" + theorem.name.slice(0,1).toUpperCase() + theorem.name.slice(1) + "}:\\ \\ ": "\\ \\ " + theorem.eq + "}";
+      // if (theorem.eq.startsWith("$")) {
+      //   theorem.eq.replace(/^\s*\$/, "$\\mathbf{");
+      // }
+      // if (theorem.eq.endsWith("$")) {
+      //   theorem.eq.replace(/\$$/, "}$");
+      // }
+      this.bible[theorem.rule] = theorem.rule + (theorem.name? + theorem.name.slice(0,1).toUpperCase() + theorem.name.slice(1) + ":\\ \\ ": "\\ \\ ") + theorem.eq;
     }
 
     // this.listener = new SlickListener();
@@ -195,7 +195,7 @@ export class SlickCompiler implements SlickListener {
   public exitBibleTheorem = (ctx : BibleTheoremContext) => {
     let proveOrReprove = ctx.PROVE();
     let theorem = this.bible[ctx.RULENUM()];
-    this.stack.push("\\textbf{" +proveOrReprove + "}\\ " + theorem + "\\\\ \\\\\n");
+    this.stack.push("\\color{blue}" + proveOrReprove + "\\ " + theorem + "\\\\ \\\\\n");
   }
 
   public exitAdHocTheorem = (ctx : AdHocTheoremContext) => {
