@@ -34,7 +34,9 @@ import { ImplicationExprContext,
          TypedVarContext,
          HintOpContext,
          BibleTheoremContext,
-         AdHocTheoremContext
+         AdHocTheoremContext,
+         StartExpoContext,
+         EndExpoContext
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -66,7 +68,13 @@ export class SlickCompiler implements SlickListener {
     let theorems = JSON.parse(theoremsStr).theorems;
     for (let i = 0; i < theorems.length; i++) {
       let theorem = theorems[i];
-      this.bible[theorem.rule] = "(" + theorem.rule + ") " + (theorem.name? "\\textbf{" + theorem.name.slice(0,1).toUpperCase() + theorem.name.slice(1) + "}:\\ \\ ": "\\ \\ ") + theorem.eq;
+      if (theorem.eq.beginsWith("$")) {
+        theorem.eq.replace(/^\$/, "$\\mathbf{");
+      }
+      if (theorem.eq.endsWith("$")) {
+        theorem.eq.replace(/\$$, "$}");
+      }
+      this.bible[theorem.rule] = "\\textbf{(" + theorem.rule + ")} " + (theorem.name? "\\textbf{" + theorem.name.slice(0,1).toUpperCase() + theorem.name.slice(1) + "}:\\ \\ ": "\\ \\ " + theorem.eq + "}";
     }
 
     // this.listener = new SlickListener();
@@ -94,19 +102,27 @@ export class SlickCompiler implements SlickListener {
     this.output += "\\end{tabbing}\\end{document}\n\n";
   }
 
-  public exitProof = (ctx : ProofContext) => {
-    if (ctx.START_EXPO()) {
-      let expo = ctx.START_EXPO().toString();
-      expo = expo.replace(/\/\*/, "");
-      expo = expo.replace(/\*\//, "");
-//      expo = expo.replace(/\n/g, "\\\\");
-      this.stack.push("\\text{" + expo + "}");
+  public exitStartExpo = (ctx : StartExpoContext) => {
+    if (ctx.EXPO()) {
+      let expo = ctx.EXPO().toString();
+      expo = this.removeFm(expo);
+      expo = this.formatExpo(expo);
+      this.stack.push("\\\\\n\\text{" + expo);
     }
+  }
+
+  public exitEndExpo = (ctx : EndExpoContext) => {
+    if (ctx.EXPO()) {
+      let expo = ctx.EXPO().toString();
+      expo = this.removeFm(expo);
+      expo = this.formatExpo(expo);
+      this.stack.push("\\\\\n\\text{" + expo);
+    }
+  }
+
+  public exitProof = (ctx : ProofContext) => {
     if (ctx.END()) {
       this.stack.push("\\done\n");
-    }
-    if (ctx.END_EXPO()) {
-      this.stack.push("\\text{" + ctx.END_EXPO() + "}");
     }
   }
 
@@ -179,7 +195,7 @@ export class SlickCompiler implements SlickListener {
   public exitBibleTheorem = (ctx : BibleTheoremContext) => {
     let proveOrReprove = ctx.PROVE();
     let theorem = this.bible[ctx.RULENUM()];
-    this.stack.push(proveOrReprove + "\\ " + theorem + "\\\\ \\\\\n");
+    this.stack.push("\\textbf{" +proveOrReprove + "}\\ " + theorem + "\\\\ \\\\\n");
   }
 
   public exitAdHocTheorem = (ctx : AdHocTheoremContext) => {
@@ -197,6 +213,18 @@ export class SlickCompiler implements SlickListener {
     for (let i = 0; i < ops.length; i++) {
       s = s.replace(new RegExp(ops[i], 'g'), '$' + this.latex[ops[i]] + '$');
     }
+    return s;
+  }
+
+  public formatExpo(s : string) {
+    s = s.replace(/\/\*/, "");
+    s = s.replace(/\*\//, "");
+    s = s.replace(/(\W)([B-Zb-z])(\W)/g, "$1\\textit{$2}$3");
+    s = s.replace(/true/g, "\\textit{true}");
+    s = s.replace(/false/g, "\\textit{false}");
+    s = s.replace(/\n/g, "\} \\\\\n\\text\{");
+    s = s.replace(/ /g, "\\ \\ ");
+    s = s.substr(0, s.length - 7);
     return s;
   }
 

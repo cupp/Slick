@@ -56,21 +56,34 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-Prove\ $(C \wedge T \Rightarrow S) \wedge S \Rightarrow (C \Rightarrow T)$\\ \\
+\textbf{Prove}\ \textbf{(4.1)} \ \ \mathbf{$p \Rightarrow (q \Rightarrow p)$}\\ \\
 
-\Step{(C \wedge T \Rightarrow S) \wedge S}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) p $\Rightarrow$ q $\equiv$ $\neg$p $\vee$ q }\ $\Ggg$ \\
-\Step{((C \wedge T) \vee S) \wedge S}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.43a) Absorption }\ $\Ggg$ \\
-\Step{S}
-\text{
- We associate identifiers with the primitive propositions:
-     C : The initialization is correct,
-     T : The loop terminates,
-     S : P is true in the final state.
- The boolean expression is then
-     (C ⋀ T ⇒ S) ⋀ S ⇒ (C ⇒ T)
- We calculate:
-}
+\Step{q \Rightarrow p}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Assume conjunct p }\ $\Ggg$ \\
+\Step{q \Rightarrow true}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Right zero of $\Rightarrow$ }\ $\Ggg$ \\
+\Step{true}
+\done
+
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
+
+\textbf{Prove}\ \textbf{(3.77)} \textbf{Modus ponens}:\ \ \mathbf{$p \wedge (p \Rightarrow q) \Rightarrow q$}\\ \\
+
+\Step{q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.57) }\ $\Ggg$ \\
+\Step{p \Rightarrow q \equiv p \vee q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Assume conjunct p $\Rightarrow$ q }\ $\Ggg$ \\
+\Step{true \equiv p \vee q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{p \vee q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Assume conjunct p }\ $\Ggg$ \\
+\Step{true \vee q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Zero of $\vee$ }\ $\Ggg$ \\
+\Step{true}
+\done
+
 \end{tabbing}\end{document}
 

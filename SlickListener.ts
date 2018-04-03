@@ -22,6 +22,8 @@ import { QuantExprContext } from './SlickParser';
 import { UnaryPrefixExprContext } from './SlickParser';
 import { DocContext } from './SlickParser';
 import { ProofContext } from './SlickParser';
+import { StartExpoContext } from './SlickParser';
+import { EndExpoContext } from './SlickParser';
 import { SepContext } from './SlickParser';
 import { HeaderContext } from './SlickParser';
 import { TheoremContext } from './SlickParser';
@@ -287,6 +289,28 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitProof?: (ctx: ProofContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.startExpo`.
+	 * @param ctx the parse tree
+	 */
+	enterStartExpo?: (ctx: StartExpoContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.startExpo`.
+	 * @param ctx the parse tree
+	 */
+	exitStartExpo?: (ctx: StartExpoContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.endExpo`.
+	 * @param ctx the parse tree
+	 */
+	enterEndExpo?: (ctx: EndExpoContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.endExpo`.
+	 * @param ctx the parse tree
+	 */
+	exitEndExpo?: (ctx: EndExpoContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SlickParser.sep`.

@@ -2,7 +2,11 @@ grammar Slick;
 
 doc : proof (sep proof)* ;
 
-proof : header? START_EXPO? step (hint step)* END? END_EXPO? ;
+proof : header? startExpo? step (hint step)* END? endExpo? ;
+
+startExpo : EXPO ;
+
+endExpo : EXPO ;
 
 sep : '-' '-' '-' '-'+ ;
 
@@ -14,12 +18,13 @@ theorem : PROVE RULENUM     # BibleTheorem
 
 method : 'by' methodName ;
 
-methodName : 'showing equivalence to previous theorem'
-  | 'showing the LHS is equivalent to the RHS'
-  | 'showing the RHS is equivalent to the LHS'
-  | 'showing the LHS implies the RHS'
-  | 'showing the RHS follows from the LHS'
-  | 'assuming the conjuncts of the antecedent'
+methodName : 'showing' 'equivalence' 'to' 'previous' 'theorem'
+  | 'showing' 'the' 'LHS' 'is' 'equivalent' 'to' 'the' 'RHS'
+  | 'showing' 'the' 'RHS' 'is' 'equivalent' 'to' 'the' 'LHS'
+  | 'showing' 'the' 'LHS' 'implies' 'the' 'RHS'
+  | 'showing' 'the' 'RHS' 'follows' 'from' 'the' 'LHS'
+  | 'assuming' 'the' 'conjuncts' 'of' 'the' 'antecedent'
+  | 'case' 'analysis' 'on' VAR
 ;
 
 step: expr;
@@ -56,8 +61,7 @@ functionCall : VAR '.' expr | VAR '(' expr ')' ;
 typedVar : VAR (':' TYPE)? ;
 
 COMMENT : '〈' .+? '〉' ;
-START_EXPO : '/*' .+? '*/' ;
-END_EXPO : '/*' .+? '*/' ;
+EXPO : '/*' .+? '*/' ;
 PROVE : 'Prove' | 'Reprove' ;
 RULENUM: [1-9][0-9]?'.'[1-9][0-9]?[0-9]?[a-e]?('.'[0-9])? ;
 EVAR : [A-Z] ;

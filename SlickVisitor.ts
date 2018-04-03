@@ -22,6 +22,8 @@ import { QuantExprContext } from './SlickParser';
 import { UnaryPrefixExprContext } from './SlickParser';
 import { DocContext } from './SlickParser';
 import { ProofContext } from './SlickParser';
+import { StartExpoContext } from './SlickParser';
+import { EndExpoContext } from './SlickParser';
 import { SepContext } from './SlickParser';
 import { HeaderContext } from './SlickParser';
 import { TheoremContext } from './SlickParser';
@@ -197,6 +199,20 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitProof?: (ctx: ProofContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.startExpo`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitStartExpo?: (ctx: StartExpoContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.endExpo`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitEndExpo?: (ctx: EndExpoContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SlickParser.sep`.
