@@ -16,7 +16,8 @@ import { ImplicationExprContext,
          QuantExprContext,
          UnaryPrefixExprContext,
          DocContext,
-         ProofContext,
+         StandardProofContext,
+         CaseProofContext,
          SepContext,
          HeaderContext,
          TheoremContext,
@@ -36,7 +37,8 @@ import { ImplicationExprContext,
          BibleTheoremContext,
          AdHocTheoremContext,
          StartExpoContext,
-         EndExpoContext
+         EndExpoContext,
+         AssumingConjunctsMethodContext
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -68,13 +70,7 @@ export class SlickCompiler implements SlickListener {
     let theorems = JSON.parse(theoremsStr).theorems;
     for (let i = 0; i < theorems.length; i++) {
       let theorem = theorems[i];
-      // if (theorem.eq.startsWith("$")) {
-      //   theorem.eq.replace(/^\s*\$/, "$\\mathbf{");
-      // }
-      // if (theorem.eq.endsWith("$")) {
-      //   theorem.eq.replace(/\$$/, "}$");
-      // }
-      this.bible[theorem.rule] = theorem.rule + (theorem.name? + theorem.name.slice(0,1).toUpperCase() + theorem.name.slice(1) + ":\\ \\ ": "\\ \\ ") + theorem.eq;
+      this.bible[theorem.rule] = "(" + theorem.rule + ") " + (theorem.name? theorem.name.substr(0,1).toUpperCase() + theorem.name.substr(1) + ":\\ \\ ": "\\ \\ ") + theorem.eq;
     }
 
     // this.listener = new SlickListener();
@@ -120,7 +116,7 @@ export class SlickCompiler implements SlickListener {
     }
   }
 
-  public exitProof = (ctx : ProofContext) => {
+  public exitStandardProof = (ctx : StandardProofContext) => {
     if (ctx.END()) {
       this.stack.push("\\done\n");
     }
@@ -201,7 +197,19 @@ export class SlickCompiler implements SlickListener {
   public exitAdHocTheorem = (ctx : AdHocTheoremContext) => {
     let proveOrReprove = ctx.PROVE();
     let theorem = this.stack.pop();
-    this.stack.push(proveOrReprove + "\\ $" + theorem + "$\\\\ \\\\\n")
+    this.stack.push("\\color{blue}" + proveOrReprove + "\\ $" + theorem + "$\\\\ \\\\\n")
+  }
+
+  public exitAssumingConjunctsMethod = (ctx : AssumingConjunctsMethodContext) => {
+    this.stack.push("by assuming the conjuncts of the antecedent\\\\\\\\");
+  }
+
+  public enterCaseProof = (ctx: CaseProofContext) => {
+    this.stack.push("by case analysis on " + ctx.VAR() + "\\\\\\\\");
+  }
+
+  public exitCaseProof = (ctx : CaseProofContext) => {
+
   }
 
   public exitExpo = (ctx : ExpoContext) => {

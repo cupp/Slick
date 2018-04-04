@@ -56,12 +56,52 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-\color{blue}Prove\ 4.1\ \ $p \Rightarrow (q \Rightarrow p)$\\ \\
+\color{blue}Prove\ $(C \wedge T \Rightarrow S) \wedge S \Rightarrow (C \Rightarrow T)$\\ \\
 
-\Step{q \Rightarrow p}
+\\
+\text{}\ \ \\
+\text{\ \ We\ \ associate\ \ identifiers\ \ with\ \ the\ \ primitive\ \ propositions:}\ \ \\
+\text{}\ \ \\
+\text{\ \ \ \ \ \ \ \ \ \ \textit{C}\ \ :\ \ The\ \ initialization\ \ is\ \ correct,}\ \ \\
+\text{\ \ \ \ \ \ \ \ \ \ \textit{T}\ \ :\ \ The\ \ loop\ \ terminates,}\ \ \\
+\text{\ \ \ \ \ \ \ \ \ \ \textit{S}\ \ :\ \ \textit{P}\ \ is\ \ \textit{true}\ \ in\ \ the\ \ final\ \ state.}\ \ \\
+\text{}\ \ \\
+\text{\ \ The\ \ boolean\ \ expression\ \ is\ \ then}\ \ \\
+\text{}\ \ \\
+\text{\ \ \ \ \ \ \ \ \ \ (\textit{C}\ \ $\wedge$\ \ \textit{T}\ \ $\Rightarrow$\ \ \textit{S})\ \ $\wedge$\ \ \textit{S}\ \ $\Rightarrow$\ \ (\textit{C}\ \ $\Rightarrow$\ \ \textit{T})}\ \ \\
+\text{}\ \ \\
+\text{\ \ We\ \ calculate:}\ \ \\
+\text{}\ \ \\
+\Step{(C \wedge T \Rightarrow S) \wedge S}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) p $\Rightarrow$ q $\equiv$ $\neg$p $\vee$ q }\ $\Ggg$ \\
+\Step{((C \wedge T) \vee S) \wedge S}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.43a) Absorption }\ $\Ggg$ \\
+\Step{S}
+\\
+\text{}\ \ \\
+\text{\ \ At\ \ this\ \ point,\ \ we\ \ do\ \ not\ \ believe\ \ that\ \ \textit{S}\ \ implies\ \ \textit{C}\ \ $\Rightarrow$\ \ \textit{T}.\ \ The\ \ expression}\ \ \\
+\text{\ \ \textit{S}\ \ $\Rightarrow$\ \ (\textit{C}\ \ $\Rightarrow$\ \ \textit{T})\ \ gives\ \ us\ \ a\ \ hint\ \ on\ \ what\ \ assignment\ \ of\ \ values\ \ for\ \ \textit{C},\ \ \textit{T},\ \ and\ \ \textit{S}\ \ to}\ \ \\
+\text{\ \ choose\ \ so\ \ that\ \ the\ \ original\ \ expression\ \ is\ \ \textit{false}:}\ \ \\
+\text{}\ \ \\
+\text{\ \ \ \ \ \ \ \ \textit{S},\ \ \textit{T},\ \ \textit{C}\ \ $:=$\ \ \textit{true},\ \ \textit{false},\ \ \textit{true}.}\ \ \\
+\text{}\ \ \\
+\text{\ \ Hence,\ \ the\ \ argument\ \ is\ \ invalid.}\ \ \\
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
+
+\color{blue}Reprove\ $p \wedge q \Rightarrow p \wedge (q \vee r)$\\ \\
+
+by assuming the conjuncts of the antecedent\\\\
+\Step{p \wedge (q \vee r)}
 \\$=$\>\>\ \ \ $\Gll$\ \text{ Assume conjunct p }\ $\Ggg$ \\
-\Step{q \Rightarrow true}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Right zero of $\Rightarrow$ }\ $\Ggg$ \\
+\Step{true \wedge (q \vee r)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\wedge$ }\ $\Ggg$ \\
+\Step{q \vee r}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Assume conjunct q }\ $\Ggg$ \\
+\Step{true \vee r}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Zero of $\vee$ }\ $\Ggg$ \\
 \Step{true}
 \done
 
@@ -70,19 +110,25 @@
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\color{blue}Prove\ 3.77NaNodus ponens:\ \ $p \wedge (p \Rightarrow q) \Rightarrow q$\\ \\
+by case analysis on p\\\\
+\color{blue}Reprove\ (3.46) Distributivity of $\wedge$ over $\vee$:\ \ $p \wedge (q \vee r)\ \equiv\ (p \wedge q) \vee (p \wedge r)$\\ \\
 
-\Step{q}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.57) }\ $\Ggg$ \\
-\Step{p \Rightarrow q \equiv p \vee q}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Assume conjunct p $\Rightarrow$ q }\ $\Ggg$ \\
-\Step{true \equiv p \vee q}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
-\Step{p \vee q}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Assume conjunct p }\ $\Ggg$ \\
-\Step{true \vee q}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Zero of $\vee$ }\ $\Ggg$ \\
-\Step{true}
+true \wedge (q \vee r) \equiv (true \wedge q) \vee (true \wedge r)
+false \wedge (q \vee r) \equiv (false \wedge q) \vee (false \wedge r)
+\Step{(true \wedge q) \vee (true \wedge r)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\wedge$, twice }\ $\Ggg$ \\
+\Step{q \vee r}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\wedge$ }\ $\Ggg$ \\
+\Step{true \wedge (q \vee r)}
+\done
+
+\Step{(false \wedge q) \vee (false \wedge r)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Zero of $\wedge$, twice }\ $\Ggg$ \\
+\Step{false \vee false}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\vee$ }\ $\Ggg$ \\
+\Step{false}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Zero of $\wedge$ }\ $\Ggg$ \\
+\Step{false \wedge (q \vee r)}
 \done
 
 \end{tabbing}\end{document}
