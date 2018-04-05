@@ -38,7 +38,13 @@ import { ImplicationExprContext,
          AdHocTheoremContext,
          StartExpoContext,
          EndExpoContext,
-         AssumingConjunctsMethodContext
+         AssumingConjunctsMethodContext,
+         CaseProofContex,
+         CaseListContext,
+         Case1Context,
+         Case2Context,
+         CaseProof1Context,
+         CaseProof2Context
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -88,6 +94,7 @@ export class SlickCompiler implements SlickListener {
 
     this.output = "";
     this.stack = [];
+    this.lineCount = 0; // provide mechanism for counting lines in a single standard proof
   }
 
   public exitDoc = (ctx : DocContext) => {
@@ -116,10 +123,20 @@ export class SlickCompiler implements SlickListener {
     }
   }
 
+  public enterStandardProof = (ctx : StandardProofContext) => {
+    this.lineCount = 0;
+  }
+
   public exitStandardProof = (ctx : StandardProofContext) => {
-    if (ctx.END()) {
-      this.stack.push("\\done\n");
+    let proofText = "";
+    for (let i = 0; i < this.lineCount; i++) {
+      proofText = this.stack.pop() + "\n" + proofText;
     }
+    if (ctx.END()) {
+      proofText += "\\\\\\done\n";
+    }
+    this.stack.push(proofText);
+    this.lineCount = 0;
   }
 
   public exitSep = (ctx : SepContext) => {
@@ -174,6 +191,7 @@ export class SlickCompiler implements SlickListener {
 
   public exitStep = (ctx : StepContext) => {
     this.stack.push("\\Step\{" + this.stack.pop() + "\}");
+    this.lineCount++;
   }
 
   public exitHint = (ctx : HintContext) => {
@@ -182,6 +200,7 @@ export class SlickCompiler implements SlickListener {
     token = this.removeFm(token);
     let op = this.stack.pop();
     this.stack.push("\\\\$" + this.latex[op] + "$\\>\\>\\ \\ \\ $\\Gll$\\ \\text{" + token + "}\\ $\\Ggg$ \\\\");
+    this.lineCount++;
   }
 
   public exitHintOp = (ctx : HintOpContext) => {
@@ -204,12 +223,45 @@ export class SlickCompiler implements SlickListener {
     this.stack.push("by assuming the conjuncts of the antecedent\\\\\\\\");
   }
 
+/*
   public enterCaseProof = (ctx: CaseProofContext) => {
     this.stack.push("by case analysis on " + ctx.VAR() + "\\\\\\\\");
   }
-
+*/
   public exitCaseProof = (ctx : CaseProofContext) => {
+    let caseProof2 = this.stack.pop();
+    let caseProof1 = this.stack.pop();
+    let caseList = this.stack.pop();
+    let theorem = this.stack.pop();
+    this.stack.push(theorem + "by case analysis on " + ctx.VAR() + "\\\\\\\\"
+        + caseList + "\\\\\\\\" + caseProof1 + caseProof2);
+  }
 
+  public exitCaseList = (ctx : CaseListContext) => {
+    let case2 = this.stack.pop();
+    let case1 = this.stack.pop();
+    this.stack.push("Must prove\\\\\\>" + case1 + "\\\\\\>" + case2
+        + "\\\\\\\\");
+  }
+
+  public exitCase1 = (ctx : Case1Context) => {
+    let e = this.stack.pop();
+    this.stack.push("(1) $" + e + "$\\\\");
+  }
+
+  public exitCase2 = (ctx : Case2Context) => {
+    let e = this.stack.pop();
+    this.stack.push("(2) $" + e + "$\\\\");
+  }
+
+  public exitCaseProof1 = (ctx : CaseProof1Context) => {
+    let p = this.stack.pop();
+    this.stack.push("\\underline{Proof of (1)}\\\\\\\\" + p + "\\\\\\\\");
+  }
+
+  public exitCaseProof2 = (ctx : CaseProof1Context) => {
+    let p = this.stack.pop();
+    this.stack.push("\\underline{Proof of (2)}\\\\\\\\" + p);
   }
 
   public exitExpo = (ctx : ExpoContext) => {
