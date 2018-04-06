@@ -32,7 +32,7 @@ caseProof: theorem 'by' 'case' 'analysis' 'on' VAR caseList caseProof1 caseProof
 
 caseVariable : 'by' 'case' 'anlaysis' 'on' VAR ;
 
-caseList : 'Must' 'prove' case1 case2 ; 
+caseList : 'Must' 'prove' case1 case2 ;
 
 case1 : '(1)' expr ;
 

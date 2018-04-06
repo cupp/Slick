@@ -135,7 +135,7 @@ export class SlickCompiler implements SlickListener {
     if (ctx.END()) {
       proofText += "\\\\\\done\n";
     }
-    this.stack.push(proofText);
+    this.stack.push("\\\\" + proofText);
     this.lineCount = 0;
   }
 
@@ -198,6 +198,7 @@ export class SlickCompiler implements SlickListener {
     let token = ctx.COMMENT().text;
     token = token.substr(1, token.length - 2);
     token = this.removeFm(token);
+    token = token.replace(/(\W)([B-Zb-z])(\W)/g, "$1\\textit{$2}$3");
     let op = this.stack.pop();
     this.stack.push("\\\\$" + this.latex[op] + "$\\>\\>\\ \\ \\ $\\Gll$\\ \\text{" + token + "}\\ $\\Ggg$ \\\\");
     this.lineCount++;
@@ -210,17 +211,17 @@ export class SlickCompiler implements SlickListener {
   public exitBibleTheorem = (ctx : BibleTheoremContext) => {
     let proveOrReprove = ctx.PROVE();
     let theorem = this.bible[ctx.RULENUM()];
-    this.stack.push("\\color{blue}" + proveOrReprove + "\\ " + theorem + "\\\\ \\\\\n");
+    this.stack.push("\\color{blue}" + proveOrReprove + "\\ " + theorem + "\\\\\n");
   }
 
   public exitAdHocTheorem = (ctx : AdHocTheoremContext) => {
     let proveOrReprove = ctx.PROVE();
     let theorem = this.stack.pop();
-    this.stack.push("\\color{blue}" + proveOrReprove + "\\ $" + theorem + "$\\\\ \\\\\n")
+    this.stack.push("\\color{blue}" + proveOrReprove + "\\ $" + theorem + "$\\\\\n")
   }
 
   public exitAssumingConjunctsMethod = (ctx : AssumingConjunctsMethodContext) => {
-    this.stack.push("by assuming the conjuncts of the antecedent\\\\\\\\");
+    this.stack.push("\\color{blue}by assuming the conjuncts of the antecedent\\\\\\\\");
   }
 
 /*
@@ -233,35 +234,35 @@ export class SlickCompiler implements SlickListener {
     let caseProof1 = this.stack.pop();
     let caseList = this.stack.pop();
     let theorem = this.stack.pop();
-    this.stack.push(theorem + "by case analysis on " + ctx.VAR() + "\\\\\\\\"
-        + caseList + "\\\\\\\\" + caseProof1 + caseProof2);
+    this.stack.push(theorem + "\\color{blue}by case analysis on " + ctx.VAR() + "\\\\ \\\\\n"
+        + caseList + "\\\\" + caseProof1 + caseProof2);
   }
 
   public exitCaseList = (ctx : CaseListContext) => {
     let case2 = this.stack.pop();
     let case1 = this.stack.pop();
     this.stack.push("Must prove\\\\\\>" + case1 + "\\\\\\>" + case2
-        + "\\\\\\\\");
+        + "\\\\");
   }
 
   public exitCase1 = (ctx : Case1Context) => {
     let e = this.stack.pop();
-    this.stack.push("(1) $" + e + "$\\\\");
+    this.stack.push("(1)\\>$" + e + "$");
   }
 
   public exitCase2 = (ctx : Case2Context) => {
     let e = this.stack.pop();
-    this.stack.push("(2) $" + e + "$\\\\");
+    this.stack.push("(2)\\>$" + e + "$");
   }
 
   public exitCaseProof1 = (ctx : CaseProof1Context) => {
     let p = this.stack.pop();
-    this.stack.push("\\underline{Proof of (1)}\\\\\\\\" + p + "\\\\\\\\");
+    this.stack.push("\\underline{Proof of (1)}\\\\\n" + p + "\\\\\\\\");
   }
 
-  public exitCaseProof2 = (ctx : CaseProof1Context) => {
+  public exitCaseProof2 = (ctx : CaseProof2Context) => {
     let p = this.stack.pop();
-    this.stack.push("\\underline{Proof of (2)}\\\\\\\\" + p);
+    this.stack.push("\\underline{Proof of (2)}\\\\\n" + p);
   }
 
   public exitExpo = (ctx : ExpoContext) => {

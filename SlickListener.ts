@@ -37,6 +37,8 @@ import { TheoremContext } from './SlickParser';
 import { MethodContext } from './SlickParser';
 import { MethodNameContext } from './SlickParser';
 import { CaseProofContext } from './SlickParser';
+import { CaseVariableContext } from './SlickParser';
+import { CaseListContext } from './SlickParser';
 import { Case1Context } from './SlickParser';
 import { Case2Context } from './SlickParser';
 import { CaseProof1Context } from './SlickParser';
@@ -478,6 +480,28 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitCaseProof?: (ctx: CaseProofContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.caseVariable`.
+	 * @param ctx the parse tree
+	 */
+	enterCaseVariable?: (ctx: CaseVariableContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.caseVariable`.
+	 * @param ctx the parse tree
+	 */
+	exitCaseVariable?: (ctx: CaseVariableContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.caseList`.
+	 * @param ctx the parse tree
+	 */
+	enterCaseList?: (ctx: CaseListContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.caseList`.
+	 * @param ctx the parse tree
+	 */
+	exitCaseList?: (ctx: CaseListContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SlickParser.case1`.

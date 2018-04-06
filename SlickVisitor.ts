@@ -37,6 +37,8 @@ import { TheoremContext } from './SlickParser';
 import { MethodContext } from './SlickParser';
 import { MethodNameContext } from './SlickParser';
 import { CaseProofContext } from './SlickParser';
+import { CaseVariableContext } from './SlickParser';
+import { CaseListContext } from './SlickParser';
 import { Case1Context } from './SlickParser';
 import { Case2Context } from './SlickParser';
 import { CaseProof1Context } from './SlickParser';
@@ -322,6 +324,20 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitCaseProof?: (ctx: CaseProofContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.caseVariable`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCaseVariable?: (ctx: CaseVariableContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.caseList`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitCaseList?: (ctx: CaseListContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SlickParser.case1`.
