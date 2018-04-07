@@ -76,7 +76,7 @@ export class SlickCompiler implements SlickListener {
     let theorems = JSON.parse(theoremsStr).theorems;
     for (let i = 0; i < theorems.length; i++) {
       let theorem = theorems[i];
-      this.bible[theorem.rule] = "(" + theorem.rule + ") " + (theorem.name? theorem.name.substr(0,1).toUpperCase() + theorem.name.substr(1) + ":\\ \\ ": "\\ \\ ") + theorem.eq;
+      this.bible[theorem.rule] = "(" + theorem.rule + ") " + (theorem.name? theorem.name.substr(0,1).toUpperCase() + theorem.name.substr(1) + ":\\ \\ ": ":\\ \\ ") + theorem.eq;
     }
 
     // this.listener = new SlickListener();
