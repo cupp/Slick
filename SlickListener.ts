@@ -22,8 +22,10 @@ import { PreviousTheoremMethodContext } from './SlickParser';
 import { RightEquivalesLeftMethodContext } from './SlickParser';
 import { RightFollowsLeftMethodContext } from './SlickParser';
 import { LeftEquivalesRightMethodContext } from './SlickParser';
+import { ContrapositiveMethodContext } from './SlickParser';
 import { AssumingConjunctsMethodContext } from './SlickParser';
 import { LeftImpliesRightMethodContext } from './SlickParser';
+import { ContradictionMethodContext } from './SlickParser';
 import { AdHocTheoremContext } from './SlickParser';
 import { BibleTheoremContext } from './SlickParser';
 import { DocContext } from './SlickParser';
@@ -309,6 +311,19 @@ export interface SlickListener extends ParseTreeListener {
 	exitLeftEquivalesRightMethod?: (ctx: LeftEquivalesRightMethodContext) => void;
 
 	/**
+	 * Enter a parse tree produced by the `ContrapositiveMethod`
+	 * labeled alternative in `SlickParser.methodName`.
+	 * @param ctx the parse tree
+	 */
+	enterContrapositiveMethod?: (ctx: ContrapositiveMethodContext) => void;
+	/**
+	 * Exit a parse tree produced by the `ContrapositiveMethod`
+	 * labeled alternative in `SlickParser.methodName`.
+	 * @param ctx the parse tree
+	 */
+	exitContrapositiveMethod?: (ctx: ContrapositiveMethodContext) => void;
+
+	/**
 	 * Enter a parse tree produced by the `AssumingConjunctsMethod`
 	 * labeled alternative in `SlickParser.methodName`.
 	 * @param ctx the parse tree
@@ -333,6 +348,19 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitLeftImpliesRightMethod?: (ctx: LeftImpliesRightMethodContext) => void;
+
+	/**
+	 * Enter a parse tree produced by the `ContradictionMethod`
+	 * labeled alternative in `SlickParser.methodName`.
+	 * @param ctx the parse tree
+	 */
+	enterContradictionMethod?: (ctx: ContradictionMethodContext) => void;
+	/**
+	 * Exit a parse tree produced by the `ContradictionMethod`
+	 * labeled alternative in `SlickParser.methodName`.
+	 * @param ctx the parse tree
+	 */
+	exitContradictionMethod?: (ctx: ContradictionMethodContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `AdHocTheorem`

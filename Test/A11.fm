@@ -7,7 +7,7 @@ Let M represent variable m becoming 0
 
 The argument is (¬T ⋁ N) ⋀ (N ⇒ M) ⋀ T  ⇒  M
 
-It is a theorem by the following proof.
+The argument is a theorem by the following proof.
 */
 
   (¬T ⋁ N) ⋀ (N ⇒ M) ⋀ T
@@ -29,7 +29,7 @@ Let I represent the statement "I am a monkey."
 
 The argument is (M ⇒ C) ⋀ (C ⇒ I) ⋀ (¬M ⋁ ¬C)  ⇒  ¬C ⋁ I
 
-It is a theorem by the following proof.
+The argument is a theorem by the following proof.
 */
 
   (M ⇒ C) ⋀ (C ⇒ I) ⋀ (¬M ⋁ ¬C)
@@ -50,15 +50,21 @@ Let F represent Father is sad.
 
 The argument is (J ⇒ M ⋁ F) ⋀ F  ⇒  (M ⇒ ¬J)
 
-It is not a theorem by the following counterexample:
-
-  (J, true), (M, true), (F, true)
+The argument is not a theorem by counterexample (J, true), (M, true), (F, true)
 */
+
+  (true ⇒ true ⋁ true) ⋀ true ⇒ (true ⇒ ¬true)
+=    〈 zero of ⋁, ¬true ≡ false 〉
+  (true ⇒ true) ⋀ true ⇒ (true ⇒ false)
+=    〈 true ⇒ p ≡ p, twice 〉
+  true ⋀ true ⇒ false
+=    〈 p ⇒ false ≡ false 〉
+  false  ╱╱
 
 ------------------------------
 
 Reprove 3.47a
-by contradiciton
+by contradiction
 
   ¬(¬(p ⋀ q) ≡ ¬p ⋁ ¬q)
 =    〈 Distributivity of ¬ over ≡ 〉

@@ -44,7 +44,9 @@ import { ImplicationExprContext,
          Case1Context,
          Case2Context,
          CaseProof1Context,
-         CaseProof2Context
+         CaseProof2Context,
+         ContradictionMethodContext,
+         ContrapositiveMethodContext
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -133,7 +135,7 @@ export class SlickCompiler implements SlickListener {
       proofText = this.stack.pop() + "\n" + proofText;
     }
     if (ctx.END()) {
-      proofText += "\\\\\\done\n";
+      proofText += "\\done\n";
     }
     this.stack.push("\\\\" + proofText);
     this.lineCount = 0;
@@ -224,11 +226,15 @@ export class SlickCompiler implements SlickListener {
     this.stack.push("\\color{blue}by assuming the conjuncts of the antecedent\\\\\\\\");
   }
 
-/*
-  public enterCaseProof = (ctx: CaseProofContext) => {
-    this.stack.push("by case analysis on " + ctx.VAR() + "\\\\\\\\");
+  public exitContradictionMethod = (ctx : ContradictionMethodContext) => {
+    this.stack.push("\\color{blue}by contradiction\\\\\\\\");
   }
-*/
+
+  public exitContrapositiveMethod = (ctx : ContrapositiveMethodContext) => {
+    let cp = this.stack.pop();
+    this.stack.push("\\color{blue}by proving the contrapositive: $" + cp + "$\\\\\\\\");
+  }
+
   public exitCaseProof = (ctx : CaseProofContext) => {
     let caseProof2 = this.stack.pop();
     let caseProof1 = this.stack.pop();

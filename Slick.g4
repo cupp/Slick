@@ -26,6 +26,7 @@ methodName : 'showing' 'equivalence' 'to' 'previous' 'theorem'    # PreviousTheo
   | 'showing' 'the' 'LHS' 'implies' 'the' 'RHS'                   # LeftImpliesRightMethod
   | 'showing' 'the' 'RHS' 'follows' 'from' 'the' 'LHS'            # RightFollowsLeftMethod
   | 'assuming' 'the' 'conjuncts' 'of' 'the' 'antecedent'          # AssumingConjunctsMethod
+  | 'contradiction'                                               # ContradictionMethod
   | 'proving' 'the' 'contrapositive' ':' expr                     # ContrapositiveMethod
 ;
 

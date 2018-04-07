@@ -22,8 +22,10 @@ import { PreviousTheoremMethodContext } from './SlickParser';
 import { RightEquivalesLeftMethodContext } from './SlickParser';
 import { RightFollowsLeftMethodContext } from './SlickParser';
 import { LeftEquivalesRightMethodContext } from './SlickParser';
+import { ContrapositiveMethodContext } from './SlickParser';
 import { AssumingConjunctsMethodContext } from './SlickParser';
 import { LeftImpliesRightMethodContext } from './SlickParser';
+import { ContradictionMethodContext } from './SlickParser';
 import { AdHocTheoremContext } from './SlickParser';
 import { BibleTheoremContext } from './SlickParser';
 import { DocContext } from './SlickParser';
@@ -217,6 +219,14 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	visitLeftEquivalesRightMethod?: (ctx: LeftEquivalesRightMethodContext) => Result;
 
 	/**
+	 * Visit a parse tree produced by the `ContrapositiveMethod`
+	 * labeled alternative in `SlickParser.methodName`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitContrapositiveMethod?: (ctx: ContrapositiveMethodContext) => Result;
+
+	/**
 	 * Visit a parse tree produced by the `AssumingConjunctsMethod`
 	 * labeled alternative in `SlickParser.methodName`.
 	 * @param ctx the parse tree
@@ -231,6 +241,14 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitLeftImpliesRightMethod?: (ctx: LeftImpliesRightMethodContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `ContradictionMethod`
+	 * labeled alternative in `SlickParser.methodName`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitContradictionMethod?: (ctx: ContradictionMethodContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by the `AdHocTheorem`
