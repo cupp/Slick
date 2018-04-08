@@ -30,6 +30,8 @@ import { AdHocTheoremContext } from './SlickParser';
 import { BibleTheoremContext } from './SlickParser';
 import { FunctionDotContext } from './SlickParser';
 import { FunctionParenContext } from './SlickParser';
+import { TheoremHeaderContext } from './SlickParser';
+import { ExerciseHeaderContext } from './SlickParser';
 import { DocContext } from './SlickParser';
 import { ProofContext } from './SlickParser';
 import { StandardProofContext } from './SlickParser';
@@ -415,6 +417,32 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitFunctionParen?: (ctx: FunctionParenContext) => void;
+
+	/**
+	 * Enter a parse tree produced by the `TheoremHeader`
+	 * labeled alternative in `SlickParser.header`.
+	 * @param ctx the parse tree
+	 */
+	enterTheoremHeader?: (ctx: TheoremHeaderContext) => void;
+	/**
+	 * Exit a parse tree produced by the `TheoremHeader`
+	 * labeled alternative in `SlickParser.header`.
+	 * @param ctx the parse tree
+	 */
+	exitTheoremHeader?: (ctx: TheoremHeaderContext) => void;
+
+	/**
+	 * Enter a parse tree produced by the `ExerciseHeader`
+	 * labeled alternative in `SlickParser.header`.
+	 * @param ctx the parse tree
+	 */
+	enterExerciseHeader?: (ctx: ExerciseHeaderContext) => void;
+	/**
+	 * Exit a parse tree produced by the `ExerciseHeader`
+	 * labeled alternative in `SlickParser.header`.
+	 * @param ctx the parse tree
+	 */
+	exitExerciseHeader?: (ctx: ExerciseHeaderContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SlickParser.doc`.

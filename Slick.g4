@@ -12,7 +12,9 @@ endExpo : EXPO ;
 
 sep : '-' '-' '-' '-'+ ;
 
-header : theorem method? ;
+header : (theorem method?)    # TheoremHeader
+  | 'Exercise' RULENUM          # ExerciseHeader
+;
 
 theorem : PROVE RULENUM     # BibleTheorem
   | PROVE expr              # AdHocTheorem
@@ -82,7 +84,7 @@ typedVar : VAR (':' TYPE)? ;
 COMMENT : '〈' .+? '〉' ;
 EXPO : '/*' .+? '*/' ;
 PROVE : 'Prove' | 'Reprove' ;
-RULENUM: [1-9][0-9]?'.'[1-9][0-9]?[0-9]?[a-e]?('.'[0-9])? ;
+RULENUM: [1-9][0-9]?'.'[1-9][0-9]?[0-9]?[a-z]?('.'[0-9])? ;
 EVAR : [A-Z] ;
 VAR : [a-z] ;
 TYPE : 'ℤ' | 'ℕ' | 'ℤ+' | 'ℤ-' | 'ℚ' | 'ℝ' | 'ℝ+' | '𝔹' ;
@@ -92,6 +94,6 @@ RELOP : '=' | '≠' | '<' | '>' | '≤' | '≥' | '∈' | '⊂' | '⊆' | '⊃' 
 JOP : '⋀' | '⋁' ;
 IMPOP : '⇒'| '⇐' | '⇏' | '⇍';
 EQOP : '≡' | '≢' ;
-QUANTIFIER : '★' | '∀' | '∃' ;
+QUANTIFIER : '*' | '★' | '∀' | '∃' ;
 WS : [ \t\r\n]+ -> channel(HIDDEN) ;
 END : '╱╱' ;

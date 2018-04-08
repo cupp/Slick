@@ -1,6 +1,6 @@
 SYMBOL    UNICODE         NAME                        KEYSTROKE
 ≔         0x2254          replaced by / gets          :=
-★         0x2605          generic quantifier          ;g
+★         0x2605          general quantifier          ;g
 ≤         0x2264          at least                    <=
 ≥         0x2265          at most                     >=
 ∈         0x2208          element of                  ;i

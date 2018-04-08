@@ -19,7 +19,8 @@ import { ImplicationExprContext,
          StandardProofContext,
          CaseProofContext,
          SepContext,
-         HeaderContext,
+         TheoremHeaderContext,
+         ExerciseHeaderContext,
          TheoremContext,
          MethodContext,
          MethodNameContext,
@@ -49,7 +50,9 @@ import { ImplicationExprContext,
          ContrapositiveMethodContext,
          FunctionDotContext,
          FunctionParenContext,
-         HeaderContext
+         HeaderContext,
+         BodyContext,
+         RangeContext
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -94,7 +97,18 @@ export class SlickCompiler implements SlickListener {
       '⇐' : '\\Leftarrow',
       '¬' : '\\neg',
       '≢' : '\\not \\equiv',
-      '≔'  : ':='
+      '≔' : ':=',
+      '*' : "\\star",
+      '∀' : "\\forall",
+      '∃' : "\\exists",
+      '<' : '<',
+      '>' : '>',
+      '≤' : '\\leq',
+      '≥' : '\\geq',
+      '+' : '+',
+      '-' : '-',
+      '∪' : '\\cup',
+      '∩' : '\\cap'
     };
 
     this.output = "";
@@ -145,13 +159,17 @@ export class SlickCompiler implements SlickListener {
     this.lineCount = 0;
   }
 
-  public exitHeader = (ctx : HeaderContext) => {
+  public exitTheoremHeader = (ctx : TheoremHeaderContext) => {
     let str = "";
     if (ctx.method()) {
       str = this.stack.pop();
     }
     str = this.stack.pop() + str + "\\\\\n";
     this.stack.push(str);
+  }
+
+  public exitExerciseHeader = (ctx : ExerciseHeaderContext) => {
+    this.stack.push("\\underline{Exercise " + ctx.RULENUM() + "}\\\\\\\\\n");
   }
 
   public exitSep = (ctx : SepContext) => {
@@ -221,6 +239,14 @@ export class SlickCompiler implements SlickListener {
 
   public exitHintOp = (ctx : HintOpContext) => {
     this.stack.push(ctx.text);
+  }
+
+  public exitQuantifiedExpr = (ctx : QuantifiedExprContext) => {
+    let q = this.latex[ctx.QUANTIFIER()];
+    let body = this.stack.pop();
+    let range = this.stack.pop();
+    let dummies = this.stack.pop();
+    this.stack.push("(" + q + " " + dummies + " \\dr " + range + " : " + body + ")");
   }
 
   public exitBibleTheorem = (ctx : BibleTheoremContext) => {
@@ -318,6 +344,38 @@ export class SlickCompiler implements SlickListener {
       i++;
     }
     this.stack.push(str);
+  }
+
+  public enterVarlist = (ctx : VarlistContext) => {
+    this.stack.push("VVVVVVVVVV");
+  }
+
+  public exitVarlist = (ctx : VarlistContext) => {
+    let str = "";
+    let i = 0;
+    let v = this.stack.pop();
+    while (v !== "VVVVVVVVVV") {
+      str = v + (i > 0? ", ": "") + str;
+      v = this.stack.pop();
+      i++;
+    }
+    this.stack.push(str);
+  }
+
+  public exitTypedVar = (ctx : TypedVarContext) => {
+    this.stack.push(ctx.VAR() + (ctx.TYPE()? " : " + ctx.TYPE() : ""));
+  }
+
+  public exitRelativeExpr = (ctx : RelativeExprContext) => {
+    let rhs = this.stack.pop();
+    let lhs = this.stack.pop();
+    this.stack.push(lhs + " " + this.latex[ctx.RELOP()] + " " + rhs);
+  }
+
+  public exitAdditionExpr = (ctx : AdditionExprContext) => {
+    let rhs = this.stack.pop();
+    let lhs = this.stack.pop();
+    this.stack.push(lhs + " " + this.latex[ctx.ADDOP()] + " " + rhs);
   }
 
   public removeFm(s : string) {

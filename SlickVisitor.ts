@@ -30,6 +30,8 @@ import { AdHocTheoremContext } from './SlickParser';
 import { BibleTheoremContext } from './SlickParser';
 import { FunctionDotContext } from './SlickParser';
 import { FunctionParenContext } from './SlickParser';
+import { TheoremHeaderContext } from './SlickParser';
+import { ExerciseHeaderContext } from './SlickParser';
 import { DocContext } from './SlickParser';
 import { ProofContext } from './SlickParser';
 import { StandardProofContext } from './SlickParser';
@@ -283,6 +285,22 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitFunctionParen?: (ctx: FunctionParenContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `TheoremHeader`
+	 * labeled alternative in `SlickParser.header`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitTheoremHeader?: (ctx: TheoremHeaderContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `ExerciseHeader`
+	 * labeled alternative in `SlickParser.header`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitExerciseHeader?: (ctx: ExerciseHeaderContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SlickParser.doc`.

@@ -74,22 +74,23 @@ export class SlickParser extends Parser {
 	public static readonly T__43=44;
 	public static readonly T__44=45;
 	public static readonly T__45=46;
-	public static readonly COMMENT=47;
-	public static readonly EXPO=48;
-	public static readonly PROVE=49;
-	public static readonly RULENUM=50;
-	public static readonly EVAR=51;
-	public static readonly VAR=52;
-	public static readonly TYPE=53;
-	public static readonly NUM=54;
-	public static readonly ADDOP=55;
-	public static readonly RELOP=56;
-	public static readonly JOP=57;
-	public static readonly IMPOP=58;
-	public static readonly EQOP=59;
-	public static readonly QUANTIFIER=60;
-	public static readonly WS=61;
-	public static readonly END=62;
+	public static readonly T__46=47;
+	public static readonly COMMENT=48;
+	public static readonly EXPO=49;
+	public static readonly PROVE=50;
+	public static readonly RULENUM=51;
+	public static readonly EVAR=52;
+	public static readonly VAR=53;
+	public static readonly TYPE=54;
+	public static readonly NUM=55;
+	public static readonly ADDOP=56;
+	public static readonly RELOP=57;
+	public static readonly JOP=58;
+	public static readonly IMPOP=59;
+	public static readonly EQOP=60;
+	public static readonly QUANTIFIER=61;
+	public static readonly WS=62;
+	public static readonly END=63;
 	public static readonly RULE_doc = 0;
 	public static readonly RULE_proof = 1;
 	public static readonly RULE_standardProof = 2;
@@ -127,15 +128,16 @@ export class SlickParser extends Parser {
 	];
 
 	private static readonly _LITERAL_NAMES: (string | undefined)[] = [
-		undefined, "'-'", "'by'", "'showing'", "'equivalence'", "'to'", "'previous'", 
-		"'theorem'", "'the'", "'LHS'", "'is'", "'equivalent'", "'RHS'", "'implies'", 
-		"'follows'", "'from'", "'assuming'", "'conjuncts'", "'of'", "'antecedent'", 
-		"'contradiction'", "'proving'", "'contrapositive'", "':'", "'case'", "'analysis'", 
-		"'on'", "'anlaysis'", "'Must'", "'prove'", "'(1)'", "'(2)'", "'Proof'", 
-		"'['", "'≔'", "']'", "','", "'¬'", "'★'", "'true'", "'false'", "'('", 
-		"')'", "'|'", "'{'", "'}'", "'.'", undefined, undefined, undefined, undefined, 
+		undefined, "'-'", "'Exercise'", "'by'", "'showing'", "'equivalence'", 
+		"'to'", "'previous'", "'theorem'", "'the'", "'LHS'", "'is'", "'equivalent'", 
+		"'RHS'", "'implies'", "'follows'", "'from'", "'assuming'", "'conjuncts'", 
+		"'of'", "'antecedent'", "'contradiction'", "'proving'", "'contrapositive'", 
+		"':'", "'case'", "'analysis'", "'on'", "'anlaysis'", "'Must'", "'prove'", 
+		"'(1)'", "'(2)'", "'Proof'", "'['", "'≔'", "']'", "','", "'¬'", "'★'", 
+		"'true'", "'false'", "'('", "')'", "'|'", "'{'", "'}'", "'.'", undefined, 
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
-		undefined, undefined, undefined, undefined, "'╱╱'"
+		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
+		"'╱╱'"
 	];
 	private static readonly _SYMBOLIC_NAMES: (string | undefined)[] = [
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
@@ -144,9 +146,9 @@ export class SlickParser extends Parser {
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
 		undefined, undefined, undefined, undefined, undefined, undefined, undefined, 
-		undefined, undefined, undefined, undefined, undefined, "COMMENT", "EXPO", 
-		"PROVE", "RULENUM", "EVAR", "VAR", "TYPE", "NUM", "ADDOP", "RELOP", "JOP", 
-		"IMPOP", "EQOP", "QUANTIFIER", "WS", "END"
+		undefined, undefined, undefined, undefined, undefined, undefined, "COMMENT", 
+		"EXPO", "PROVE", "RULENUM", "EVAR", "VAR", "TYPE", "NUM", "ADDOP", "RELOP", 
+		"JOP", "IMPOP", "EQOP", "QUANTIFIER", "WS", "END"
 	];
 	public static readonly VOCABULARY: Vocabulary = new VocabularyImpl(SlickParser._LITERAL_NAMES, SlickParser._SYMBOLIC_NAMES, []);
 
@@ -261,7 +263,7 @@ export class SlickParser extends Parser {
 			this.state = 70;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===SlickParser.PROVE) {
+			if (_la===SlickParser.T__1 || _la===SlickParser.PROVE) {
 				{
 				this.state = 69;
 				this.header();
@@ -283,7 +285,7 @@ export class SlickParser extends Parser {
 			this.state = 81;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (((((_la - 56)) & ~0x1F) === 0 && ((1 << (_la - 56)) & ((1 << (SlickParser.RELOP - 56)) | (1 << (SlickParser.IMPOP - 56)) | (1 << (SlickParser.EQOP - 56)))) !== 0)) {
+			while (((((_la - 57)) & ~0x1F) === 0 && ((1 << (_la - 57)) & ((1 << (SlickParser.RELOP - 57)) | (1 << (SlickParser.IMPOP - 57)) | (1 << (SlickParser.EQOP - 57)))) !== 0)) {
 				{
 				{
 				this.state = 76;
@@ -432,20 +434,41 @@ export class SlickParser extends Parser {
 		this.enterRule(_localctx, 12, SlickParser.RULE_header);
 		let _la: number;
 		try {
-			this.enterOuterAlt(_localctx, 1);
-			{
-			this.state = 102;
-			this.theorem();
-			this.state = 104;
+			this.state = 108;
 			this._errHandler.sync(this);
-			_la = this._input.LA(1);
-			if (_la===SlickParser.T__1) {
+			switch (this._input.LA(1)) {
+			case SlickParser.PROVE:
+				_localctx = new TheoremHeaderContext(_localctx);
+				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 103;
-				this.method();
+				{
+				this.state = 102;
+				this.theorem();
+				this.state = 104;
+				this._errHandler.sync(this);
+				_la = this._input.LA(1);
+				if (_la===SlickParser.T__2) {
+					{
+					this.state = 103;
+					this.method();
+					}
 				}
-			}
 
+				}
+				}
+				break;
+			case SlickParser.T__1:
+				_localctx = new ExerciseHeaderContext(_localctx);
+				this.enterOuterAlt(_localctx, 2);
+				{
+				this.state = 106;
+				this.match(SlickParser.T__1);
+				this.state = 107;
+				this.match(SlickParser.RULENUM);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (re) {
@@ -467,16 +490,16 @@ export class SlickParser extends Parser {
 		let _localctx: TheoremContext = new TheoremContext(this._ctx, this.state);
 		this.enterRule(_localctx, 14, SlickParser.RULE_theorem);
 		try {
-			this.state = 110;
+			this.state = 114;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input,9,this._ctx) ) {
+			switch ( this.interpreter.adaptivePredict(this._input,10,this._ctx) ) {
 			case 1:
 				_localctx = new BibleTheoremContext(_localctx);
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 106;
+				this.state = 110;
 				this.match(SlickParser.PROVE);
-				this.state = 107;
+				this.state = 111;
 				this.match(SlickParser.RULENUM);
 				}
 				break;
@@ -485,9 +508,9 @@ export class SlickParser extends Parser {
 				_localctx = new AdHocTheoremContext(_localctx);
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 108;
+				this.state = 112;
 				this.match(SlickParser.PROVE);
-				this.state = 109;
+				this.state = 113;
 				this.expr(0);
 				}
 				break;
@@ -514,9 +537,9 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 112;
-			this.match(SlickParser.T__1);
-			this.state = 113;
+			this.state = 116;
+			this.match(SlickParser.T__2);
+			this.state = 117;
 			this.methodName();
 			}
 		}
@@ -539,23 +562,23 @@ export class SlickParser extends Parser {
 		let _localctx: MethodNameContext = new MethodNameContext(this._ctx, this.state);
 		this.enterRule(_localctx, 18, SlickParser.RULE_methodName);
 		try {
-			this.state = 161;
+			this.state = 165;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input,10,this._ctx) ) {
+			switch ( this.interpreter.adaptivePredict(this._input,11,this._ctx) ) {
 			case 1:
 				_localctx = new PreviousTheoremMethodContext(_localctx);
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 115;
-				this.match(SlickParser.T__2);
-				this.state = 116;
-				this.match(SlickParser.T__3);
-				this.state = 117;
-				this.match(SlickParser.T__4);
-				this.state = 118;
-				this.match(SlickParser.T__5);
 				this.state = 119;
+				this.match(SlickParser.T__3);
+				this.state = 120;
+				this.match(SlickParser.T__4);
+				this.state = 121;
+				this.match(SlickParser.T__5);
+				this.state = 122;
 				this.match(SlickParser.T__6);
+				this.state = 123;
+				this.match(SlickParser.T__7);
 				}
 				break;
 
@@ -563,22 +586,22 @@ export class SlickParser extends Parser {
 				_localctx = new LeftEquivalesRightMethodContext(_localctx);
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 120;
-				this.match(SlickParser.T__2);
-				this.state = 121;
-				this.match(SlickParser.T__7);
-				this.state = 122;
-				this.match(SlickParser.T__8);
-				this.state = 123;
-				this.match(SlickParser.T__9);
 				this.state = 124;
-				this.match(SlickParser.T__10);
+				this.match(SlickParser.T__3);
 				this.state = 125;
-				this.match(SlickParser.T__4);
+				this.match(SlickParser.T__8);
 				this.state = 126;
-				this.match(SlickParser.T__7);
+				this.match(SlickParser.T__9);
 				this.state = 127;
+				this.match(SlickParser.T__10);
+				this.state = 128;
 				this.match(SlickParser.T__11);
+				this.state = 129;
+				this.match(SlickParser.T__5);
+				this.state = 130;
+				this.match(SlickParser.T__8);
+				this.state = 131;
+				this.match(SlickParser.T__12);
 				}
 				break;
 
@@ -586,22 +609,22 @@ export class SlickParser extends Parser {
 				_localctx = new RightEquivalesLeftMethodContext(_localctx);
 				this.enterOuterAlt(_localctx, 3);
 				{
-				this.state = 128;
-				this.match(SlickParser.T__2);
-				this.state = 129;
-				this.match(SlickParser.T__7);
-				this.state = 130;
-				this.match(SlickParser.T__11);
-				this.state = 131;
-				this.match(SlickParser.T__9);
 				this.state = 132;
-				this.match(SlickParser.T__10);
+				this.match(SlickParser.T__3);
 				this.state = 133;
-				this.match(SlickParser.T__4);
-				this.state = 134;
-				this.match(SlickParser.T__7);
-				this.state = 135;
 				this.match(SlickParser.T__8);
+				this.state = 134;
+				this.match(SlickParser.T__12);
+				this.state = 135;
+				this.match(SlickParser.T__10);
+				this.state = 136;
+				this.match(SlickParser.T__11);
+				this.state = 137;
+				this.match(SlickParser.T__5);
+				this.state = 138;
+				this.match(SlickParser.T__8);
+				this.state = 139;
+				this.match(SlickParser.T__9);
 				}
 				break;
 
@@ -609,18 +632,18 @@ export class SlickParser extends Parser {
 				_localctx = new LeftImpliesRightMethodContext(_localctx);
 				this.enterOuterAlt(_localctx, 4);
 				{
-				this.state = 136;
-				this.match(SlickParser.T__2);
-				this.state = 137;
-				this.match(SlickParser.T__7);
-				this.state = 138;
-				this.match(SlickParser.T__8);
-				this.state = 139;
-				this.match(SlickParser.T__12);
 				this.state = 140;
-				this.match(SlickParser.T__7);
+				this.match(SlickParser.T__3);
 				this.state = 141;
-				this.match(SlickParser.T__11);
+				this.match(SlickParser.T__8);
+				this.state = 142;
+				this.match(SlickParser.T__9);
+				this.state = 143;
+				this.match(SlickParser.T__13);
+				this.state = 144;
+				this.match(SlickParser.T__8);
+				this.state = 145;
+				this.match(SlickParser.T__12);
 				}
 				break;
 
@@ -628,20 +651,20 @@ export class SlickParser extends Parser {
 				_localctx = new RightFollowsLeftMethodContext(_localctx);
 				this.enterOuterAlt(_localctx, 5);
 				{
-				this.state = 142;
-				this.match(SlickParser.T__2);
-				this.state = 143;
-				this.match(SlickParser.T__7);
-				this.state = 144;
-				this.match(SlickParser.T__11);
-				this.state = 145;
-				this.match(SlickParser.T__13);
 				this.state = 146;
-				this.match(SlickParser.T__14);
+				this.match(SlickParser.T__3);
 				this.state = 147;
-				this.match(SlickParser.T__7);
-				this.state = 148;
 				this.match(SlickParser.T__8);
+				this.state = 148;
+				this.match(SlickParser.T__12);
+				this.state = 149;
+				this.match(SlickParser.T__14);
+				this.state = 150;
+				this.match(SlickParser.T__15);
+				this.state = 151;
+				this.match(SlickParser.T__8);
+				this.state = 152;
+				this.match(SlickParser.T__9);
 				}
 				break;
 
@@ -649,18 +672,18 @@ export class SlickParser extends Parser {
 				_localctx = new AssumingConjunctsMethodContext(_localctx);
 				this.enterOuterAlt(_localctx, 6);
 				{
-				this.state = 149;
-				this.match(SlickParser.T__15);
-				this.state = 150;
-				this.match(SlickParser.T__7);
-				this.state = 151;
-				this.match(SlickParser.T__16);
-				this.state = 152;
-				this.match(SlickParser.T__17);
 				this.state = 153;
-				this.match(SlickParser.T__7);
+				this.match(SlickParser.T__16);
 				this.state = 154;
+				this.match(SlickParser.T__8);
+				this.state = 155;
+				this.match(SlickParser.T__17);
+				this.state = 156;
 				this.match(SlickParser.T__18);
+				this.state = 157;
+				this.match(SlickParser.T__8);
+				this.state = 158;
+				this.match(SlickParser.T__19);
 				}
 				break;
 
@@ -668,8 +691,8 @@ export class SlickParser extends Parser {
 				_localctx = new ContradictionMethodContext(_localctx);
 				this.enterOuterAlt(_localctx, 7);
 				{
-				this.state = 155;
-				this.match(SlickParser.T__19);
+				this.state = 159;
+				this.match(SlickParser.T__20);
 				}
 				break;
 
@@ -677,15 +700,15 @@ export class SlickParser extends Parser {
 				_localctx = new ContrapositiveMethodContext(_localctx);
 				this.enterOuterAlt(_localctx, 8);
 				{
-				this.state = 156;
-				this.match(SlickParser.T__20);
-				this.state = 157;
-				this.match(SlickParser.T__7);
-				this.state = 158;
-				this.match(SlickParser.T__21);
-				this.state = 159;
-				this.match(SlickParser.T__22);
 				this.state = 160;
+				this.match(SlickParser.T__21);
+				this.state = 161;
+				this.match(SlickParser.T__8);
+				this.state = 162;
+				this.match(SlickParser.T__22);
+				this.state = 163;
+				this.match(SlickParser.T__23);
+				this.state = 164;
 				this.expr(0);
 				}
 				break;
@@ -712,23 +735,23 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 163;
-			this.theorem();
-			this.state = 164;
-			this.match(SlickParser.T__1);
-			this.state = 165;
-			this.match(SlickParser.T__23);
-			this.state = 166;
-			this.match(SlickParser.T__24);
 			this.state = 167;
-			this.match(SlickParser.T__25);
+			this.theorem();
 			this.state = 168;
-			this.match(SlickParser.VAR);
+			this.match(SlickParser.T__2);
 			this.state = 169;
-			this.caseList();
+			this.match(SlickParser.T__24);
 			this.state = 170;
-			this.caseProof1();
+			this.match(SlickParser.T__25);
 			this.state = 171;
+			this.match(SlickParser.T__26);
+			this.state = 172;
+			this.match(SlickParser.VAR);
+			this.state = 173;
+			this.caseList();
+			this.state = 174;
+			this.caseProof1();
+			this.state = 175;
 			this.caseProof2();
 			}
 		}
@@ -753,15 +776,15 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 173;
-			this.match(SlickParser.T__1);
-			this.state = 174;
-			this.match(SlickParser.T__23);
-			this.state = 175;
-			this.match(SlickParser.T__26);
-			this.state = 176;
-			this.match(SlickParser.T__25);
 			this.state = 177;
+			this.match(SlickParser.T__2);
+			this.state = 178;
+			this.match(SlickParser.T__24);
+			this.state = 179;
+			this.match(SlickParser.T__27);
+			this.state = 180;
+			this.match(SlickParser.T__26);
+			this.state = 181;
 			this.match(SlickParser.VAR);
 			}
 		}
@@ -786,13 +809,13 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 179;
-			this.match(SlickParser.T__27);
-			this.state = 180;
+			this.state = 183;
 			this.match(SlickParser.T__28);
-			this.state = 181;
+			this.state = 184;
+			this.match(SlickParser.T__29);
+			this.state = 185;
 			this.case1();
-			this.state = 182;
+			this.state = 186;
 			this.case2();
 			}
 		}
@@ -817,9 +840,9 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 184;
-			this.match(SlickParser.T__29);
-			this.state = 185;
+			this.state = 188;
+			this.match(SlickParser.T__30);
+			this.state = 189;
 			this.expr(0);
 			}
 		}
@@ -844,9 +867,9 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 187;
-			this.match(SlickParser.T__30);
-			this.state = 188;
+			this.state = 191;
+			this.match(SlickParser.T__31);
+			this.state = 192;
 			this.expr(0);
 			}
 		}
@@ -871,13 +894,13 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 190;
-			this.match(SlickParser.T__31);
-			this.state = 191;
-			this.match(SlickParser.T__17);
-			this.state = 192;
-			this.match(SlickParser.T__29);
-			this.state = 193;
+			this.state = 194;
+			this.match(SlickParser.T__32);
+			this.state = 195;
+			this.match(SlickParser.T__18);
+			this.state = 196;
+			this.match(SlickParser.T__30);
+			this.state = 197;
 			this.standardProof();
 			}
 		}
@@ -902,13 +925,13 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 195;
+			this.state = 199;
+			this.match(SlickParser.T__32);
+			this.state = 200;
+			this.match(SlickParser.T__18);
+			this.state = 201;
 			this.match(SlickParser.T__31);
-			this.state = 196;
-			this.match(SlickParser.T__17);
-			this.state = 197;
-			this.match(SlickParser.T__30);
-			this.state = 198;
+			this.state = 202;
 			this.standardProof();
 			}
 		}
@@ -933,7 +956,7 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 200;
+			this.state = 204;
 			this.expr(0);
 			}
 		}
@@ -970,16 +993,16 @@ export class SlickParser extends Parser {
 			let _alt: number;
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 218;
+			this.state = 222;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input,11,this._ctx) ) {
+			switch ( this.interpreter.adaptivePredict(this._input,12,this._ctx) ) {
 			case 1:
 				{
 				_localctx = new FunctionCallExprContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
 
-				this.state = 203;
+				this.state = 207;
 				this.functionCall();
 				}
 				break;
@@ -989,9 +1012,9 @@ export class SlickParser extends Parser {
 				_localctx = new UnaryPrefixExprContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 204;
-				this.match(SlickParser.T__36);
-				this.state = 205;
+				this.state = 208;
+				this.match(SlickParser.T__37);
+				this.state = 209;
 				this.expr(16);
 				}
 				break;
@@ -1001,7 +1024,7 @@ export class SlickParser extends Parser {
 				_localctx = new AtomContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 206;
+				this.state = 210;
 				this.match(SlickParser.EVAR);
 				}
 				break;
@@ -1011,7 +1034,7 @@ export class SlickParser extends Parser {
 				_localctx = new AtomContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 207;
+				this.state = 211;
 				this.match(SlickParser.VAR);
 				}
 				break;
@@ -1021,8 +1044,8 @@ export class SlickParser extends Parser {
 				_localctx = new AtomContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 208;
-				this.match(SlickParser.T__38);
+				this.state = 212;
+				this.match(SlickParser.T__39);
 				}
 				break;
 
@@ -1031,8 +1054,8 @@ export class SlickParser extends Parser {
 				_localctx = new AtomContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 209;
-				this.match(SlickParser.T__39);
+				this.state = 213;
+				this.match(SlickParser.T__40);
 				}
 				break;
 
@@ -1041,7 +1064,7 @@ export class SlickParser extends Parser {
 				_localctx = new AtomContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 210;
+				this.state = 214;
 				this.match(SlickParser.NUM);
 				}
 				break;
@@ -1051,7 +1074,7 @@ export class SlickParser extends Parser {
 				_localctx = new QuantExprContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 211;
+				this.state = 215;
 				this.quantifiedExpr();
 				}
 				break;
@@ -1061,7 +1084,7 @@ export class SlickParser extends Parser {
 				_localctx = new SetEnumExprContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 212;
+				this.state = 216;
 				this.setEnumeration();
 				}
 				break;
@@ -1071,7 +1094,7 @@ export class SlickParser extends Parser {
 				_localctx = new SetCompExprContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 213;
+				this.state = 217;
 				this.setComprehension();
 				}
 				break;
@@ -1081,36 +1104,36 @@ export class SlickParser extends Parser {
 				_localctx = new ParenExprContext(_localctx);
 				this._ctx = _localctx;
 				_prevctx = _localctx;
-				this.state = 214;
-				this.match(SlickParser.T__40);
-				this.state = 215;
-				this.expr(0);
-				this.state = 216;
+				this.state = 218;
 				this.match(SlickParser.T__41);
+				this.state = 219;
+				this.expr(0);
+				this.state = 220;
+				this.match(SlickParser.T__42);
 				}
 				break;
 			}
 			this._ctx._stop = this._input.tryLT(-1);
-			this.state = 254;
+			this.state = 258;
 			this._errHandler.sync(this);
-			_alt = this.interpreter.adaptivePredict(this._input,13,this._ctx);
+			_alt = this.interpreter.adaptivePredict(this._input,14,this._ctx);
 			while ( _alt!==2 && _alt!==ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt===1 ) {
 					if ( this._parseListeners!=null ) this.triggerExitRuleEvent();
 					_prevctx = _localctx;
 					{
-					this.state = 252;
+					this.state = 256;
 					this._errHandler.sync(this);
-					switch ( this.interpreter.adaptivePredict(this._input,12,this._ctx) ) {
+					switch ( this.interpreter.adaptivePredict(this._input,13,this._ctx) ) {
 					case 1:
 						{
 						_localctx = new AdditionExprContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, SlickParser.RULE_expr);
-						this.state = 220;
+						this.state = 224;
 						if (!(this.precpred(this._ctx, 15))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 15)");
-						this.state = 221;
+						this.state = 225;
 						this.match(SlickParser.ADDOP);
-						this.state = 222;
+						this.state = 226;
 						this.expr(16);
 						}
 						break;
@@ -1119,11 +1142,11 @@ export class SlickParser extends Parser {
 						{
 						_localctx = new GeneralExprContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, SlickParser.RULE_expr);
-						this.state = 223;
+						this.state = 227;
 						if (!(this.precpred(this._ctx, 14))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 14)");
-						this.state = 224;
-						this.match(SlickParser.T__37);
-						this.state = 225;
+						this.state = 228;
+						this.match(SlickParser.T__38);
+						this.state = 229;
 						this.expr(15);
 						}
 						break;
@@ -1132,11 +1155,11 @@ export class SlickParser extends Parser {
 						{
 						_localctx = new RelativeExprContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, SlickParser.RULE_expr);
-						this.state = 226;
+						this.state = 230;
 						if (!(this.precpred(this._ctx, 13))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 13)");
-						this.state = 227;
+						this.state = 231;
 						this.match(SlickParser.RELOP);
-						this.state = 228;
+						this.state = 232;
 						this.expr(14);
 						}
 						break;
@@ -1145,11 +1168,11 @@ export class SlickParser extends Parser {
 						{
 						_localctx = new JunctionExprContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, SlickParser.RULE_expr);
-						this.state = 229;
+						this.state = 233;
 						if (!(this.precpred(this._ctx, 12))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 12)");
-						this.state = 230;
+						this.state = 234;
 						this.match(SlickParser.JOP);
-						this.state = 231;
+						this.state = 235;
 						this.expr(13);
 						}
 						break;
@@ -1158,11 +1181,11 @@ export class SlickParser extends Parser {
 						{
 						_localctx = new ImplicationExprContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, SlickParser.RULE_expr);
-						this.state = 232;
+						this.state = 236;
 						if (!(this.precpred(this._ctx, 11))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 11)");
-						this.state = 233;
+						this.state = 237;
 						this.match(SlickParser.IMPOP);
-						this.state = 234;
+						this.state = 238;
 						this.expr(12);
 						}
 						break;
@@ -1171,11 +1194,11 @@ export class SlickParser extends Parser {
 						{
 						_localctx = new EquivalenceExprContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, SlickParser.RULE_expr);
-						this.state = 235;
+						this.state = 239;
 						if (!(this.precpred(this._ctx, 10))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 10)");
-						this.state = 236;
+						this.state = 240;
 						this.match(SlickParser.EQOP);
-						this.state = 237;
+						this.state = 241;
 						this.expr(11);
 						}
 						break;
@@ -1184,18 +1207,18 @@ export class SlickParser extends Parser {
 						{
 						_localctx = new TSExprContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, SlickParser.RULE_expr);
-						this.state = 238;
-						if (!(this.precpred(this._ctx, 19))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 19)");
-						this.state = 239;
-						this.match(SlickParser.T__32);
-						this.state = 240;
-						this.varlist();
-						this.state = 241;
-						this.match(SlickParser.T__33);
 						this.state = 242;
-						this.exprlist();
+						if (!(this.precpred(this._ctx, 19))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 19)");
 						this.state = 243;
+						this.match(SlickParser.T__33);
+						this.state = 244;
+						this.varlist();
+						this.state = 245;
 						this.match(SlickParser.T__34);
+						this.state = 246;
+						this.exprlist();
+						this.state = 247;
+						this.match(SlickParser.T__35);
 						}
 						break;
 
@@ -1203,26 +1226,26 @@ export class SlickParser extends Parser {
 						{
 						_localctx = new LeibnizExprContext(new ExprContext(_parentctx, _parentState));
 						this.pushNewRecursionContext(_localctx, _startState, SlickParser.RULE_expr);
-						this.state = 245;
-						if (!(this.precpred(this._ctx, 18))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 18)");
-						this.state = 246;
-						this.match(SlickParser.T__32);
-						this.state = 247;
-						this.match(SlickParser.VAR);
-						this.state = 248;
-						this.match(SlickParser.T__35);
 						this.state = 249;
-						this.expr(0);
+						if (!(this.precpred(this._ctx, 18))) throw new FailedPredicateException(this, "this.precpred(this._ctx, 18)");
 						this.state = 250;
-						this.match(SlickParser.T__34);
+						this.match(SlickParser.T__33);
+						this.state = 251;
+						this.match(SlickParser.VAR);
+						this.state = 252;
+						this.match(SlickParser.T__36);
+						this.state = 253;
+						this.expr(0);
+						this.state = 254;
+						this.match(SlickParser.T__35);
 						}
 						break;
 					}
 					} 
 				}
-				this.state = 256;
+				this.state = 260;
 				this._errHandler.sync(this);
-				_alt = this.interpreter.adaptivePredict(this._input,13,this._ctx);
+				_alt = this.interpreter.adaptivePredict(this._input,14,this._ctx);
 			}
 			}
 		}
@@ -1247,9 +1270,9 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 257;
+			this.state = 261;
 			this.hintOp();
-			this.state = 258;
+			this.state = 262;
 			this.match(SlickParser.COMMENT);
 			}
 		}
@@ -1275,9 +1298,9 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 260;
+			this.state = 264;
 			_la = this._input.LA(1);
-			if ( !(((((_la - 56)) & ~0x1F) === 0 && ((1 << (_la - 56)) & ((1 << (SlickParser.RELOP - 56)) | (1 << (SlickParser.IMPOP - 56)) | (1 << (SlickParser.EQOP - 56)))) !== 0)) ) {
+			if ( !(((((_la - 57)) & ~0x1F) === 0 && ((1 << (_la - 57)) & ((1 << (SlickParser.RELOP - 57)) | (1 << (SlickParser.IMPOP - 57)) | (1 << (SlickParser.EQOP - 57)))) !== 0)) ) {
 			this._errHandler.recoverInline(this);
 			} else {
 				if (this._input.LA(1) === Token.EOF) {
@@ -1311,21 +1334,21 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 262;
+			this.state = 266;
 			this.typedVar();
-			this.state = 267;
+			this.state = 271;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===SlickParser.T__35) {
+			while (_la===SlickParser.T__36) {
 				{
 				{
-				this.state = 263;
-				this.match(SlickParser.T__35);
-				this.state = 264;
+				this.state = 267;
+				this.match(SlickParser.T__36);
+				this.state = 268;
 				this.typedVar();
 				}
 				}
-				this.state = 269;
+				this.state = 273;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -1353,21 +1376,21 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 270;
+			this.state = 274;
 			this.expr(0);
-			this.state = 275;
+			this.state = 279;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			while (_la===SlickParser.T__35) {
+			while (_la===SlickParser.T__36) {
 				{
 				{
-				this.state = 271;
-				this.match(SlickParser.T__35);
-				this.state = 272;
+				this.state = 275;
+				this.match(SlickParser.T__36);
+				this.state = 276;
 				this.expr(0);
 				}
 				}
-				this.state = 277;
+				this.state = 281;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
 			}
@@ -1394,22 +1417,22 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 278;
-			this.match(SlickParser.T__40);
-			this.state = 279;
-			this.match(SlickParser.QUANTIFIER);
-			this.state = 280;
-			this.varlist();
-			this.state = 281;
-			this.match(SlickParser.T__42);
 			this.state = 282;
-			this.expr(0);
-			this.state = 283;
-			this.match(SlickParser.T__22);
-			this.state = 284;
-			this.expr(0);
-			this.state = 285;
 			this.match(SlickParser.T__41);
+			this.state = 283;
+			this.match(SlickParser.QUANTIFIER);
+			this.state = 284;
+			this.varlist();
+			this.state = 285;
+			this.match(SlickParser.T__43);
+			this.state = 286;
+			this.expr(0);
+			this.state = 287;
+			this.match(SlickParser.T__23);
+			this.state = 288;
+			this.expr(0);
+			this.state = 289;
+			this.match(SlickParser.T__42);
 			}
 		}
 		catch (re) {
@@ -1434,36 +1457,36 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 287;
-			this.match(SlickParser.T__43);
-			this.state = 296;
+			this.state = 291;
+			this.match(SlickParser.T__44);
+			this.state = 300;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (((((_la - 37)) & ~0x1F) === 0 && ((1 << (_la - 37)) & ((1 << (SlickParser.T__36 - 37)) | (1 << (SlickParser.T__38 - 37)) | (1 << (SlickParser.T__39 - 37)) | (1 << (SlickParser.T__40 - 37)) | (1 << (SlickParser.T__43 - 37)) | (1 << (SlickParser.EVAR - 37)) | (1 << (SlickParser.VAR - 37)) | (1 << (SlickParser.NUM - 37)))) !== 0)) {
+			if (((((_la - 38)) & ~0x1F) === 0 && ((1 << (_la - 38)) & ((1 << (SlickParser.T__37 - 38)) | (1 << (SlickParser.T__39 - 38)) | (1 << (SlickParser.T__40 - 38)) | (1 << (SlickParser.T__41 - 38)) | (1 << (SlickParser.T__44 - 38)) | (1 << (SlickParser.EVAR - 38)) | (1 << (SlickParser.VAR - 38)) | (1 << (SlickParser.NUM - 38)))) !== 0)) {
 				{
-				this.state = 288;
+				this.state = 292;
 				this.expr(0);
-				this.state = 293;
+				this.state = 297;
 				this._errHandler.sync(this);
 				_la = this._input.LA(1);
-				while (_la===SlickParser.T__35) {
+				while (_la===SlickParser.T__36) {
 					{
 					{
-					this.state = 289;
-					this.match(SlickParser.T__35);
-					this.state = 290;
+					this.state = 293;
+					this.match(SlickParser.T__36);
+					this.state = 294;
 					this.expr(0);
 					}
 					}
-					this.state = 295;
+					this.state = 299;
 					this._errHandler.sync(this);
 					_la = this._input.LA(1);
 				}
 				}
 			}
 
-			this.state = 298;
-			this.match(SlickParser.T__44);
+			this.state = 302;
+			this.match(SlickParser.T__45);
 			}
 		}
 		catch (re) {
@@ -1487,20 +1510,20 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 300;
-			this.match(SlickParser.T__43);
-			this.state = 301;
-			this.typedVar();
-			this.state = 302;
-			this.match(SlickParser.T__42);
-			this.state = 303;
-			this.expr(0);
 			this.state = 304;
-			this.match(SlickParser.T__22);
-			this.state = 305;
-			this.expr(0);
-			this.state = 306;
 			this.match(SlickParser.T__44);
+			this.state = 305;
+			this.typedVar();
+			this.state = 306;
+			this.match(SlickParser.T__43);
+			this.state = 307;
+			this.expr(0);
+			this.state = 308;
+			this.match(SlickParser.T__23);
+			this.state = 309;
+			this.expr(0);
+			this.state = 310;
+			this.match(SlickParser.T__45);
 			}
 		}
 		catch (re) {
@@ -1522,18 +1545,18 @@ export class SlickParser extends Parser {
 		let _localctx: FunctionCallContext = new FunctionCallContext(this._ctx, this.state);
 		this.enterRule(_localctx, 52, SlickParser.RULE_functionCall);
 		try {
-			this.state = 316;
+			this.state = 320;
 			this._errHandler.sync(this);
-			switch ( this.interpreter.adaptivePredict(this._input,18,this._ctx) ) {
+			switch ( this.interpreter.adaptivePredict(this._input,19,this._ctx) ) {
 			case 1:
 				_localctx = new FunctionDotContext(_localctx);
 				this.enterOuterAlt(_localctx, 1);
 				{
-				this.state = 308;
+				this.state = 312;
 				this.match(SlickParser.VAR);
-				this.state = 309;
-				this.match(SlickParser.T__45);
-				this.state = 310;
+				this.state = 313;
+				this.match(SlickParser.T__46);
+				this.state = 314;
 				this.expr(0);
 				}
 				break;
@@ -1542,14 +1565,14 @@ export class SlickParser extends Parser {
 				_localctx = new FunctionParenContext(_localctx);
 				this.enterOuterAlt(_localctx, 2);
 				{
-				this.state = 311;
+				this.state = 315;
 				this.match(SlickParser.VAR);
-				this.state = 312;
-				this.match(SlickParser.T__40);
-				this.state = 313;
-				this.exprlist();
-				this.state = 314;
+				this.state = 316;
 				this.match(SlickParser.T__41);
+				this.state = 317;
+				this.exprlist();
+				this.state = 318;
+				this.match(SlickParser.T__42);
 				}
 				break;
 			}
@@ -1576,16 +1599,16 @@ export class SlickParser extends Parser {
 		try {
 			this.enterOuterAlt(_localctx, 1);
 			{
-			this.state = 318;
+			this.state = 322;
 			this.match(SlickParser.VAR);
-			this.state = 321;
+			this.state = 325;
 			this._errHandler.sync(this);
 			_la = this._input.LA(1);
-			if (_la===SlickParser.T__22) {
+			if (_la===SlickParser.T__23) {
 				{
-				this.state = 319;
-				this.match(SlickParser.T__22);
-				this.state = 320;
+				this.state = 323;
+				this.match(SlickParser.T__23);
+				this.state = 324;
 				this.match(SlickParser.TYPE);
 				}
 			}
@@ -1644,7 +1667,7 @@ export class SlickParser extends Parser {
 	}
 
 	public static readonly _serializedATN: string =
-		"\x03\uAF6F\u8320\u479D\uB75C\u4880\u1605\u191C\uAB37\x03@\u0146\x04\x02"+
+		"\x03\uAF6F\u8320\u479D\uB75C\u4880\u1605\u191C\uAB37\x03A\u014A\x04\x02"+
 		"\t\x02\x04\x03\t\x03\x04\x04\t\x04\x04\x05\t\x05\x04\x06\t\x06\x04\x07"+
 		"\t\x07\x04\b\t\b\x04\t\t\t\x04\n\t\n\x04\v\t\v\x04\f\t\f\x04\r\t\r\x04"+
 		"\x0E\t\x0E\x04\x0F\t\x0F\x04\x10\t\x10\x04\x11\t\x11\x04\x12\t\x12\x04"+
@@ -1655,139 +1678,142 @@ export class SlickParser extends Parser {
 		"\x05\x04L\n\x04\x03\x04\x03\x04\x03\x04\x03\x04\x07\x04R\n\x04\f\x04\x0E"+
 		"\x04U\v\x04\x03\x04\x05\x04X\n\x04\x03\x04\x05\x04[\n\x04\x03\x05\x03"+
 		"\x05\x03\x06\x03\x06\x03\x07\x03\x07\x03\x07\x03\x07\x06\x07e\n\x07\r"+
-		"\x07\x0E\x07f\x03\b\x03\b\x05\bk\n\b\x03\t\x03\t\x03\t\x03\t\x05\tq\n"+
-		"\t\x03\n\x03\n\x03\n\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03"+
+		"\x07\x0E\x07f\x03\b\x03\b\x05\bk\n\b\x03\b\x03\b\x05\bo\n\b\x03\t\x03"+
+		"\t\x03\t\x03\t\x05\tu\n\t\x03\n\x03\n\x03\n\x03\v\x03\v\x03\v\x03\v\x03"+
 		"\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03"+
 		"\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03"+
 		"\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03\v\x03"+
-		"\v\x03\v\x05\v\xA4\n\v\x03\f\x03\f\x03\f\x03\f\x03\f\x03\f\x03\f\x03\f"+
-		"\x03\f\x03\f\x03\r\x03\r\x03\r\x03\r\x03\r\x03\r\x03\x0E\x03\x0E\x03\x0E"+
-		"\x03\x0E\x03\x0E\x03\x0F\x03\x0F\x03\x0F\x03\x10\x03\x10\x03\x10\x03\x11"+
-		"\x03\x11\x03\x11\x03\x11\x03\x11\x03\x12\x03\x12\x03\x12\x03\x12\x03\x12"+
-		"\x03\x13\x03\x13\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14"+
+		"\v\x03\v\x03\v\x03\v\x03\v\x03\v\x05\v\xA8\n\v\x03\f\x03\f\x03\f\x03\f"+
+		"\x03\f\x03\f\x03\f\x03\f\x03\f\x03\f\x03\r\x03\r\x03\r\x03\r\x03\r\x03"+
+		"\r\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x03\x0E\x03\x0F\x03\x0F\x03\x0F\x03"+
+		"\x10\x03\x10\x03\x10\x03\x11\x03\x11\x03\x11\x03\x11\x03\x11\x03\x12\x03"+
+		"\x12\x03\x12\x03\x12\x03\x12\x03\x13\x03\x13\x03\x14\x03\x14\x03\x14\x03"+
+		"\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03"+
+		"\x14\x03\x14\x03\x14\x03\x14\x05\x14\xE1\n\x14\x03\x14\x03\x14\x03\x14"+
 		"\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14"+
-		"\x05\x14\xDD\n\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03"+
-		"\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03"+
-		"\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03"+
-		"\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x07\x14\xFF"+
-		"\n\x14\f\x14\x0E\x14\u0102\v\x14\x03\x15\x03\x15\x03\x15\x03\x16\x03\x16"+
-		"\x03\x17\x03\x17\x03\x17\x07\x17\u010C\n\x17\f\x17\x0E\x17\u010F\v\x17"+
-		"\x03\x18\x03\x18\x03\x18\x07\x18\u0114\n\x18\f\x18\x0E\x18\u0117\v\x18"+
-		"\x03\x19\x03\x19\x03\x19\x03\x19\x03\x19\x03\x19\x03\x19\x03\x19\x03\x19"+
-		"\x03\x1A\x03\x1A\x03\x1A\x03\x1A\x07\x1A\u0126\n\x1A\f\x1A\x0E\x1A\u0129"+
-		"\v\x1A\x05\x1A\u012B\n\x1A\x03\x1A\x03\x1A\x03\x1B\x03\x1B\x03\x1B\x03"+
-		"\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1C\x03\x1C\x03\x1C\x03\x1C\x03"+
-		"\x1C\x03\x1C\x03\x1C\x03\x1C\x05\x1C\u013F\n\x1C\x03\x1D\x03\x1D\x03\x1D"+
-		"\x05\x1D\u0144\n\x1D\x03\x1D\x02\x02\x03&\x1E\x02\x02\x04\x02\x06\x02"+
-		"\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02\x14\x02\x16\x02\x18\x02\x1A"+
-		"\x02\x1C\x02\x1E\x02 \x02\"\x02$\x02&\x02(\x02*\x02,\x02.\x020\x022\x02"+
-		"4\x026\x028\x02\x02\x03\x04\x02::<=\u0152\x02:\x03\x02\x02\x02\x04E\x03"+
-		"\x02\x02\x02\x06H\x03\x02\x02\x02\b\\\x03\x02\x02\x02\n^\x03\x02\x02\x02"+
-		"\f`\x03\x02\x02\x02\x0Eh\x03\x02\x02\x02\x10p\x03\x02\x02\x02\x12r\x03"+
-		"\x02\x02\x02\x14\xA3\x03\x02\x02\x02\x16\xA5\x03\x02\x02\x02\x18\xAF\x03"+
-		"\x02\x02\x02\x1A\xB5\x03\x02\x02\x02\x1C\xBA\x03\x02\x02\x02\x1E\xBD\x03"+
-		"\x02\x02\x02 \xC0\x03\x02\x02\x02\"\xC5\x03\x02\x02\x02$\xCA\x03\x02\x02"+
-		"\x02&\xDC\x03\x02\x02\x02(\u0103\x03\x02\x02\x02*\u0106\x03\x02\x02\x02"+
-		",\u0108\x03\x02\x02\x02.\u0110\x03\x02\x02\x020\u0118\x03\x02\x02\x02"+
-		"2\u0121\x03\x02\x02\x024\u012E\x03\x02\x02\x026\u013E\x03\x02\x02\x02"+
-		"8\u0140\x03\x02\x02\x02:@\x05\x04\x03\x02;<\x05\f\x07\x02<=\x05\x04\x03"+
-		"\x02=?\x03\x02\x02\x02>;\x03\x02\x02\x02?B\x03\x02\x02\x02@>\x03\x02\x02"+
-		"\x02@A\x03\x02\x02\x02A\x03\x03\x02\x02\x02B@\x03\x02\x02\x02CF\x05\x06"+
-		"\x04\x02DF\x05\x16\f\x02EC\x03\x02\x02\x02ED\x03\x02\x02\x02F\x05\x03"+
-		"\x02\x02\x02GI\x05\x0E\b\x02HG\x03\x02\x02\x02HI\x03\x02\x02\x02IK\x03"+
-		"\x02\x02\x02JL\x05\b\x05\x02KJ\x03\x02\x02\x02KL\x03\x02\x02\x02LM\x03"+
-		"\x02\x02\x02MS\x05$\x13\x02NO\x05(\x15\x02OP\x05$\x13\x02PR\x03\x02\x02"+
-		"\x02QN\x03\x02\x02\x02RU\x03\x02\x02\x02SQ\x03\x02\x02\x02ST\x03\x02\x02"+
-		"\x02TW\x03\x02\x02\x02US\x03\x02\x02\x02VX\x07@\x02\x02WV\x03\x02\x02"+
-		"\x02WX\x03\x02\x02\x02XZ\x03\x02\x02\x02Y[\x05\n\x06\x02ZY\x03\x02\x02"+
-		"\x02Z[\x03\x02\x02\x02[\x07\x03\x02\x02\x02\\]\x072\x02\x02]\t\x03\x02"+
-		"\x02\x02^_\x072\x02\x02_\v\x03\x02\x02\x02`a\x07\x03\x02\x02ab\x07\x03"+
-		"\x02\x02bd\x07\x03\x02\x02ce\x07\x03\x02\x02dc\x03\x02\x02\x02ef\x03\x02"+
-		"\x02\x02fd\x03\x02\x02\x02fg\x03\x02\x02\x02g\r\x03\x02\x02\x02hj\x05"+
-		"\x10\t\x02ik\x05\x12\n\x02ji\x03\x02\x02\x02jk\x03\x02\x02\x02k\x0F\x03"+
-		"\x02\x02\x02lm\x073\x02\x02mq\x074\x02\x02no\x073\x02\x02oq\x05&\x14\x02"+
-		"pl\x03\x02\x02\x02pn\x03\x02\x02\x02q\x11\x03\x02\x02\x02rs\x07\x04\x02"+
-		"\x02st\x05\x14\v\x02t\x13\x03\x02\x02\x02uv\x07\x05\x02\x02vw\x07\x06"+
-		"\x02\x02wx\x07\x07\x02\x02xy\x07\b\x02\x02y\xA4\x07\t\x02\x02z{\x07\x05"+
-		"\x02\x02{|\x07\n\x02\x02|}\x07\v\x02\x02}~\x07\f\x02\x02~\x7F\x07\r\x02"+
-		"\x02\x7F\x80\x07\x07\x02\x02\x80\x81\x07\n\x02\x02\x81\xA4\x07\x0E\x02"+
-		"\x02\x82\x83\x07\x05\x02\x02\x83\x84\x07\n\x02\x02\x84\x85\x07\x0E\x02"+
-		"\x02\x85\x86\x07\f\x02\x02\x86\x87\x07\r\x02\x02\x87\x88\x07\x07\x02\x02"+
-		"\x88\x89\x07\n\x02\x02\x89\xA4\x07\v\x02\x02\x8A\x8B\x07\x05\x02\x02\x8B"+
-		"\x8C\x07\n\x02\x02\x8C\x8D\x07\v\x02\x02\x8D\x8E\x07\x0F\x02\x02\x8E\x8F"+
-		"\x07\n\x02\x02\x8F\xA4\x07\x0E\x02\x02\x90\x91\x07\x05\x02\x02\x91\x92"+
-		"\x07\n\x02\x02\x92\x93\x07\x0E\x02\x02\x93\x94\x07\x10\x02\x02\x94\x95"+
-		"\x07\x11\x02\x02\x95\x96\x07\n\x02\x02\x96\xA4\x07\v\x02\x02\x97\x98\x07"+
-		"\x12\x02\x02\x98\x99\x07\n\x02\x02\x99\x9A\x07\x13\x02\x02\x9A\x9B\x07"+
-		"\x14\x02\x02\x9B\x9C\x07\n\x02\x02\x9C\xA4\x07\x15\x02\x02\x9D\xA4\x07"+
-		"\x16\x02\x02\x9E\x9F\x07\x17\x02\x02\x9F\xA0\x07\n\x02\x02\xA0\xA1\x07"+
-		"\x18\x02\x02\xA1\xA2\x07\x19\x02\x02\xA2\xA4\x05&\x14\x02\xA3u\x03\x02"+
-		"\x02\x02\xA3z\x03\x02\x02\x02\xA3\x82\x03\x02\x02\x02\xA3\x8A\x03\x02"+
-		"\x02\x02\xA3\x90\x03\x02\x02\x02\xA3\x97\x03\x02\x02\x02\xA3\x9D\x03\x02"+
-		"\x02\x02\xA3\x9E\x03\x02\x02\x02\xA4\x15\x03\x02\x02\x02\xA5\xA6\x05\x10"+
-		"\t\x02\xA6\xA7\x07\x04\x02\x02\xA7\xA8\x07\x1A\x02\x02\xA8\xA9\x07\x1B"+
-		"\x02\x02\xA9\xAA\x07\x1C\x02\x02\xAA\xAB\x076\x02\x02\xAB\xAC\x05\x1A"+
-		"\x0E\x02\xAC\xAD\x05 \x11\x02\xAD\xAE\x05\"\x12\x02\xAE\x17\x03\x02\x02"+
-		"\x02\xAF\xB0\x07\x04\x02\x02\xB0\xB1\x07\x1A\x02\x02\xB1\xB2\x07\x1D\x02"+
-		"\x02\xB2\xB3\x07\x1C\x02\x02\xB3\xB4\x076\x02\x02\xB4\x19\x03\x02\x02"+
-		"\x02\xB5\xB6\x07\x1E\x02\x02\xB6\xB7\x07\x1F\x02\x02\xB7\xB8\x05\x1C\x0F"+
-		"\x02\xB8\xB9\x05\x1E\x10\x02\xB9\x1B\x03\x02\x02\x02\xBA\xBB\x07 \x02"+
-		"\x02\xBB\xBC\x05&\x14\x02\xBC\x1D\x03\x02\x02\x02\xBD\xBE\x07!\x02\x02"+
-		"\xBE\xBF\x05&\x14\x02\xBF\x1F\x03\x02\x02\x02\xC0\xC1\x07\"\x02\x02\xC1"+
-		"\xC2\x07\x14\x02\x02\xC2\xC3\x07 \x02\x02\xC3\xC4\x05\x06\x04\x02\xC4"+
-		"!\x03\x02\x02\x02\xC5\xC6\x07\"\x02\x02\xC6\xC7\x07\x14\x02\x02\xC7\xC8"+
-		"\x07!\x02\x02\xC8\xC9\x05\x06\x04\x02\xC9#\x03\x02\x02\x02\xCA\xCB\x05"+
-		"&\x14\x02\xCB%\x03\x02\x02\x02\xCC\xCD\b\x14\x01\x02\xCD\xDD\x056\x1C"+
-		"\x02\xCE\xCF\x07\'\x02\x02\xCF\xDD\x05&\x14\x12\xD0\xDD\x075\x02\x02\xD1"+
-		"\xDD\x076\x02\x02\xD2\xDD\x07)\x02\x02\xD3\xDD\x07*\x02\x02\xD4\xDD\x07"+
-		"8\x02\x02\xD5\xDD\x050\x19\x02\xD6\xDD\x052\x1A\x02\xD7\xDD\x054\x1B\x02"+
-		"\xD8\xD9\x07+\x02\x02\xD9\xDA\x05&\x14\x02\xDA\xDB\x07,\x02\x02\xDB\xDD"+
-		"\x03\x02\x02\x02\xDC\xCC\x03\x02\x02\x02\xDC\xCE\x03\x02\x02\x02\xDC\xD0"+
-		"\x03\x02\x02\x02\xDC\xD1\x03\x02\x02\x02\xDC\xD2\x03\x02\x02\x02\xDC\xD3"+
-		"\x03\x02\x02\x02\xDC\xD4\x03\x02\x02\x02\xDC\xD5\x03\x02\x02\x02\xDC\xD6"+
-		"\x03\x02\x02\x02\xDC\xD7\x03\x02\x02\x02\xDC\xD8\x03\x02\x02\x02\xDD\u0100"+
-		"\x03\x02\x02\x02\xDE\xDF\f\x11\x02\x02\xDF\xE0\x079\x02\x02\xE0\xFF\x05"+
-		"&\x14\x12\xE1\xE2\f\x10\x02\x02\xE2\xE3\x07(\x02\x02\xE3\xFF\x05&\x14"+
-		"\x11\xE4\xE5\f\x0F\x02\x02\xE5\xE6\x07:\x02\x02\xE6\xFF\x05&\x14\x10\xE7"+
-		"\xE8\f\x0E\x02\x02\xE8\xE9\x07;\x02\x02\xE9\xFF\x05&\x14\x0F\xEA\xEB\f"+
-		"\r\x02\x02\xEB\xEC\x07<\x02\x02\xEC\xFF\x05&\x14\x0E\xED\xEE\f\f\x02\x02"+
-		"\xEE\xEF\x07=\x02\x02\xEF\xFF\x05&\x14\r\xF0\xF1\f\x15\x02\x02\xF1\xF2"+
-		"\x07#\x02\x02\xF2\xF3\x05,\x17\x02\xF3\xF4\x07$\x02\x02\xF4\xF5\x05.\x18"+
-		"\x02\xF5\xF6\x07%\x02\x02\xF6\xFF\x03\x02\x02\x02\xF7\xF8\f\x14\x02\x02"+
-		"\xF8\xF9\x07#\x02\x02\xF9\xFA\x076\x02\x02\xFA\xFB\x07&\x02\x02\xFB\xFC"+
-		"\x05&\x14\x02\xFC\xFD\x07%\x02\x02\xFD\xFF\x03\x02\x02\x02\xFE\xDE\x03"+
-		"\x02\x02\x02\xFE\xE1\x03\x02\x02\x02\xFE\xE4\x03\x02\x02\x02\xFE\xE7\x03"+
-		"\x02\x02\x02\xFE\xEA\x03\x02\x02\x02\xFE\xED\x03\x02\x02\x02\xFE\xF0\x03"+
-		"\x02\x02\x02\xFE\xF7\x03\x02\x02\x02\xFF\u0102\x03\x02\x02\x02\u0100\xFE"+
-		"\x03\x02\x02\x02\u0100\u0101\x03\x02\x02\x02\u0101\'\x03\x02\x02\x02\u0102"+
-		"\u0100\x03\x02\x02\x02\u0103\u0104\x05*\x16\x02\u0104\u0105\x071\x02\x02"+
-		"\u0105)\x03\x02\x02\x02\u0106\u0107\t\x02\x02\x02\u0107+\x03\x02\x02\x02"+
-		"\u0108\u010D\x058\x1D\x02\u0109\u010A\x07&\x02\x02\u010A\u010C\x058\x1D"+
-		"\x02\u010B\u0109\x03\x02\x02\x02\u010C\u010F\x03\x02\x02\x02\u010D\u010B"+
-		"\x03\x02\x02\x02\u010D\u010E\x03\x02\x02\x02\u010E-\x03\x02\x02\x02\u010F"+
-		"\u010D\x03\x02\x02\x02\u0110\u0115\x05&\x14\x02\u0111\u0112\x07&\x02\x02"+
-		"\u0112\u0114\x05&\x14\x02\u0113\u0111\x03\x02\x02\x02\u0114\u0117\x03"+
-		"\x02\x02\x02\u0115\u0113\x03\x02\x02\x02\u0115\u0116\x03\x02\x02\x02\u0116"+
-		"/\x03\x02\x02\x02\u0117\u0115\x03\x02\x02\x02\u0118\u0119\x07+\x02\x02"+
-		"\u0119\u011A\x07>\x02\x02\u011A\u011B\x05,\x17\x02\u011B\u011C\x07-\x02"+
-		"\x02\u011C\u011D\x05&\x14\x02\u011D\u011E\x07\x19\x02\x02\u011E\u011F"+
-		"\x05&\x14\x02\u011F\u0120\x07,\x02\x02\u01201\x03\x02\x02\x02\u0121\u012A"+
-		"\x07.\x02\x02\u0122\u0127\x05&\x14\x02\u0123\u0124\x07&\x02\x02\u0124"+
-		"\u0126\x05&\x14\x02\u0125\u0123\x03\x02\x02\x02\u0126\u0129\x03\x02\x02"+
-		"\x02\u0127\u0125\x03\x02\x02\x02\u0127\u0128\x03\x02\x02\x02\u0128\u012B"+
-		"\x03\x02\x02\x02\u0129\u0127\x03\x02\x02\x02\u012A\u0122\x03\x02\x02\x02"+
-		"\u012A\u012B\x03\x02\x02\x02\u012B\u012C\x03\x02\x02\x02\u012C\u012D\x07"+
-		"/\x02\x02\u012D3\x03\x02\x02\x02\u012E\u012F\x07.\x02\x02\u012F\u0130"+
-		"\x058\x1D\x02\u0130\u0131\x07-\x02\x02\u0131\u0132\x05&\x14\x02\u0132"+
-		"\u0133\x07\x19\x02\x02\u0133\u0134\x05&\x14\x02\u0134\u0135\x07/\x02\x02"+
-		"\u01355\x03\x02\x02\x02\u0136\u0137\x076\x02\x02\u0137\u0138\x070\x02"+
-		"\x02\u0138\u013F\x05&\x14\x02\u0139\u013A\x076\x02\x02\u013A\u013B\x07"+
-		"+\x02\x02\u013B\u013C\x05.\x18\x02\u013C\u013D\x07,\x02\x02\u013D\u013F"+
-		"\x03\x02\x02\x02\u013E\u0136\x03\x02\x02\x02\u013E\u0139\x03\x02\x02\x02"+
-		"\u013F7\x03\x02\x02\x02\u0140\u0143\x076\x02\x02\u0141\u0142\x07\x19\x02"+
-		"\x02\u0142\u0144\x077\x02\x02\u0143\u0141\x03\x02\x02\x02\u0143\u0144"+
-		"\x03\x02\x02\x02\u01449\x03\x02\x02\x02\x16@EHKSWZfjp\xA3\xDC\xFE\u0100"+
-		"\u010D\u0115\u0127\u012A\u013E\u0143";
+		"\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14"+
+		"\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14\x03\x14"+
+		"\x03\x14\x03\x14\x07\x14\u0103\n\x14\f\x14\x0E\x14\u0106\v\x14\x03\x15"+
+		"\x03\x15\x03\x15\x03\x16\x03\x16\x03\x17\x03\x17\x03\x17\x07\x17\u0110"+
+		"\n\x17\f\x17\x0E\x17\u0113\v\x17\x03\x18\x03\x18\x03\x18\x07\x18\u0118"+
+		"\n\x18\f\x18\x0E\x18\u011B\v\x18\x03\x19\x03\x19\x03\x19\x03\x19\x03\x19"+
+		"\x03\x19\x03\x19\x03\x19\x03\x19\x03\x1A\x03\x1A\x03\x1A\x03\x1A\x07\x1A"+
+		"\u012A\n\x1A\f\x1A\x0E\x1A\u012D\v\x1A\x05\x1A\u012F\n\x1A\x03\x1A\x03"+
+		"\x1A\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03\x1B\x03"+
+		"\x1C\x03\x1C\x03\x1C\x03\x1C\x03\x1C\x03\x1C\x03\x1C\x03\x1C\x05\x1C\u0143"+
+		"\n\x1C\x03\x1D\x03\x1D\x03\x1D\x05\x1D\u0148\n\x1D\x03\x1D\x02\x02\x03"+
+		"&\x1E\x02\x02\x04\x02\x06\x02\b\x02\n\x02\f\x02\x0E\x02\x10\x02\x12\x02"+
+		"\x14\x02\x16\x02\x18\x02\x1A\x02\x1C\x02\x1E\x02 \x02\"\x02$\x02&\x02"+
+		"(\x02*\x02,\x02.\x020\x022\x024\x026\x028\x02\x02\x03\x04\x02;;=>\u0157"+
+		"\x02:\x03\x02\x02\x02\x04E\x03\x02\x02\x02\x06H\x03\x02\x02\x02\b\\\x03"+
+		"\x02\x02\x02\n^\x03\x02\x02\x02\f`\x03\x02\x02\x02\x0En\x03\x02\x02\x02"+
+		"\x10t\x03\x02\x02\x02\x12v\x03\x02\x02\x02\x14\xA7\x03\x02\x02\x02\x16"+
+		"\xA9\x03\x02\x02\x02\x18\xB3\x03\x02\x02\x02\x1A\xB9\x03\x02\x02\x02\x1C"+
+		"\xBE\x03\x02\x02\x02\x1E\xC1\x03\x02\x02\x02 \xC4\x03\x02\x02\x02\"\xC9"+
+		"\x03\x02\x02\x02$\xCE\x03\x02\x02\x02&\xE0\x03\x02\x02\x02(\u0107\x03"+
+		"\x02\x02\x02*\u010A\x03\x02\x02\x02,\u010C\x03\x02\x02\x02.\u0114\x03"+
+		"\x02\x02\x020\u011C\x03\x02\x02\x022\u0125\x03\x02\x02\x024\u0132\x03"+
+		"\x02\x02\x026\u0142\x03\x02\x02\x028\u0144\x03\x02\x02\x02:@\x05\x04\x03"+
+		"\x02;<\x05\f\x07\x02<=\x05\x04\x03\x02=?\x03\x02\x02\x02>;\x03\x02\x02"+
+		"\x02?B\x03\x02\x02\x02@>\x03\x02\x02\x02@A\x03\x02\x02\x02A\x03\x03\x02"+
+		"\x02\x02B@\x03\x02\x02\x02CF\x05\x06\x04\x02DF\x05\x16\f\x02EC\x03\x02"+
+		"\x02\x02ED\x03\x02\x02\x02F\x05\x03\x02\x02\x02GI\x05\x0E\b\x02HG\x03"+
+		"\x02\x02\x02HI\x03\x02\x02\x02IK\x03\x02\x02\x02JL\x05\b\x05\x02KJ\x03"+
+		"\x02\x02\x02KL\x03\x02\x02\x02LM\x03\x02\x02\x02MS\x05$\x13\x02NO\x05"+
+		"(\x15\x02OP\x05$\x13\x02PR\x03\x02\x02\x02QN\x03\x02\x02\x02RU\x03\x02"+
+		"\x02\x02SQ\x03\x02\x02\x02ST\x03\x02\x02\x02TW\x03\x02\x02\x02US\x03\x02"+
+		"\x02\x02VX\x07A\x02\x02WV\x03\x02\x02\x02WX\x03\x02\x02\x02XZ\x03\x02"+
+		"\x02\x02Y[\x05\n\x06\x02ZY\x03\x02\x02\x02Z[\x03\x02\x02\x02[\x07\x03"+
+		"\x02\x02\x02\\]\x073\x02\x02]\t\x03\x02\x02\x02^_\x073\x02\x02_\v\x03"+
+		"\x02\x02\x02`a\x07\x03\x02\x02ab\x07\x03\x02\x02bd\x07\x03\x02\x02ce\x07"+
+		"\x03\x02\x02dc\x03\x02\x02\x02ef\x03\x02\x02\x02fd\x03\x02\x02\x02fg\x03"+
+		"\x02\x02\x02g\r\x03\x02\x02\x02hj\x05\x10\t\x02ik\x05\x12\n\x02ji\x03"+
+		"\x02\x02\x02jk\x03\x02\x02\x02ko\x03\x02\x02\x02lm\x07\x04\x02\x02mo\x07"+
+		"5\x02\x02nh\x03\x02\x02\x02nl\x03\x02\x02\x02o\x0F\x03\x02\x02\x02pq\x07"+
+		"4\x02\x02qu\x075\x02\x02rs\x074\x02\x02su\x05&\x14\x02tp\x03\x02\x02\x02"+
+		"tr\x03\x02\x02\x02u\x11\x03\x02\x02\x02vw\x07\x05\x02\x02wx\x05\x14\v"+
+		"\x02x\x13\x03\x02\x02\x02yz\x07\x06\x02\x02z{\x07\x07\x02\x02{|\x07\b"+
+		"\x02\x02|}\x07\t\x02\x02}\xA8\x07\n\x02\x02~\x7F\x07\x06\x02\x02\x7F\x80"+
+		"\x07\v\x02\x02\x80\x81\x07\f\x02\x02\x81\x82\x07\r\x02\x02\x82\x83\x07"+
+		"\x0E\x02\x02\x83\x84\x07\b\x02\x02\x84\x85\x07\v\x02\x02\x85\xA8\x07\x0F"+
+		"\x02\x02\x86\x87\x07\x06\x02\x02\x87\x88\x07\v\x02\x02\x88\x89\x07\x0F"+
+		"\x02\x02\x89\x8A\x07\r\x02\x02\x8A\x8B\x07\x0E\x02\x02\x8B\x8C\x07\b\x02"+
+		"\x02\x8C\x8D\x07\v\x02\x02\x8D\xA8\x07\f\x02\x02\x8E\x8F\x07\x06\x02\x02"+
+		"\x8F\x90\x07\v\x02\x02\x90\x91\x07\f\x02\x02\x91\x92\x07\x10\x02\x02\x92"+
+		"\x93\x07\v\x02\x02\x93\xA8\x07\x0F\x02\x02\x94\x95\x07\x06\x02\x02\x95"+
+		"\x96\x07\v\x02\x02\x96\x97\x07\x0F\x02\x02\x97\x98\x07\x11\x02\x02\x98"+
+		"\x99\x07\x12\x02\x02\x99\x9A\x07\v\x02\x02\x9A\xA8\x07\f\x02\x02\x9B\x9C"+
+		"\x07\x13\x02\x02\x9C\x9D\x07\v\x02\x02\x9D\x9E\x07\x14\x02\x02\x9E\x9F"+
+		"\x07\x15\x02\x02\x9F\xA0\x07\v\x02\x02\xA0\xA8\x07\x16\x02\x02\xA1\xA8"+
+		"\x07\x17\x02\x02\xA2\xA3\x07\x18\x02\x02\xA3\xA4\x07\v\x02\x02\xA4\xA5"+
+		"\x07\x19\x02\x02\xA5\xA6\x07\x1A\x02\x02\xA6\xA8\x05&\x14\x02\xA7y\x03"+
+		"\x02\x02\x02\xA7~\x03\x02\x02\x02\xA7\x86\x03\x02\x02\x02\xA7\x8E\x03"+
+		"\x02\x02\x02\xA7\x94\x03\x02\x02\x02\xA7\x9B\x03\x02\x02\x02\xA7\xA1\x03"+
+		"\x02\x02\x02\xA7\xA2\x03\x02\x02\x02\xA8\x15\x03\x02\x02\x02\xA9\xAA\x05"+
+		"\x10\t\x02\xAA\xAB\x07\x05\x02\x02\xAB\xAC\x07\x1B\x02\x02\xAC\xAD\x07"+
+		"\x1C\x02\x02\xAD\xAE\x07\x1D\x02\x02\xAE\xAF\x077\x02\x02\xAF\xB0\x05"+
+		"\x1A\x0E\x02\xB0\xB1\x05 \x11\x02\xB1\xB2\x05\"\x12\x02\xB2\x17\x03\x02"+
+		"\x02\x02\xB3\xB4\x07\x05\x02\x02\xB4\xB5\x07\x1B\x02\x02\xB5\xB6\x07\x1E"+
+		"\x02\x02\xB6\xB7\x07\x1D\x02\x02\xB7\xB8\x077\x02\x02\xB8\x19\x03\x02"+
+		"\x02\x02\xB9\xBA\x07\x1F\x02\x02\xBA\xBB\x07 \x02\x02\xBB\xBC\x05\x1C"+
+		"\x0F\x02\xBC\xBD\x05\x1E\x10\x02\xBD\x1B\x03\x02\x02\x02\xBE\xBF\x07!"+
+		"\x02\x02\xBF\xC0\x05&\x14\x02\xC0\x1D\x03\x02\x02\x02\xC1\xC2\x07\"\x02"+
+		"\x02\xC2\xC3\x05&\x14\x02\xC3\x1F\x03\x02\x02\x02\xC4\xC5\x07#\x02\x02"+
+		"\xC5\xC6\x07\x15\x02\x02\xC6\xC7\x07!\x02\x02\xC7\xC8\x05\x06\x04\x02"+
+		"\xC8!\x03\x02\x02\x02\xC9\xCA\x07#\x02\x02\xCA\xCB\x07\x15\x02\x02\xCB"+
+		"\xCC\x07\"\x02\x02\xCC\xCD\x05\x06\x04\x02\xCD#\x03\x02\x02\x02\xCE\xCF"+
+		"\x05&\x14\x02\xCF%\x03\x02\x02\x02\xD0\xD1\b\x14\x01\x02\xD1\xE1\x056"+
+		"\x1C\x02\xD2\xD3\x07(\x02\x02\xD3\xE1\x05&\x14\x12\xD4\xE1\x076\x02\x02"+
+		"\xD5\xE1\x077\x02\x02\xD6\xE1\x07*\x02\x02\xD7\xE1\x07+\x02\x02\xD8\xE1"+
+		"\x079\x02\x02\xD9\xE1\x050\x19\x02\xDA\xE1\x052\x1A\x02\xDB\xE1\x054\x1B"+
+		"\x02\xDC\xDD\x07,\x02\x02\xDD\xDE\x05&\x14\x02\xDE\xDF\x07-\x02\x02\xDF"+
+		"\xE1\x03\x02\x02\x02\xE0\xD0\x03\x02\x02\x02\xE0\xD2\x03\x02\x02\x02\xE0"+
+		"\xD4\x03\x02\x02\x02\xE0\xD5\x03\x02\x02\x02\xE0\xD6\x03\x02\x02\x02\xE0"+
+		"\xD7\x03\x02\x02\x02\xE0\xD8\x03\x02\x02\x02\xE0\xD9\x03\x02\x02\x02\xE0"+
+		"\xDA\x03\x02\x02\x02\xE0\xDB\x03\x02\x02\x02\xE0\xDC\x03\x02\x02\x02\xE1"+
+		"\u0104\x03\x02\x02\x02\xE2\xE3\f\x11\x02\x02\xE3\xE4\x07:\x02\x02\xE4"+
+		"\u0103\x05&\x14\x12\xE5\xE6\f\x10\x02\x02\xE6\xE7\x07)\x02\x02\xE7\u0103"+
+		"\x05&\x14\x11\xE8\xE9\f\x0F\x02\x02\xE9\xEA\x07;\x02\x02\xEA\u0103\x05"+
+		"&\x14\x10\xEB\xEC\f\x0E\x02\x02\xEC\xED\x07<\x02\x02\xED\u0103\x05&\x14"+
+		"\x0F\xEE\xEF\f\r\x02\x02\xEF\xF0\x07=\x02\x02\xF0\u0103\x05&\x14\x0E\xF1"+
+		"\xF2\f\f\x02\x02\xF2\xF3\x07>\x02\x02\xF3\u0103\x05&\x14\r\xF4\xF5\f\x15"+
+		"\x02\x02\xF5\xF6\x07$\x02\x02\xF6\xF7\x05,\x17\x02\xF7\xF8\x07%\x02\x02"+
+		"\xF8\xF9\x05.\x18\x02\xF9\xFA\x07&\x02\x02\xFA\u0103\x03\x02\x02\x02\xFB"+
+		"\xFC\f\x14\x02\x02\xFC\xFD\x07$\x02\x02\xFD\xFE\x077\x02\x02\xFE\xFF\x07"+
+		"\'\x02\x02\xFF\u0100\x05&\x14\x02\u0100\u0101\x07&\x02\x02\u0101\u0103"+
+		"\x03\x02\x02\x02\u0102\xE2\x03\x02\x02\x02\u0102\xE5\x03\x02\x02\x02\u0102"+
+		"\xE8\x03\x02\x02\x02\u0102\xEB\x03\x02\x02\x02\u0102\xEE\x03\x02\x02\x02"+
+		"\u0102\xF1\x03\x02\x02\x02\u0102\xF4\x03\x02\x02\x02\u0102\xFB\x03\x02"+
+		"\x02\x02\u0103\u0106\x03\x02\x02\x02\u0104\u0102\x03\x02\x02\x02\u0104"+
+		"\u0105\x03\x02\x02\x02\u0105\'\x03\x02\x02\x02\u0106\u0104\x03\x02\x02"+
+		"\x02\u0107\u0108\x05*\x16\x02\u0108\u0109\x072\x02\x02\u0109)\x03\x02"+
+		"\x02\x02\u010A\u010B\t\x02\x02\x02\u010B+\x03\x02\x02\x02\u010C\u0111"+
+		"\x058\x1D\x02\u010D\u010E\x07\'\x02\x02\u010E\u0110\x058\x1D\x02\u010F"+
+		"\u010D\x03\x02\x02\x02\u0110\u0113\x03\x02\x02\x02\u0111\u010F\x03\x02"+
+		"\x02\x02\u0111\u0112\x03\x02\x02\x02\u0112-\x03\x02\x02\x02\u0113\u0111"+
+		"\x03\x02\x02\x02\u0114\u0119\x05&\x14\x02\u0115\u0116\x07\'\x02\x02\u0116"+
+		"\u0118\x05&\x14\x02\u0117\u0115\x03\x02\x02\x02\u0118\u011B\x03\x02\x02"+
+		"\x02\u0119\u0117\x03\x02\x02\x02\u0119\u011A\x03\x02\x02\x02\u011A/\x03"+
+		"\x02\x02\x02\u011B\u0119\x03\x02\x02\x02\u011C\u011D\x07,\x02\x02\u011D"+
+		"\u011E\x07?\x02\x02\u011E\u011F\x05,\x17\x02\u011F\u0120\x07.\x02\x02"+
+		"\u0120\u0121\x05&\x14\x02\u0121\u0122\x07\x1A\x02\x02\u0122\u0123\x05"+
+		"&\x14\x02\u0123\u0124\x07-\x02\x02\u01241\x03\x02\x02\x02\u0125\u012E"+
+		"\x07/\x02\x02\u0126\u012B\x05&\x14\x02\u0127\u0128\x07\'\x02\x02\u0128"+
+		"\u012A\x05&\x14\x02\u0129\u0127\x03\x02\x02\x02\u012A\u012D\x03\x02\x02"+
+		"\x02\u012B\u0129\x03\x02\x02\x02\u012B\u012C\x03\x02\x02\x02\u012C\u012F"+
+		"\x03\x02\x02\x02\u012D\u012B\x03\x02\x02\x02\u012E\u0126\x03\x02\x02\x02"+
+		"\u012E\u012F\x03\x02\x02\x02\u012F\u0130\x03\x02\x02\x02\u0130\u0131\x07"+
+		"0\x02\x02\u01313\x03\x02\x02\x02\u0132\u0133\x07/\x02\x02\u0133\u0134"+
+		"\x058\x1D\x02\u0134\u0135\x07.\x02\x02\u0135\u0136\x05&\x14\x02\u0136"+
+		"\u0137\x07\x1A\x02\x02\u0137\u0138\x05&\x14\x02\u0138\u0139\x070\x02\x02"+
+		"\u01395\x03\x02\x02\x02\u013A\u013B\x077\x02\x02\u013B\u013C\x071\x02"+
+		"\x02\u013C\u0143\x05&\x14\x02\u013D\u013E\x077\x02\x02\u013E\u013F\x07"+
+		",\x02\x02\u013F\u0140\x05.\x18\x02\u0140\u0141\x07-\x02\x02\u0141\u0143"+
+		"\x03\x02\x02\x02\u0142\u013A\x03\x02\x02\x02\u0142\u013D\x03\x02\x02\x02"+
+		"\u01437\x03\x02\x02\x02\u0144\u0147\x077\x02\x02\u0145\u0146\x07\x1A\x02"+
+		"\x02\u0146\u0148\x078\x02\x02\u0147\u0145\x03\x02\x02\x02\u0147\u0148"+
+		"\x03\x02\x02\x02\u01489\x03\x02\x02\x02\x17@EHKSWZfjnt\xA7\xE0\u0102\u0104"+
+		"\u0111\u0119\u012B\u012E\u0142\u0147";
 	public static __ATN: ATN;
 	public static get _ATN(): ATN {
 		if (!SlickParser.__ATN) {
@@ -1992,29 +2018,57 @@ export class SepContext extends ParserRuleContext {
 
 
 export class HeaderContext extends ParserRuleContext {
-	public theorem(): TheoremContext {
-		return this.getRuleContext(0, TheoremContext);
+	constructor();
+	constructor(parent: ParserRuleContext, invokingState: number);
+	constructor(parent?: ParserRuleContext, invokingState?: number) {
+		if (parent !== undefined && invokingState !== undefined) {
+			super(parent, invokingState);
+		} else {
+			super();
+		}
+	}
+	@Override public get ruleIndex(): number { return SlickParser.RULE_header; }
+ 
+	public copyFrom(ctx: HeaderContext): void {
+		super.copyFrom(ctx);
+	}
+}
+export class TheoremHeaderContext extends HeaderContext {
+	public theorem(): TheoremContext | undefined {
+		return this.tryGetRuleContext(0, TheoremContext);
 	}
 	public method(): MethodContext | undefined {
 		return this.tryGetRuleContext(0, MethodContext);
 	}
-	constructor(parent: ParserRuleContext, invokingState: number);
-	constructor(parent: ParserRuleContext, invokingState: number) {
-		super(parent, invokingState);
-
-	}
-	@Override public get ruleIndex(): number { return SlickParser.RULE_header; }
+	constructor(ctx: HeaderContext) { super(); this.copyFrom(ctx); }
 	@Override
 	public enterRule(listener: SlickListener): void {
-		if (listener.enterHeader) listener.enterHeader(this);
+		if (listener.enterTheoremHeader) listener.enterTheoremHeader(this);
 	}
 	@Override
 	public exitRule(listener: SlickListener): void {
-		if (listener.exitHeader) listener.exitHeader(this);
+		if (listener.exitTheoremHeader) listener.exitTheoremHeader(this);
 	}
 	@Override
 	public accept<Result>(visitor: SlickVisitor<Result>): Result {
-		if (visitor.visitHeader) return visitor.visitHeader(this);
+		if (visitor.visitTheoremHeader) return visitor.visitTheoremHeader(this);
+		else return visitor.visitChildren(this);
+	}
+}
+export class ExerciseHeaderContext extends HeaderContext {
+	public RULENUM(): TerminalNode { return this.getToken(SlickParser.RULENUM, 0); }
+	constructor(ctx: HeaderContext) { super(); this.copyFrom(ctx); }
+	@Override
+	public enterRule(listener: SlickListener): void {
+		if (listener.enterExerciseHeader) listener.enterExerciseHeader(this);
+	}
+	@Override
+	public exitRule(listener: SlickListener): void {
+		if (listener.exitExerciseHeader) listener.exitExerciseHeader(this);
+	}
+	@Override
+	public accept<Result>(visitor: SlickVisitor<Result>): Result {
+		if (visitor.visitExerciseHeader) return visitor.visitExerciseHeader(this);
 		else return visitor.visitChildren(this);
 	}
 }
