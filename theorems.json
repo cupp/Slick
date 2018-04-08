@@ -489,7 +489,7 @@
     },
     {
       "rule": "3.85a",
-      "eq": "$p \\Rightarrow E^z_p\\ \\equiv\\ p \\Rightarrow E^z_\\textit{true}$</li>",
+      "eq": "$p \\Rightarrow E^z_p\\ \\equiv\\ p \\Rightarrow E^z_\\textit{true}$",
       "name": "replace by $\\textit{true}$"
     },
     {
@@ -499,7 +499,7 @@
     },
     {
       "rule": "3.86a",
-      "eq": "$E^z_p \\Rightarrow p\\ \\equiv\\ E^z_\\textit{false} \\Rightarrow p$</li>",
+      "eq": "$E^z_p \\Rightarrow p\\ \\equiv\\ E^z_\\textit{false} \\Rightarrow p$",
       "name": "replace by $\\textit{false}$"
     },
     {

@@ -1526,6 +1526,7 @@ export class SlickParser extends Parser {
 			this._errHandler.sync(this);
 			switch ( this.interpreter.adaptivePredict(this._input,18,this._ctx) ) {
 			case 1:
+				_localctx = new FunctionDotContext(_localctx);
 				this.enterOuterAlt(_localctx, 1);
 				{
 				this.state = 308;
@@ -1538,6 +1539,7 @@ export class SlickParser extends Parser {
 				break;
 
 			case 2:
+				_localctx = new FunctionParenContext(_localctx);
 				this.enterOuterAlt(_localctx, 2);
 				{
 				this.state = 311;
@@ -1545,7 +1547,7 @@ export class SlickParser extends Parser {
 				this.state = 312;
 				this.match(SlickParser.T__40);
 				this.state = 313;
-				this.expr(0);
+				this.exprlist();
 				this.state = 314;
 				this.match(SlickParser.T__41);
 				}
@@ -1780,7 +1782,7 @@ export class SlickParser extends Parser {
 		"\u0133\x07\x19\x02\x02\u0133\u0134\x05&\x14\x02\u0134\u0135\x07/\x02\x02"+
 		"\u01355\x03\x02\x02\x02\u0136\u0137\x076\x02\x02\u0137\u0138\x070\x02"+
 		"\x02\u0138\u013F\x05&\x14\x02\u0139\u013A\x076\x02\x02\u013A\u013B\x07"+
-		"+\x02\x02\u013B\u013C\x05&\x14\x02\u013C\u013D\x07,\x02\x02\u013D\u013F"+
+		"+\x02\x02\u013B\u013C\x05.\x18\x02\u013C\u013D\x07,\x02\x02\u013D\u013F"+
 		"\x03\x02\x02\x02\u013E\u0136\x03\x02\x02\x02\u013E\u0139\x03\x02\x02\x02"+
 		"\u013F7\x03\x02\x02\x02\u0140\u0143\x076\x02\x02\u0141\u0142\x07\x19\x02"+
 		"\x02\u0142\u0144\x077\x02\x02\u0143\u0141\x03\x02\x02\x02\u0143\u0144"+
@@ -3046,27 +3048,58 @@ export class SetComprehensionContext extends ParserRuleContext {
 
 
 export class FunctionCallContext extends ParserRuleContext {
+	constructor();
+	constructor(parent: ParserRuleContext, invokingState: number);
+	constructor(parent?: ParserRuleContext, invokingState?: number) {
+		if (parent !== undefined && invokingState !== undefined) {
+			super(parent, invokingState);
+		} else {
+			super();
+		}
+	}
+	@Override public get ruleIndex(): number { return SlickParser.RULE_functionCall; }
+ 
+	public copyFrom(ctx: FunctionCallContext): void {
+		super.copyFrom(ctx);
+	}
+}
+export class FunctionDotContext extends FunctionCallContext {
 	public VAR(): TerminalNode { return this.getToken(SlickParser.VAR, 0); }
 	public expr(): ExprContext {
 		return this.getRuleContext(0, ExprContext);
 	}
-	constructor(parent: ParserRuleContext, invokingState: number);
-	constructor(parent: ParserRuleContext, invokingState: number) {
-		super(parent, invokingState);
-
-	}
-	@Override public get ruleIndex(): number { return SlickParser.RULE_functionCall; }
+	constructor(ctx: FunctionCallContext) { super(); this.copyFrom(ctx); }
 	@Override
 	public enterRule(listener: SlickListener): void {
-		if (listener.enterFunctionCall) listener.enterFunctionCall(this);
+		if (listener.enterFunctionDot) listener.enterFunctionDot(this);
 	}
 	@Override
 	public exitRule(listener: SlickListener): void {
-		if (listener.exitFunctionCall) listener.exitFunctionCall(this);
+		if (listener.exitFunctionDot) listener.exitFunctionDot(this);
 	}
 	@Override
 	public accept<Result>(visitor: SlickVisitor<Result>): Result {
-		if (visitor.visitFunctionCall) return visitor.visitFunctionCall(this);
+		if (visitor.visitFunctionDot) return visitor.visitFunctionDot(this);
+		else return visitor.visitChildren(this);
+	}
+}
+export class FunctionParenContext extends FunctionCallContext {
+	public VAR(): TerminalNode { return this.getToken(SlickParser.VAR, 0); }
+	public exprlist(): ExprlistContext {
+		return this.getRuleContext(0, ExprlistContext);
+	}
+	constructor(ctx: FunctionCallContext) { super(); this.copyFrom(ctx); }
+	@Override
+	public enterRule(listener: SlickListener): void {
+		if (listener.enterFunctionParen) listener.enterFunctionParen(this);
+	}
+	@Override
+	public exitRule(listener: SlickListener): void {
+		if (listener.exitFunctionParen) listener.exitFunctionParen(this);
+	}
+	@Override
+	public accept<Result>(visitor: SlickVisitor<Result>): Result {
+		if (visitor.visitFunctionParen) return visitor.visitFunctionParen(this);
 		else return visitor.visitChildren(this);
 	}
 }

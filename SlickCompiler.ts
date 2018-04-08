@@ -46,7 +46,10 @@ import { ImplicationExprContext,
          CaseProof1Context,
          CaseProof2Context,
          ContradictionMethodContext,
-         ContrapositiveMethodContext
+         ContrapositiveMethodContext,
+         FunctionDotContext,
+         FunctionParenContext,
+         HeaderContext
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -97,6 +100,7 @@ export class SlickCompiler implements SlickListener {
     this.output = "";
     this.stack = [];
     this.lineCount = 0; // provide mechanism for counting lines in a single standard proof
+    this.exprCount = 0;
   }
 
   public exitDoc = (ctx : DocContext) => {
@@ -137,8 +141,17 @@ export class SlickCompiler implements SlickListener {
     if (ctx.END()) {
       proofText += "\\done\n";
     }
-    this.stack.push("\\\\" + proofText);
+    this.stack.push(proofText);
     this.lineCount = 0;
+  }
+
+  public exitHeader = (ctx : HeaderContext) => {
+    let str = "";
+    if (ctx.method()) {
+      str = this.stack.pop();
+    }
+    str = this.stack.pop() + str + "\\\\\n";
+    this.stack.push(str);
   }
 
   public exitSep = (ctx : SepContext) => {
@@ -222,17 +235,23 @@ export class SlickCompiler implements SlickListener {
     this.stack.push("\\color{blue}" + proveOrReprove + "\\ $" + theorem + "$\\\\\n")
   }
 
+  private removeNewLine = () => {
+    let e = this.stack.pop();
+    e.replace(/\\\\\\\\$/, "\\\\");
+    this.stack.push(e);
+  }
+
   public exitAssumingConjunctsMethod = (ctx : AssumingConjunctsMethodContext) => {
-    this.stack.push("\\color{blue}by assuming the conjuncts of the antecedent\\\\\\\\");
+    this.stack.push("\\color{blue}by assuming the conjuncts of the antecedent\\\\\n");
   }
 
   public exitContradictionMethod = (ctx : ContradictionMethodContext) => {
-    this.stack.push("\\color{blue}by contradiction\\\\\\\\");
+    this.stack.push("\\color{blue}by contradiction\\\\\n");
   }
 
   public exitContrapositiveMethod = (ctx : ContrapositiveMethodContext) => {
     let cp = this.stack.pop();
-    this.stack.push("\\color{blue}by proving the contrapositive: $" + cp + "$\\\\\\\\");
+    this.stack.push("\\color{blue}by proving the contrapositive: $" + cp + "$\\\\\n");
   }
 
   public exitCaseProof = (ctx : CaseProofContext) => {
@@ -263,16 +282,42 @@ export class SlickCompiler implements SlickListener {
 
   public exitCaseProof1 = (ctx : CaseProof1Context) => {
     let p = this.stack.pop();
-    this.stack.push("\\underline{Proof of (1)}\\\\\n" + p + "\\\\\\\\");
+    this.stack.push("\\underline{Proof of (1)}\\\\\\\\\n" + p + "\\\\\\\\");
   }
 
   public exitCaseProof2 = (ctx : CaseProof2Context) => {
     let p = this.stack.pop();
-    this.stack.push("\\underline{Proof of (2)}\\\\\n" + p);
+    this.stack.push("\\underline{Proof of (2)}\\\\\\\\\n" + p);
   }
 
   public exitExpo = (ctx : ExpoContext) => {
     this.stack.push("\\text{" + ctx.text + "}");
+  }
+
+  public exitFunctionDot = (ctx : FunctionDotContext) => {
+    let e = this.stack.pop();
+    this.stack.push(ctx.VAR() + "." + e);
+  }
+
+  public exitFunctionParen = (ctx : FunctionParenContext) => {
+    let e = this.stack.pop();
+    this.stack.push(ctx.VAR() + "(" + e + ")");
+  }
+
+  public enterExprlist = (ctx : ExprlistContext) => {
+    this.stack.push("XXXXXXXXXX");
+  }
+
+  public exitExprlist = (ctx : ExprlistContext) => {
+    let str = "";
+    let i = 0;
+    let e = this.stack.pop();
+    while (e !== "XXXXXXXXXX") {
+      str = e + (i > 0? ", ": "") + str;
+      e = this.stack.pop();
+      i++;
+    }
+    this.stack.push(str);
   }
 
   public removeFm(s : string) {
@@ -289,9 +334,10 @@ export class SlickCompiler implements SlickListener {
     s = s.replace(/(\W)([B-Zb-z])(\W)/g, "$1\\textit{$2}$3");
     s = s.replace(/true/g, "\\textit{true}");
     s = s.replace(/false/g, "\\textit{false}");
-    s = s.replace(/\n/g, "\} \\\\\n\\text\{");
-    s = s.replace(/ /g, "\\ \\ ");
-    s = s.substr(0, s.length - 7);
+    s = s.replace(/ /g, "\\ ");
+    s = s.replace(/\n/g, "\}\\\\\n\\text\{");
+    s = s.substr(0, s.length - 6);
+    s += "[\\lgap]\n"
     return s;
   }
 

@@ -74,7 +74,9 @@ exprlist : expr (',' expr)* ;
 quantifiedExpr : '(' QUANTIFIER varlist '|' expr ':' expr ')' ;
 setEnumeration : '{' (expr (',' expr)*)? '}' ;
 setComprehension : '{' typedVar '|' expr ':' expr '}' ;
-functionCall : VAR '.' expr | VAR '(' expr ')' ;
+functionCall : VAR '.' expr        # FunctionDot
+  | VAR '(' exprlist ')'           # FunctionParen
+;
 typedVar : VAR (':' TYPE)? ;
 
 COMMENT : '〈' .+? '〉' ;

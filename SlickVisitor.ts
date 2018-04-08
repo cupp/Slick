@@ -28,6 +28,8 @@ import { LeftImpliesRightMethodContext } from './SlickParser';
 import { ContradictionMethodContext } from './SlickParser';
 import { AdHocTheoremContext } from './SlickParser';
 import { BibleTheoremContext } from './SlickParser';
+import { FunctionDotContext } from './SlickParser';
+import { FunctionParenContext } from './SlickParser';
 import { DocContext } from './SlickParser';
 import { ProofContext } from './SlickParser';
 import { StandardProofContext } from './SlickParser';
@@ -265,6 +267,22 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitBibleTheorem?: (ctx: BibleTheoremContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `FunctionDot`
+	 * labeled alternative in `SlickParser.functionCall`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitFunctionDot?: (ctx: FunctionDotContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `FunctionParen`
+	 * labeled alternative in `SlickParser.functionCall`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitFunctionParen?: (ctx: FunctionParenContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SlickParser.doc`.
