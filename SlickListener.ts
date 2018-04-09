@@ -13,6 +13,7 @@ import { AdditionExprContext } from './SlickParser';
 import { LeibnizExprContext } from './SlickParser';
 import { SetCompExprContext } from './SlickParser';
 import { GeneralExprContext } from './SlickParser';
+import { InverseCallExprContext } from './SlickParser';
 import { ParenExprContext } from './SlickParser';
 import { TSExprContext } from './SlickParser';
 import { JunctionExprContext } from './SlickParser';
@@ -58,6 +59,7 @@ import { ExprlistContext } from './SlickParser';
 import { QuantifiedExprContext } from './SlickParser';
 import { SetEnumerationContext } from './SlickParser';
 import { SetComprehensionContext } from './SlickParser';
+import { InverseCallContext } from './SlickParser';
 import { FunctionCallContext } from './SlickParser';
 import { TypedVarContext } from './SlickParser';
 
@@ -196,6 +198,19 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitGeneralExpr?: (ctx: GeneralExprContext) => void;
+
+	/**
+	 * Enter a parse tree produced by the `InverseCallExpr`
+	 * labeled alternative in `SlickParser.expr`.
+	 * @param ctx the parse tree
+	 */
+	enterInverseCallExpr?: (ctx: InverseCallExprContext) => void;
+	/**
+	 * Exit a parse tree produced by the `InverseCallExpr`
+	 * labeled alternative in `SlickParser.expr`.
+	 * @param ctx the parse tree
+	 */
+	exitInverseCallExpr?: (ctx: InverseCallExprContext) => void;
 
 	/**
 	 * Enter a parse tree produced by the `ParenExpr`
@@ -729,6 +744,17 @@ export interface SlickListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	exitSetComprehension?: (ctx: SetComprehensionContext) => void;
+
+	/**
+	 * Enter a parse tree produced by `SlickParser.inverseCall`.
+	 * @param ctx the parse tree
+	 */
+	enterInverseCall?: (ctx: InverseCallContext) => void;
+	/**
+	 * Exit a parse tree produced by `SlickParser.inverseCall`.
+	 * @param ctx the parse tree
+	 */
+	exitInverseCall?: (ctx: InverseCallContext) => void;
 
 	/**
 	 * Enter a parse tree produced by `SlickParser.functionCall`.

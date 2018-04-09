@@ -52,7 +52,8 @@ import { ImplicationExprContext,
          FunctionParenContext,
          HeaderContext,
          BodyContext,
-         RangeContext
+         RangeContext,
+         InvereseCallContext
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -378,10 +379,23 @@ export class SlickCompiler implements SlickListener {
     this.stack.push(lhs + " " + this.latex[ctx.ADDOP()] + " " + rhs);
   }
 
+  public exitTSExpr = (ctx : TSExprContext) => {
+    let eList = this.stack.pop();
+    let vList = this.stack.pop();
+    let e = this.stack.pop();
+    this.stack.push(e + "[" + vList + " := " + eList + "]");
+  }
+
+  public exitInverseCall = (ctx : InvereseCallContext) => {
+    let f = this.stack.pop();
+    let finv = f.substr(0,1) + "^{-1}" + f.substr(1);
+    this.stack.push(finv);
+  }
+
   public removeFm(s : string) {
     let ops = Object.keys(this.latex);
     for (let i = 0; i < ops.length; i++) {
-      s = s.replace(new RegExp(ops[i], 'g'), '$' + this.latex[ops[i]] + '$');
+      s = s.replace(new RegExp("\\" + ops[i], 'g'), '$' + this.latex[ops[i]] + '$');
     }
     return s;
   }

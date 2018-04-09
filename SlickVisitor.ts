@@ -13,6 +13,7 @@ import { AdditionExprContext } from './SlickParser';
 import { LeibnizExprContext } from './SlickParser';
 import { SetCompExprContext } from './SlickParser';
 import { GeneralExprContext } from './SlickParser';
+import { InverseCallExprContext } from './SlickParser';
 import { ParenExprContext } from './SlickParser';
 import { TSExprContext } from './SlickParser';
 import { JunctionExprContext } from './SlickParser';
@@ -58,6 +59,7 @@ import { ExprlistContext } from './SlickParser';
 import { QuantifiedExprContext } from './SlickParser';
 import { SetEnumerationContext } from './SlickParser';
 import { SetComprehensionContext } from './SlickParser';
+import { InverseCallContext } from './SlickParser';
 import { FunctionCallContext } from './SlickParser';
 import { TypedVarContext } from './SlickParser';
 
@@ -149,6 +151,14 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitGeneralExpr?: (ctx: GeneralExprContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by the `InverseCallExpr`
+	 * labeled alternative in `SlickParser.expr`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitInverseCallExpr?: (ctx: InverseCallExprContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by the `ParenExpr`
@@ -483,6 +493,13 @@ export interface SlickVisitor<Result> extends ParseTreeVisitor<Result> {
 	 * @return the visitor result
 	 */
 	visitSetComprehension?: (ctx: SetComprehensionContext) => Result;
+
+	/**
+	 * Visit a parse tree produced by `SlickParser.inverseCall`.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	visitInverseCall?: (ctx: InverseCallContext) => Result;
 
 	/**
 	 * Visit a parse tree produced by `SlickParser.functionCall`.

@@ -50,6 +50,7 @@ step: expr;
 
 expr : expr '[' varlist '≔' exprlist ']'    # TSExpr
    | expr '[' VAR ',' expr ']'              # LeibnizExpr
+   | inverseCall                            # InverseCallExpr
    | functionCall                           # FunctionCallExpr
    | '¬' expr                               # UnaryPrefixExpr
    | expr ADDOP expr                        # AdditionExpr
@@ -76,6 +77,7 @@ exprlist : expr (',' expr)* ;
 quantifiedExpr : '(' QUANTIFIER varlist '|' expr ':' expr ')' ;
 setEnumeration : '{' (expr (',' expr)*)? '}' ;
 setComprehension : '{' typedVar '|' expr ':' expr '}' ;
+inverseCall : 'inv' '.' functionCall ;
 functionCall : VAR '.' expr        # FunctionDot
   | VAR '(' exprlist ')'           # FunctionParen
 ;
