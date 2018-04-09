@@ -50,11 +50,15 @@ step: expr;
 
 expr : expr '[' varlist '≔' exprlist ']'    # TSExpr
    | expr '[' VAR ',' expr ']'              # LeibnizExpr
+   | VAR '[' expr ']'                       # ArrayExpr
+   | quantifiedExpr                         # QuantExpr
    | inverseCall                            # InverseCallExpr
    | functionCall                           # FunctionCallExpr
    | '¬' expr                               # UnaryPrefixExpr
+   | emptyRangeExpr                         # EmptyRExpr
+   | quantifiedExpr                         # QuantExpr
    | expr ADDOP expr                        # AdditionExpr
-   | expr '★' expr                          # GeneralExpr
+   | expr '%' expr                          # GeneralExpr
    | expr RELOP expr                        # RelativeExpr
    | expr JOP expr                          # JunctionExpr
    | expr IMPOP expr                        # ImplicationExpr
@@ -64,7 +68,6 @@ expr : expr '[' varlist '≔' exprlist ']'    # TSExpr
    | 'true'                                 # Atom
    | 'false'                                # Atom
    | NUM                                    # Atom
-   | quantifiedExpr                         # QuantExpr
    | setEnumeration                         # SetEnumExpr
    | setComprehension                       # SetCompExpr
    | '(' expr ')'                           # ParenExpr
@@ -74,6 +77,7 @@ hint : hintOp COMMENT ;
 hintOp : RELOP | IMPOP | EQOP ;
 varlist : typedVar (',' typedVar)* ;
 exprlist : expr (',' expr)* ;
+emptyRangeExpr : '(' QUANTIFIER varlist '|' ':' expr ')' ;
 quantifiedExpr : '(' QUANTIFIER varlist '|' expr ':' expr ')' ;
 setEnumeration : '{' (expr (',' expr)*)? '}' ;
 setComprehension : '{' typedVar '|' expr ':' expr '}' ;
@@ -96,6 +100,6 @@ RELOP : '=' | '≠' | '<' | '>' | '≤' | '≥' | '∈' | '⊂' | '⊆' | '⊃' 
 JOP : '⋀' | '⋁' ;
 IMPOP : '⇒'| '⇐' | '⇏' | '⇍';
 EQOP : '≡' | '≢' ;
-QUANTIFIER : '*' | '★' | '∀' | '∃' ;
+QUANTIFIER : '*' | '∀' | '∃' | '∑' | '∏' ;
 WS : [ \t\r\n]+ -> channel(HIDDEN) ;
 END : '╱╱' ;

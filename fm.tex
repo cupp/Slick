@@ -56,45 +56,47 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-\underline{Exercise 8.3a}\\\\
+\color{blue}Prove\ (9.6) :\ \ $(\forall x \mid R : P) \equiv P \vee (\forall x \mid : \neg R)$\\
+\\
 
-\Step{(\star x \dr 0 \leq x + r < n : x + 3)}
-
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
-
-\underline{Exercise 8.3b}\\\\
-
-\Step{(\star x \dr 0 \leq x + r < n : x + v)}
+\Step{(\forall x \dr R : P)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (9.3) Trading }\ $\Ggg$ \\
+\Step{(\forall x \drrb \neg R \vee P)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Distributivity of $\vee$ over $\forall$ }\ $\Ggg$ \\
+\Step{P \vee (\forall x \drrb \neg R)}
+\done
 
 \end{tabbing}
 \newpage
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\underline{Exercise 8.3c}\\\\
+\color{blue}Prove\ (9.8) :\ \ $(\forall x \mid R : \textit{true}) \equiv \textit{true}$\\
+\\
 
-\Step{(\star y \dr 0 \leq y + r < n + x : y + v)}
+\Step{(\forall x \dr R : true)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (9.3) Trading }\ $\Ggg$ \\
+\Step{(\forall x \drrb \neg R \vee true)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Distributivity of $\vee$ over $\forall$ }\ $\Ggg$ \\
+\Step{true \vee (\forall x \drrb \neg R)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Zero of $\vee$ }\ $\Ggg$ \\
+\Step{true}
+\done
 
 \end{tabbing}
 \newpage
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\underline{Exercise 8.3d}\\\\
+\color{blue}Prove\ (9.8) :\ \ $(\forall x \mid R : \textit{true}) \equiv \textit{true}$\\
+\\
 
-\Step{(\star z \dr 0 \leq z < r : (\star w \dr 0 \leq w : z + w + x + y))}
-
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
-
-\underline{Exercise 8.3e}\\\\
-
-\Step{(\star x \dr 0 \leq x < y : (\star y \dr 0 \leq y : x + y + n))}
+\Step{(\forall x \dr R : true)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (9.6) ($\forall$\textit{x} | \textit{R} : \textit{P}) $\equiv$ \textit{P} $\vee$ ($\forall$\textit{x} |: $\neg$\textit{R}) }\ $\Ggg$ \\
+\Step{true \vee (\forall x \drrb \neg R)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ zero of $\vee$ }\ $\Ggg$ \\
+\Step{true}
+\done
 
 \end{tabbing}\end{document}
 

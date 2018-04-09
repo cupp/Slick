@@ -53,7 +53,9 @@ import { ImplicationExprContext,
          HeaderContext,
          BodyContext,
          RangeContext,
-         InvereseCallContext
+         InvereseCallContext,
+         ArrayExprContext,
+         EmptyRangeExpr
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -100,8 +102,11 @@ export class SlickCompiler implements SlickListener {
       '≢' : '\\not \\equiv',
       '≔' : ':=',
       '*' : "\\star",
+      '%' : "\\star",
       '∀' : "\\forall",
       '∃' : "\\exists",
+      '∑' : "\\Sigma",
+      '∏' : "\\Pi",
       '<' : '<',
       '>' : '>',
       '≤' : '\\leq',
@@ -240,6 +245,13 @@ export class SlickCompiler implements SlickListener {
 
   public exitHintOp = (ctx : HintOpContext) => {
     this.stack.push(ctx.text);
+  }
+
+  public exitEmptyRangeExpr = (ctx : EmptyRangeExpr) => {
+    let q = this.latex[ctx.QUANTIFIER()];
+    let body = this.stack.pop();
+    let dummies = this.stack.pop();
+    this.stack.push("(" + q + " " + dummies + " \\drrb " + body + ")");
   }
 
   public exitQuantifiedExpr = (ctx : QuantifiedExprContext) => {
@@ -390,6 +402,18 @@ export class SlickCompiler implements SlickListener {
     let f = this.stack.pop();
     let finv = f.substr(0,1) + "^{-1}" + f.substr(1);
     this.stack.push(finv);
+  }
+
+  public exitArrayExpr = (ctx : ArrayExprContext) => {
+    let index = this.stack.pop();
+    let arrayName = ctx.VAR();
+    this.stack.push(arrayName + "[" + index + "]");
+  }
+
+  public exitGeneralExpr = (ctx : GeneralExprContext) => {
+    let rhs = this.stack.pop();
+    let lhs = this.stack.pop();
+    this.stack.push(lhs + " " + "\\star " + rhs);
   }
 
   public removeFm(s : string) {
