@@ -4,7 +4,7 @@ doc : proof (sep proof)* ;
 
 proof : standardProof | caseProof ;
 
-standardProof : header? startExpo? step (hint step)* END? endExpo? ;
+standardProof : header? startExpo? 'Proof' ':' step (hint step)* END? endExpo? ;
 
 startExpo : EXPO ;
 
@@ -22,7 +22,7 @@ theorem : PROVE RULENUM     # BibleTheorem
 
 method : 'by' methodName ;
 
-methodName : 'showing' 'equivalence' 'to' 'previous' 'theorem'    # PreviousTheoremMethod
+methodName : 'showing' 'equivalence' 'to' 'a' 'previous' 'theorem'    # PreviousTheoremMethod
   | 'showing' 'the' 'LHS' 'is' 'equivalent' 'to' 'the' 'RHS'      # LeftEquivalesRightMethod
   | 'showing' 'the' 'RHS' 'is' 'equivalent' 'to' 'the' 'LHS'      # RightEquivalesLeftMethod
   | 'showing' 'the' 'LHS' 'implies' 'the' 'RHS'                   # LeftImpliesRightMethod

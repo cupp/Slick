@@ -39,15 +39,16 @@ import { ImplicationExprContext,
          AdHocTheoremContext,
          StartExpoContext,
          EndExpoContext,
-         AssumingConjunctsMethodContext,
          CaseProofContex,
          CaseListContext,
          Case1Context,
          Case2Context,
          CaseProof1Context,
          CaseProof2Context,
+         AssumingConjunctsMethodContext,
          ContradictionMethodContext,
          ContrapositiveMethodContext,
+         PreviousTheoremMethodContext,
          FunctionDotContext,
          FunctionParenContext,
          HeaderContext,
@@ -166,7 +167,7 @@ export class SlickCompiler implements SlickListener {
     if (ctx.END()) {
       proofText += "\\done\n";
     }
-    this.stack.push(proofText);
+    this.stack.push("\\underline{Proof}\\\\\\\\\n" + proofText);
     this.lineCount = 0;
   }
 
@@ -296,6 +297,10 @@ export class SlickCompiler implements SlickListener {
   public exitContrapositiveMethod = (ctx : ContrapositiveMethodContext) => {
     let cp = this.stack.pop();
     this.stack.push("\\color{blue}by proving the contrapositive: $" + cp + "$\\\\\n");
+  }
+
+  public exitPreviousTheoremMethod = (ctx : PreviousTheoremMethodContext) => {
+    this.stack.push("\\color{blue}by showing equivalence to a previous theorem\\\\\n");
   }
 
   public exitCaseProof = (ctx : CaseProofContext) => {
