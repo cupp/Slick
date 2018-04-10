@@ -95,6 +95,7 @@ export class SlickCompiler implements SlickListener {
       '⋀' : '\\wedge',
       '⋁' : '\\vee',
       '=' : '=',
+      '≠' : '\\neq',
       '≡' : '\\equiv',
       '⇒' : '\\Rightarrow',
       '⇐' : '\\Leftarrow',
@@ -114,7 +115,9 @@ export class SlickCompiler implements SlickListener {
       '+' : '+',
       '-' : '-',
       '∪' : '\\cup',
-      '∩' : '\\cap'
+      '∩' : '\\cap',
+      '|:': '\\drrb',
+      '|' : '\\dr'
     };
 
     this.output = "";
@@ -134,6 +137,7 @@ export class SlickCompiler implements SlickListener {
   public exitStartExpo = (ctx : StartExpoContext) => {
     if (ctx.EXPO()) {
       let expo = ctx.EXPO().toString();
+      expo = expo.substr(3);
       expo = this.removeFm(expo);
       expo = this.formatExpo(expo);
       this.stack.push("\\\\\n\\text{" + expo);
@@ -143,6 +147,7 @@ export class SlickCompiler implements SlickListener {
   public exitEndExpo = (ctx : EndExpoContext) => {
     if (ctx.EXPO()) {
       let expo = ctx.EXPO().toString();
+      expo = expo.substr(3);
       expo = this.removeFm(expo);
       expo = this.formatExpo(expo);
       this.stack.push("\\\\\n\\text{" + expo);
@@ -329,10 +334,11 @@ export class SlickCompiler implements SlickListener {
     this.stack.push("\\underline{Proof of (2)}\\\\\\\\\n" + p);
   }
 
+/*
   public exitExpo = (ctx : ExpoContext) => {
     this.stack.push("\\text{" + ctx.text + "}");
   }
-
+*/
   public exitFunctionDot = (ctx : FunctionDotContext) => {
     let e = this.stack.pop();
     this.stack.push(ctx.VAR() + "." + e);
@@ -432,8 +438,8 @@ export class SlickCompiler implements SlickListener {
     s = s.replace(/false/g, "\\textit{false}");
     s = s.replace(/ /g, "\\ ");
     s = s.replace(/\n/g, "\}\\\\\n\\text\{");
-    s = s.substr(0, s.length - 6);
-    s += "[\\lgap]\n"
+    s = s.substr(0, s.length - 8);
+    s += "\\\\\n"
     return s;
   }
 

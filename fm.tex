@@ -56,14 +56,11 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-\color{blue}Prove\ (9.6) :\ \ $(\forall x \mid R : P) \equiv P \vee (\forall x \mid : \neg R)$\\
-\\
+\underline{Exercise 8.5a}\\\\
 
-\Step{(\forall x \dr R : P)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (9.3) Trading }\ $\Ggg$ \\
-\Step{(\forall x \drrb \neg R \vee P)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Distributivity of $\vee$ over $\forall$ }\ $\Ggg$ \\
-\Step{P \vee (\forall x \drrb \neg R)}
+\Step{(\Sigma i \dr 0 \leq i < n + 1 : b[i])}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (8.23) Split off term }\ $\Ggg$ \\
+\Step{b[0] + (\Sigma i \dr 0 < i < n + 1 : b[i])}
 \done
 
 \end{tabbing}
@@ -71,16 +68,11 @@
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\color{blue}Prove\ (9.8) :\ \ $(\forall x \mid R : \textit{true}) \equiv \textit{true}$\\
-\\
+\underline{Exercise 8.5b}\\\\
 
-\Step{(\forall x \dr R : true)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (9.3) Trading }\ $\Ggg$ \\
-\Step{(\forall x \drrb \neg R \vee true)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Distributivity of $\vee$ over $\forall$ }\ $\Ggg$ \\
-\Step{true \vee (\forall x \drrb \neg R)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Zero of $\vee$ }\ $\Ggg$ \\
-\Step{true}
+\Step{(\Sigma i \dr 0 \leq i \leq n : b[i])}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (8.23) Split off term }\ $\Ggg$ \\
+\Step{(\Sigma i \dr 0 \leq i < n : b[i]) + b[n]}
 \done
 
 \end{tabbing}
@@ -88,14 +80,41 @@
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\color{blue}Prove\ (9.8) :\ \ $(\forall x \mid R : \textit{true}) \equiv \textit{true}$\\
+\color{blue}Prove\ (8.23b) Split off term:\ \ $(\star i \mid 0 \le i < n + 1 : P) = P[i := 0] \star (\star i \mid 0 < i < n + 1: P)$\\
 \\
 
-\Step{(\forall x \dr R : true)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (9.6) ($\forall$\textit{x} | \textit{R} : \textit{P}) $\equiv$ \textit{P} $\vee$ ($\forall$\textit{x} |: $\neg$\textit{R}) }\ $\Ggg$ \\
-\Step{true \vee (\forall x \drrb \neg R)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ zero of $\vee$ }\ $\Ggg$ \\
-\Step{true}
+\Step{(\star i \dr 0 \leq i < n + 1 : P)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ 0 $\leq$ \textit{i} $<$ \textit{n} $+$ 1  $\equiv$  \textit{i} $=$ 0 $\vee$ 0 $<$ \textit{i} $<$ \textit{n} $+$ 1 }\ $\Ggg$ \\
+\Step{(\star i \dr i = 0 \vee 0 < i < n + 1 : P)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (8.16) Range split }\ $\Ggg$ \\
+\Step{(\star i \dr i = 0 : P) \star (\star i \dr 0 < i < n + 1 : P)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (8.14) One$-$point rule }\ $\Ggg$ \\
+\Step{P[i := 0] \star (\star i \dr 0 < i < n + 1 : P)}
+\done
+
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
+
+\color{blue}Prove\ $0 \leq i < n + 1 \equiv 0 \leq i < n \vee i = n$\\
+\\
+
+\Step{0 \leq i < n + 1}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Remove the conjunctive abbreviation }\ $\Ggg$ \\
+\Step{0 \leq i \wedge i < n + 1}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ \textit{i} $<$ \textit{n} $+$ 1  $\equiv$  \textit{i} $<$ \textit{n} $\vee$ \textit{i} $=$ \textit{n} }\ $\Ggg$ \\
+\Step{0 \leq i \wedge (i < n \vee i = n)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.46) Distributivity of $\wedge$ over $\vee$ }\ $\Ggg$ \\
+\Step{(0 \leq i \wedge i < n) \vee (0 \leq i \wedge i = n)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.84a) Substitution }\ $\Ggg$ \\
+\Step{(0 \leq i \wedge i < n) \vee (0 \leq n \wedge i = n)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Assume 0 $\leq$ \textit{n} }\ $\Ggg$ \\
+\Step{(0 \leq i \wedge i < n) \vee (true \wedge i = n)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.39) Identity of $\wedge$ }\ $\Ggg$ \\
+\Step{(0 \leq i \wedge i < n) \vee i = n}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Reintroduce the conjunctive meaning }\ $\Ggg$ \\
+\Step{0 \leq i < n \vee i = n}
 \done
 
 \end{tabbing}\end{document}
