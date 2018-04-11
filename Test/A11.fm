@@ -11,12 +11,13 @@ The argument is a theorem by the following proof.
 
 ]]]
 
+Proof:
   (¬T ⋁ N) ⋀ (N ⇒ M) ⋀ T
-=    〈 Absorption (3.44a) 〉
+=    〈 Absorption (3.44a) 〉
   N ⋀ (N ⇒ M) ⋀ T
-=    〈 (3.66) 〉
+=    〈 (3.66) 〉
   N ⋀ M ⋀ T
-⇒    〈 (3.76b) Strengthening 〉
+⇒    〈 (3.76b) Strengthening 〉
   M ╱╱
 
 ------------------------------
@@ -34,10 +35,11 @@ The argument is a theorem by the following proof.
 
 ]]]
 
+Proof:
   (M ⇒ C) ⋀ (C ⇒ I) ⋀ (¬M ⋁ ¬C)
-⇒    〈 Strengthening (3.76b) 〉
+⇒    〈 Strengthening (3.76b) 〉
   C ⇒ I
-=    〈 (3.59) Implication 〉
+=    〈 (3.59) Implication 〉
   ¬C ⋁ I  ╱╱
 
 
@@ -56,48 +58,51 @@ The argument is not a theorem by counterexample (J, true), (M, true), (F, true)
 
 ]]]
 
+Proof:
   (true ⇒ true ⋁ true) ⋀ true ⇒ (true ⇒ ¬true)
-=    〈 zero of ⋁, ¬true ≡ false 〉
+=    〈 zero of ⋁, ¬true ≡ false 〉
   (true ⇒ true) ⋀ true ⇒ (true ⇒ false)
-=    〈 true ⇒ p ≡ p, twice 〉
+=    〈 true ⇒ p ≡ p, twice 〉
   true ⋀ true ⇒ false
-=    〈 p ⇒ false ≡ false 〉
+=    〈 p ⇒ false ≡ false 〉
   false  ╱╱
 
 ------------------------------
 
-Reprove 3.47a
+Reprove (3.47a)
 by contradiction
 
+Proof:
   ¬(¬(p ⋀ q) ≡ ¬p ⋁ ¬q)
-=    〈 Distributivity of ¬ over ≡ 〉
+=    〈 Distributivity of ¬ over ≡ 〉
   ¬¬(p ⋀ q) ≡ ¬p ⋁ ¬q
-=    〈 Double negation 〉
+=    〈 Double negation 〉
   p ⋀ q ≡ ¬p ⋁ ¬q
-=    〈 Golden rule 〉
+=    〈 Golden rule 〉
   p ≡ q ≡ p ⋁ q ≡ ¬p ⋁ ¬q
-=    〈 (3.32) 〉
+=    〈 (3.32) 〉
   q ≡ p ⋁ ¬q ≡ ¬p ⋁ ¬q
-=    〈 Distributivity of ⋁ over ≡ 〉
+=    〈 Distributivity of ⋁ over ≡ 〉
   q ≡ (p ≡ ¬p) ⋁ ¬q
-=    〈 (3.15) 〉
+=    〈 (3.15) 〉
   q ≡ false ⋁ ¬q
-=    〈 Identity of ⋁ 〉
+=    〈 Identity of ⋁ 〉
   q ≡ ¬q
-=    〈 (3.15) 〉
+=    〈 (3.15) 〉
   false  ╱╱
 
 ------------------------------
 
-Reprove 3.76c
+Reprove (3.76c)
 by proving the contrapositive: ¬(p ⋁ q) ⇒ ¬(p ⋀ q)
 
+Proof:
   ¬(p ⋁ q)
-=    〈 De Morgan 〉
+=    〈 De Morgan 〉
   ¬p ⋀ ¬q
-⇒    〈 (3.76b) 〉
+⇒    〈 (3.76b) 〉
   ¬p
-⇒    〈 (3.76a) 〉
+⇒    〈 (3.76a) 〉
   ¬p ⋁ ¬q
-=    〈 De Morgan 〉
+=    〈 De Morgan 〉
   ¬(p ⋀ q)  ╱╱

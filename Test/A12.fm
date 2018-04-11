@@ -7,11 +7,11 @@ So we take as true the expression b ≡ (b ⇒ H).
 ]]]
 
   b ≡ (b ⇒ H)
-=    〈 (3.60) Implication 〉
+=    〈 (3.60) Implication 〉
   b ≡ b ⋀ H ≡ b
-=    〈 Symmetry of ≡ 〉
+=    〈 Symmetry of ≡ 〉
   b ≡ b ≡ b ⋀ H
-=    〈 (3.3) Identity of ≡, twice 〉
+=    〈 (3.3) Identity of ≡, twice 〉
   b ⋀ H
 
 [[[
@@ -28,17 +28,17 @@ So we take as true the expression b ≡ c ⇒ ¬b.
 ]]]
 
   b ≡ c ⇒ ¬b
-=    〈 (3.57) Implication 〉
+=    〈 (3.57) Implication 〉
   b ≡ c ⋁ ¬b ≡ ¬b
-=    〈 Symmetry of ≡ 〉
+=    〈 Symmetry of ≡ 〉
   b ≡ ¬b ≡ c ⋁ ¬b
-=    〈 (3.15) 〉
+=    〈 (3.15) 〉
   false ≡ c ⋁ ¬b
-=    〈 (3.15) 〉
+=    〈 (3.15) 〉
   ¬(c ⋁ ¬b)
-=    〈 De Morgan 〉
+=    〈 De Morgan 〉
   ¬c ⋀ ¬¬b
-=    〈 Double negation 〉
+=    〈 Double negation 〉
   ¬c ⋀ b
 
 [[[
@@ -56,9 +56,9 @@ So we take as true the expression b ≡ G ≡ b.
 ]]]
 
   b ≡ G ≡ b
-=    〈 Symmetry of ≡ 〉
+=    〈 Symmetry of ≡ 〉
   b ≡ b ≡ G
-=    〈 Identity of ≡, twice 〉
+=    〈 Identity of ≡, twice 〉
   G
 
 [[[

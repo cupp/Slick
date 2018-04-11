@@ -49,6 +49,8 @@ import { ImplicationExprContext,
          ContradictionMethodContext,
          ContrapositiveMethodContext,
          PreviousTheoremMethodContext,
+         LeftEquivalesRightMethodContext,
+         RightEquivalesLeftMethodContext,
          FunctionDotContext,
          FunctionParenContext,
          HeaderContext,
@@ -301,6 +303,14 @@ export class SlickCompiler implements SlickListener {
 
   public exitPreviousTheoremMethod = (ctx : PreviousTheoremMethodContext) => {
     this.stack.push("\\color{blue}by showing equivalence to a previous theorem\\\\\n");
+  }
+
+  public exitLeftEquivalesRightMethod = (ctx : LeftEquivalesRightMethodContext) => {
+    this.stack.push("\\color{blue}by showing the LHS is equivalent to the RHS\\\\\n");
+  }
+
+  public exitRightEquivalesLeftMethod = (ctx : RightEquivalesLefttMethodContext) => {
+    this.stack.push("\\color{blue}by showing the RHS is equivalent to the LHS\\\\\n");
   }
 
   public exitCaseProof = (ctx : CaseProofContext) => {

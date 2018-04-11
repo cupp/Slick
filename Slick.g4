@@ -12,12 +12,12 @@ endExpo : EXPO ;
 
 sep : '-' '-' '-' '-'+ ;
 
-header : (theorem method?)    # TheoremHeader
-  | 'Exercise' RULENUM          # ExerciseHeader
+header : (theorem method?)        # TheoremHeader
+  | 'Exercise' RULENUM            # ExerciseHeader
 ;
 
-theorem : PROVE RULENUM     # BibleTheorem
-  | PROVE expr              # AdHocTheorem
+theorem : PROVE '(' RULENUM ')'    # BibleTheorem
+  | PROVE expr                     # AdHocTheorem
 ;
 
 method : 'by' methodName ;
@@ -87,7 +87,7 @@ functionCall : VAR '.' expr        # FunctionDot
 ;
 typedVar : VAR (':' TYPE)? ;
 
-COMMENT : '〈' .+? '〉' ;
+COMMENT : '〈' .+? '〉' ;
 EXPO : '[[[' .+? ']]]' ;
 PROVE : 'Prove' | 'Reprove' ;
 RULENUM: [1-9][0-9]?'.'[1-9][0-9]?[0-9]?[a-z]?('.'[0-9])? ;

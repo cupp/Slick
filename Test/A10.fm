@@ -14,10 +14,11 @@ Prove (C ⋀ T ⇒ S) ⋀ S ⇒ (C ⇒ T)
  We calculate:
 
 ]]]
+Proof:
   (C ⋀ T ⇒ S) ⋀ S
-=    〈 (3.59) p ⇒ q ≡ ¬p ⋁ q 〉
+=    〈 (3.59) p ⇒ q ≡ ¬p ⋁ q 〉
   ((C ⋀ T) ⋁ S) ⋀ S
-=    〈 (3.43a) Absorption 〉
+=    〈 (3.43a) Absorption 〉
   S
 
 [[[
@@ -35,19 +36,20 @@ Prove (C ⋀ T ⇒ S) ⋀ S ⇒ (C ⇒ T)
 Reprove p ⋀ q ⇒ p ⋀ (q ⋁ r)
 by assuming the conjuncts of the antecedent
 
+Proof:
   p ⋀ (q ⋁ r)
-=    〈 Assume conjunct p 〉
+=    〈 Assume conjunct p 〉
   true ⋀ (q ⋁ r)
-=    〈 Identity of ⋀ 〉
+=    〈 Identity of ⋀ 〉
   q ⋁ r
-=    〈 Assume conjunct q 〉
+=    〈 Assume conjunct q 〉
   true ⋁ r
-=    〈 Zero of ⋁ 〉
+=    〈 Zero of ⋁ 〉
   true  ╱╱
 
 ------------------------------
 
-Reprove 3.46
+Reprove (3.46)
 by case analysis on p
 
 Must prove
@@ -57,16 +59,16 @@ Must prove
 Proof of (1)
 
   (true ⋀ q) ⋁ (true ⋀ r)
-=    〈 Identity of ⋀, twice 〉
+=    〈 Identity of ⋀, twice 〉
   q ⋁ r
-=    〈 Identity of ⋀ 〉
+=    〈 Identity of ⋀ 〉
   true ⋀ (q ⋁ r)  ╱╱
 
 Proof of (2)
   (false ⋀ q) ⋁ (false ⋀ r)
-=    〈 Zero of ⋀, twice 〉
+=    〈 Zero of ⋀, twice 〉
   false ⋁ false
-=    〈 Identity of ⋁ 〉
+=    〈 Identity of ⋁ 〉
   false
-=    〈 Zero of ⋀ 〉
+=    〈 Zero of ⋀ 〉
   false ⋀ (q ⋁ r)  ╱╱
