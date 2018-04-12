@@ -1,4 +1,5 @@
 Prove (3.85a)
+by showing the LHS is equivalent to the RHS
 
 Proof:
   p ⇒ E[z, p]
@@ -12,6 +13,7 @@ Proof:
 ------------------------------
 
 Prove (3.85b)
+by showing the LHS is equivalent to the RHS
 
 Proof:
   q ⋀ p ⇒ E[z, p]
@@ -25,6 +27,7 @@ Proof:
 ------------------------------
 
 Prove (4.1)
+by showing the RHS follows from the LHS
 
 Proof:
   q ⇒ p
@@ -36,6 +39,7 @@ Proof:
 ------------------------------
 
 Prove (4.3)
+by showing the RHS follows from the LHS
 
 Proof:
   p ⋀ r ⇒ q ⋀ r

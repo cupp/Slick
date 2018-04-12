@@ -58,7 +58,8 @@ import { ImplicationExprContext,
          RangeContext,
          InvereseCallContext,
          ArrayExprContext,
-         EmptyRangeExpr
+         EmptyRangeExpr,
+         RightFollowsLeftMethodContext
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -311,6 +312,10 @@ export class SlickCompiler implements SlickListener {
 
   public exitRightEquivalesLeftMethod = (ctx : RightEquivalesLefttMethodContext) => {
     this.stack.push("\\color{blue}by showing the RHS is equivalent to the LHS\\\\\n");
+  }
+
+  public exitRightFollowsLeftMethod = (ctx : RightFollowsLeftMethodContext) => {
+    this.stack.push("\\color{blue}by showing the RHS follows from the LHS\\\\\n");  
   }
 
   public exitCaseProof = (ctx : CaseProofContext) => {

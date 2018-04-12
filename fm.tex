@@ -56,40 +56,82 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
+\color{blue}Prove\ (3.85a) Replace by $\textit{true}$:\ \ $p \Rightarrow E^z_p\ \equiv\ p \Rightarrow E^z_\textit{true}$\\
+\color{blue}by showing the LHS is equivalent to the RHS\\
+\\
+
+\underline{Proof}\\\\
+\Step{p \Rightarrow E^{z}_{p}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{(p \equiv true) \Rightarrow E^{z}_{p}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.84b) with \textit{e}, \textit{f} $:=$ \textit{p}, true }\ $\Ggg$ \\
+\Step{(p \equiv true) \Rightarrow E^{z}_{true}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{p \Rightarrow E^{z}_{true}}
+\done
 
 \end{tabbing}
 \newpage
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
+\color{blue}Prove\ (3.85b) Replace by $\textit{true}$:\ \ $q \wedge p \Rightarrow E^z_p\ \equiv\ q \wedge p \Rightarrow E^z_\textit{true}$\\
+\color{blue}by showing the LHS is equivalent to the RHS\\
+\\
+
+\underline{Proof}\\\\
+\Step{q \wedge p \Rightarrow E^{z}_{p}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{q \wedge (p \equiv true) \Rightarrow E^{z}_{p}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.84c) with \textit{e}, \textit{f} $:=$ \textit{p}, true }\ $\Ggg$ \\
+\Step{q \wedge (p \equiv true) \Rightarrow E^{z}_{true}}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{q \wedge p \Rightarrow E^{z}_{true}}
+\done
 
 \end{tabbing}
 \newpage
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
+\color{blue}Prove\ (4.1) :\ \ $p \Rightarrow (q \Rightarrow p)$\\
+\color{blue}by showing the RHS follows from the LHS\\
+\\
+
+\underline{Proof}\\\\
+\Step{q \Rightarrow p}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) }\ $\Ggg$ \\
+\Step{\neg q \vee p}
+\\$\Leftarrow$\>\>\ \ \ $\Gll$\ \text{ (3.76a) Strengthening }\ $\Ggg$ \\
+\Step{p}
+\done
 
 \end{tabbing}
 \newpage
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\end{tabbing}
-\newpage
-\begin{tabbing}
-99.\;\=(m)\;\=\kill
+\color{blue}Prove\ (4.3) Monotonicity of $\wedge$:\ \ $(p \Rightarrow q) \Rightarrow (p \wedge r \Rightarrow q \wedge r)$\\
+\color{blue}by showing the RHS follows from the LHS\\
+\\
+
+\underline{Proof}\\\\
+\Step{p \wedge r \Rightarrow q \wedge r}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) }\ $\Ggg$ \\
+\Step{\neg (p \wedge r) \vee (q \wedge r)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ De Morgan }\ $\Ggg$ \\
+\Step{\neg p \vee \neg r \vee (q \wedge r)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Distbributivity of $\vee$ over $\wedge$ }\ $\Ggg$ \\
+\Step{\neg p \vee ((\neg r \vee q) \wedge (\neg r \vee r))}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Excluded middle }\ $\Ggg$ \\
+\Step{\neg p \vee ((\neg r \vee q) \wedge true)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
+\Step{\neg p \vee \neg r \vee q}
+\\$\Leftarrow$\>\>\ \ \ $\Gll$\ \text{ (3.76a) Strengthening }\ $\Ggg$ \\
+\Step{\neg p \vee q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) }\ $\Ggg$ \\
+\Step{p \Rightarrow q}
+\done
 
 \end{tabbing}\end{document}
 
