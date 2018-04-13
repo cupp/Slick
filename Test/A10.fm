@@ -1,4 +1,4 @@
-Prove (C ⋀ T ⇒ S) ⋀ S ⇒ (C ⇒ T)
+Exercise 5.1b
 
 [[[
  We associate identifiers with the primitive propositions:
@@ -12,9 +12,7 @@ Prove (C ⋀ T ⇒ S) ⋀ S ⇒ (C ⇒ T)
      (C ⋀ T ⇒ S) ⋀ S ⇒ (C ⇒ T)
 
  We calculate:
-
 ]]]
-Proof:
   (C ⋀ T ⇒ S) ⋀ S
 =    〈 (3.59) p ⇒ q ≡ ¬p ⋁ q 〉
   ((C ⋀ T) ⋁ S) ⋀ S
@@ -56,15 +54,15 @@ Must prove
   (1) true ⋀ (q ⋁ r) ≡ (true ⋀ q) ⋁ (true ⋀ r)
   (2) false ⋀ (q ⋁ r) ≡ (false ⋀ q) ⋁ (false ⋀ r)
 
-Proof of (1)
 
+(1) Proof:
   (true ⋀ q) ⋁ (true ⋀ r)
 =    〈 Identity of ⋀, twice 〉
   q ⋁ r
 =    〈 Identity of ⋀ 〉
   true ⋀ (q ⋁ r)  ╱╱
 
-Proof of (2)
+(2) Proof:
   (false ⋀ q) ⋁ (false ⋀ r)
 =    〈 Zero of ⋀, twice 〉
   false ⋁ false

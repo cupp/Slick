@@ -59,7 +59,7 @@ import { ImplicationExprContext,
          InvereseCallContext,
          ArrayExprContext,
          EmptyRangeExpr,
-         RightFollowsLeftMethodContext
+         RightFollowsLeftMethodContext,
 } from './SlickParser';
 
 import { ANTLRInputStream, CommonTokenStream } from 'antlr4ts';
@@ -170,7 +170,11 @@ export class SlickCompiler implements SlickListener {
     if (ctx.END()) {
       proofText += "\\done\n";
     }
-    this.stack.push("\\underline{Proof}\\\\\\\\\n" + proofText);
+    let head = "";
+    if (ctx.proofHead()) {
+      head = "\\underline{Proof}\\\\\\\\\n";
+    }
+    this.stack.push(head + proofText);
     this.lineCount = 0;
   }
 
@@ -315,7 +319,7 @@ export class SlickCompiler implements SlickListener {
   }
 
   public exitRightFollowsLeftMethod = (ctx : RightFollowsLeftMethodContext) => {
-    this.stack.push("\\color{blue}by showing the RHS follows from the LHS\\\\\n");  
+    this.stack.push("\\color{blue}by showing the RHS follows from the LHS\\\\\n");
   }
 
   public exitCaseProof = (ctx : CaseProofContext) => {
@@ -346,12 +350,12 @@ export class SlickCompiler implements SlickListener {
 
   public exitCaseProof1 = (ctx : CaseProof1Context) => {
     let p = this.stack.pop();
-    this.stack.push("\\underline{Proof of (1)}\\\\\\\\\n" + p + "\\\\\\\\");
+    this.stack.push("(1) " + p + "\\\\\\\\");
   }
 
   public exitCaseProof2 = (ctx : CaseProof2Context) => {
     let p = this.stack.pop();
-    this.stack.push("\\underline{Proof of (2)}\\\\\\\\\n" + p);
+    this.stack.push("(2) " + p);
   }
 
 /*

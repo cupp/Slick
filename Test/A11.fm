@@ -1,6 +1,5 @@
+Exercise 5.1a
 [[[
-5.1a)
-
 Let T represent the program terminating
 Let N represent variable n becoming 0
 Let M represent variable m becoming 0
@@ -8,7 +7,6 @@ Let M represent variable m becoming 0
 The argument is (¬T ⋁ N) ⋀ (N ⇒ M) ⋀ T  ⇒  M
 
 The argument is a theorem by the following proof.
-
 ]]]
 
 Proof:
@@ -22,9 +20,8 @@ Proof:
 
 ------------------------------
 
+Exercise 5.1c
 [[[
-5.1c)
-
 Let M represent a man being on the moon.
 Let C represent the moon being made of cheese.
 Let I represent the statement "I am a monkey."
@@ -32,7 +29,6 @@ Let I represent the statement "I am a monkey."
 The argument is (M ⇒ C) ⋀ (C ⇒ I) ⋀ (¬M ⋁ ¬C)  ⇒  ¬C ⋁ I
 
 The argument is a theorem by the following proof.
-
 ]]]
 
 Proof:
@@ -45,8 +41,8 @@ Proof:
 
 ------------------------------
 
+Exercise 5.1d
 [[[
-5.1d)
 
 Let J represent Joe loves Mary.
 Let M represent Mom is mad.
@@ -55,7 +51,6 @@ Let F represent Father is sad.
 The argument is (J ⇒ M ⋁ F) ⋀ F  ⇒  (M ⇒ ¬J)
 
 The argument is not a theorem by counterexample (J, true), (M, true), (F, true)
-
 ]]]
 
 Proof:

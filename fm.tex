@@ -56,18 +56,27 @@
 \begin{document}
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
-\color{blue}Prove\ (3.85a) Replace by $\textit{true}$:\ \ $p \Rightarrow E^z_p\ \equiv\ p \Rightarrow E^z_\textit{true}$\\
-\color{blue}by showing the LHS is equivalent to the RHS\\
+\underline{Exercise 5.1a}\\\\
+
 \\
+\text{}\\
+\text{Let\ \textit{T}\ represent\ the\ program\ terminating}\\
+\text{Let\ \textit{N}\ represent\ variable\ \textit{n}\ becoming\ 0}\\
+\text{Let\ \textit{M}\ represent\ variable\ \textit{m}\ becoming\ 0}\\
+\text{}\\
+\text{The\ argument\ is\ ($\neg$\textit{T}\ $\vee$\ \textit{N})\ $\wedge$\ (\textit{N}\ $\Rightarrow$\ \textit{M})\ $\wedge$\ \textit{T}\ \ $\Rightarrow$\ \ \textit{M}}\\
+\text{}\\
+\text{The\ argument\ is\ a\ theorem\ by\ the\ following\ proof.}\\
+\\\
 
 \underline{Proof}\\\\
-\Step{p \Rightarrow E^{z}_{p}}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
-\Step{(p \equiv true) \Rightarrow E^{z}_{p}}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.84b) with \textit{e}, \textit{f} $:=$ \textit{p}, true }\ $\Ggg$ \\
-\Step{(p \equiv true) \Rightarrow E^{z}_{true}}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
-\Step{p \Rightarrow E^{z}_{true}}
+\Step{(\neg T \vee N) \wedge (N \Rightarrow M) \wedge T}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Absorption (3.44a) }\ $\Ggg$ \\
+\Step{N \wedge (N \Rightarrow M) \wedge T}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.66) }\ $\Ggg$ \\
+\Step{N \wedge M \wedge T}
+\\$\Rightarrow$\>\>\ \ \ $\Gll$\ \text{ (3.76b) Strengthening }\ $\Ggg$ \\
+\Step{M}
 \done
 
 \end{tabbing}
@@ -75,18 +84,25 @@
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\color{blue}Prove\ (3.85b) Replace by $\textit{true}$:\ \ $q \wedge p \Rightarrow E^z_p\ \equiv\ q \wedge p \Rightarrow E^z_\textit{true}$\\
-\color{blue}by showing the LHS is equivalent to the RHS\\
+\underline{Exercise 5.1c}\\\\
+
 \\
+\text{}\\
+\text{Let\ \textit{M}\ represent\ a\ man\ being\ on\ the\ moon.}\\
+\text{Let\ \textit{C}\ represent\ the\ moon\ being\ made\ of\ cheese.}\\
+\text{Let\ \textit{I}\ represent\ the\ statement\ "\textit{I}\ am\ a\ monkey."}\\
+\text{}\\
+\text{The\ argument\ is\ (\textit{M}\ $\Rightarrow$\ \textit{C})\ $\wedge$\ (\textit{C}\ $\Rightarrow$\ \textit{I})\ $\wedge$\ ($\neg$\textit{M}\ $\vee$\ $\neg$\textit{C})\ \ $\Rightarrow$\ \ $\neg$\textit{C}\ $\vee$\ \textit{I}}\\
+\text{}\\
+\text{The\ argument\ is\ a\ theorem\ by\ the\ following\ proof.}\\
+\\\
 
 \underline{Proof}\\\\
-\Step{q \wedge p \Rightarrow E^{z}_{p}}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
-\Step{q \wedge (p \equiv true) \Rightarrow E^{z}_{p}}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.84c) with \textit{e}, \textit{f} $:=$ \textit{p}, true }\ $\Ggg$ \\
-\Step{q \wedge (p \equiv true) \Rightarrow E^{z}_{true}}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
-\Step{q \wedge p \Rightarrow E^{z}_{true}}
+\Step{(M \Rightarrow C) \wedge (C \Rightarrow I) \wedge (\neg M \vee \neg C)}
+\\$\Rightarrow$\>\>\ \ \ $\Gll$\ \text{ Strengthening (3.76b) }\ $\Ggg$ \\
+\Step{C \Rightarrow I}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) Implication }\ $\Ggg$ \\
+\Step{\neg C \vee I}
 \done
 
 \end{tabbing}
@@ -94,16 +110,28 @@
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\color{blue}Prove\ (4.1) :\ \ $p \Rightarrow (q \Rightarrow p)$\\
-\color{blue}by showing the RHS follows from the LHS\\
+\underline{Exercise 5.1d}\\\\
+
 \\
+\text{}\\
+\text{}\\
+\text{Let\ \textit{J}\ represent\ Joe\ loves\ Mary.}\\
+\text{Let\ \textit{M}\ represent\ Mom\ is\ mad.}\\
+\text{Let\ \textit{F}\ represent\ Father\ is\ sad.}\\
+\text{}\\
+\text{The\ argument\ is\ (\textit{J}\ $\Rightarrow$\ \textit{M}\ $\vee$\ \textit{F})\ $\wedge$\ \textit{F}\ \ $\Rightarrow$\ \ (\textit{M}\ $\Rightarrow$\ $\neg$\textit{J})}\\
+\text{}\\
+\text{The\ argument\ is\ not\ a\ theorem\ by\ counterexample\ (\textit{J},\ \textit{true}),\ (\textit{M},\ \textit{true}),\ (\textit{F},\ \textit{true})}\\
+\\\
 
 \underline{Proof}\\\\
-\Step{q \Rightarrow p}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) }\ $\Ggg$ \\
-\Step{\neg q \vee p}
-\\$\Leftarrow$\>\>\ \ \ $\Gll$\ \text{ (3.76a) Strengthening }\ $\Ggg$ \\
-\Step{p}
+\Step{(true \Rightarrow true \vee true) \wedge true \Rightarrow (true \Rightarrow \neg true)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ zero of $\vee$, $\neg$true $\equiv$ false }\ $\Ggg$ \\
+\Step{(true \Rightarrow true) \wedge true \Rightarrow (true \Rightarrow false)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ true $\Rightarrow$ \textit{p} $\equiv$ \textit{p}, twice }\ $\Ggg$ \\
+\Step{true \wedge true \Rightarrow false}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ \textit{p} $\Rightarrow$ false $\equiv$ false }\ $\Ggg$ \\
+\Step{false}
 \done
 
 \end{tabbing}
@@ -111,26 +139,49 @@
 \begin{tabbing}
 99.\;\=(m)\;\=\kill
 
-\color{blue}Prove\ (4.3) Monotonicity of $\wedge$:\ \ $(p \Rightarrow q) \Rightarrow (p \wedge r \Rightarrow q \wedge r)$\\
-\color{blue}by showing the RHS follows from the LHS\\
+\color{blue}Reprove\ (3.47a) De Morgan:\ \ $\neg (p \wedge q)\ \equiv\ \neg p \vee \neg q$\\
+\color{blue}by contradiction\\
 \\
 
 \underline{Proof}\\\\
-\Step{p \wedge r \Rightarrow q \wedge r}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) }\ $\Ggg$ \\
-\Step{\neg (p \wedge r) \vee (q \wedge r)}
+\Step{\neg (\neg (p \wedge q) \equiv \neg p \vee \neg q)}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Distributivity of $\neg$ over $\equiv$ }\ $\Ggg$ \\
+\Step{\neg \neg (p \wedge q) \equiv \neg p \vee \neg q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Double negation }\ $\Ggg$ \\
+\Step{p \wedge q \equiv \neg p \vee \neg q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Golden rule }\ $\Ggg$ \\
+\Step{p \equiv q \equiv p \vee q \equiv \neg p \vee \neg q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.32) }\ $\Ggg$ \\
+\Step{q \equiv p \vee \neg q \equiv \neg p \vee \neg q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Distributivity of $\vee$ over $\equiv$ }\ $\Ggg$ \\
+\Step{q \equiv (p \equiv \neg p) \vee \neg q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.15) }\ $\Ggg$ \\
+\Step{q \equiv false \vee \neg q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\vee$ }\ $\Ggg$ \\
+\Step{q \equiv \neg q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.15) }\ $\Ggg$ \\
+\Step{false}
+\done
+
+\end{tabbing}
+\newpage
+\begin{tabbing}
+99.\;\=(m)\;\=\kill
+
+\color{blue}Reprove\ (3.76c) Weakening/strengthening:\ \ $p \wedge q \Rightarrow p \vee q$\\
+\color{blue}by proving the contrapositive: $\neg (p \vee q) \Rightarrow \neg (p \wedge q)$\\
+\\
+
+\underline{Proof}\\\\
+\Step{\neg (p \vee q)}
 \\$=$\>\>\ \ \ $\Gll$\ \text{ De Morgan }\ $\Ggg$ \\
-\Step{\neg p \vee \neg r \vee (q \wedge r)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Distbributivity of $\vee$ over $\wedge$ }\ $\Ggg$ \\
-\Step{\neg p \vee ((\neg r \vee q) \wedge (\neg r \vee r))}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Excluded middle }\ $\Ggg$ \\
-\Step{\neg p \vee ((\neg r \vee q) \wedge true)}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ Identity of $\equiv$ }\ $\Ggg$ \\
-\Step{\neg p \vee \neg r \vee q}
-\\$\Leftarrow$\>\>\ \ \ $\Gll$\ \text{ (3.76a) Strengthening }\ $\Ggg$ \\
-\Step{\neg p \vee q}
-\\$=$\>\>\ \ \ $\Gll$\ \text{ (3.59) }\ $\Ggg$ \\
-\Step{p \Rightarrow q}
+\Step{\neg p \wedge \neg q}
+\\$\Rightarrow$\>\>\ \ \ $\Gll$\ \text{ (3.76b) }\ $\Ggg$ \\
+\Step{\neg p}
+\\$\Rightarrow$\>\>\ \ \ $\Gll$\ \text{ (3.76a) }\ $\Ggg$ \\
+\Step{\neg p \vee \neg q}
+\\$=$\>\>\ \ \ $\Gll$\ \text{ De Morgan }\ $\Ggg$ \\
+\Step{\neg (p \wedge q)}
 \done
 
 \end{tabbing}\end{document}
