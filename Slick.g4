@@ -24,7 +24,7 @@ theorem : PROVE '(' RULENUM ')'    # BibleTheorem
 
 method : 'by' methodName ;
 
-methodName : 'showing' 'equivalence' 'to' 'a' 'previous' 'theorem'    # PreviousTheoremMethod
+methodName : 'showing' 'equivalence' 'to' 'previous' 'theorem'    # PreviousTheoremMethod
   | 'showing' 'the' 'LHS' 'is' 'equivalent' 'to' 'the' 'RHS'      # LeftEquivalesRightMethod
   | 'showing' 'the' 'RHS' 'is' 'equivalent' 'to' 'the' 'LHS'      # RightEquivalesLeftMethod
   | 'showing' 'the' 'LHS' 'implies' 'the' 'RHS'                   # LeftImpliesRightMethod

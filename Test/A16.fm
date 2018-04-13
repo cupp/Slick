@@ -1,4 +1,5 @@
 Prove (9.6)
+by showing the LHS is equivalent to the RHS
 
 Proof:
   (∀x | R : P)
@@ -10,6 +11,7 @@ Proof:
 ------------------------------
 
 Prove (9.8)
+by showing the LHS is equivalent to the RHS
 
 Proof:
   (∀x | R : true)
@@ -23,6 +25,7 @@ Proof:
 ------------------------------
 
 Prove (9.8)
+by showing the LHS is equivalent to the RHS
 
 Proof:
   (∀x | R : true)
@@ -34,6 +37,7 @@ Proof:
 ------------------------------
 
 Prove (9.9)
+by showing equivalence to previous theorem
 
 Proof:
   (∀x | R : P ≡ Q) ⇒ ((∀x | R : P) ≡ (∀x | R : Q))
@@ -49,6 +53,7 @@ Proof:
 ------------------------------
 
 Prove (9.11)
+by showing the LHS implies the RHS
 
 Proof:
   (∀x | R : P ⋀ Q)
@@ -60,6 +65,7 @@ Proof:
 ------------------------------
 
 Prove (9.13)
+by showing the LHS implies the RHS
 
 Proof:
   (∀x |: P)

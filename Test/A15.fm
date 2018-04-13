@@ -17,6 +17,7 @@ Proof:
 ------------------------------
 
 Prove (8.23b)
+by showing the LHS is equivalent to the RHS
 
 Proof:
   (*i | 0 ≤ i < n + 1 : P)
@@ -30,6 +31,7 @@ Proof:
 ------------------------------
 
 Prove 0 ≤ i < n + 1  ≡  0 ≤ i < n ⋁ i = n
+by showing the LHS is equivalent to the RHS
 
 Proof:
   0 ≤ i < n + 1

@@ -61,7 +61,7 @@ Proof:
 ------------------------------
 
 Prove (3.71)
-by showing equivalence to a previous theorem
+by showing equivalence to previous theorem
 
 Proof:
   p ⇒ p
@@ -85,7 +85,7 @@ Proof:
 ------------------------------
 
 Prove (3.76a)
-by showing equivalence to a previous theorem
+by showing equivalence to previous theorem
 
 Proof:
   p ⇒ p ⋁ q
@@ -99,7 +99,7 @@ Proof:
 ------------------------------
 
 Prove (3.77)
-by showing equivalence to a previous theorem
+by showing equivalence to previous theorem
 
 Proof:
   p ⋀ (p ⇒ q) ⇒ q

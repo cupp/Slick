@@ -1,5 +1,5 @@
 Prove (3.12)
-by showing equivalence to a previous theorem
+by showing equivalence to previous theorem
 
 Proof:
   ¬¬p ≡ p
@@ -11,7 +11,7 @@ Proof:
 ------------------------------
 
 Prove (3.13)
-by showing equivalence to a previous theorem
+by showing equivalence to previous theorem
 
 Proof:
   ¬false
@@ -23,7 +23,7 @@ Proof:
 ------------------------------
 
 Prove (3.14)
-by showing equivalence to a previous theorem
+by showing equivalence to previous theorem
 
 Proof:
   p ≢ q
@@ -35,7 +35,7 @@ Proof:
 ------------------------------
 
 Prove (3.19)
-by showing equivalence to a previous theorem
+by showing equivalence to previous theorem
 
 Proof:
   p ≢ q ≡ r
